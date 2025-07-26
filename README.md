@@ -2,7 +2,7 @@
 
 **Soul Architecture and Identity Framework by Yuu Honda**
 
-![Logo](https://raw.githubusercontent.com/Yuu-Honda/lux-spiria/main/logo.png)
+
 
 ## Modules
 
