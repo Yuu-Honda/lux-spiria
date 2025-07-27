@@ -1,47 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Access Portal | Yuu Honda</title>
+  <meta charset="UTF-8">
+  <title>Yuu Honda Access Portal</title>
   <style>
     body {
-      background-color: #0f1217;
-      color: #ffffff;
-      font-family: "Segoe UI", sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 3em;
+      background-color: #0d1017;
+      color: #f0f0f0;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 2rem;
     }
+
     h1 {
-      color: #e0e0e0;
+      font-size: 2rem;
+      color: #f8f8f8;
+      margin-bottom: 1rem;
     }
-    .button {
-      background-color: #222;
-      border: 1px solid #555;
-      color: #fff;
-      padding: 0.8em 2em;
-      margin: 1em;
-      font-size: 1.1em;
+
+    p {
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .info-box {
+      background-color: #161b22;
+      border: 1px solid #30363d;
+      padding: 1.5rem;
+      border-radius: 8px;
+      max-width: 640px;
+    }
+
+    .trigger-btn {
+      margin-top: 1.5rem;
+      padding: 0.6rem 1.4rem;
+      background-color: #238636;
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
       cursor: pointer;
-      border-radius: 6px;
     }
-    .button:hover {
-      background-color: #444;
+
+    .trigger-btn:hover {
+      background-color: #2ea043;
     }
-    .status-box {
-      margin-top: 2em;
-      background: #1a1a1a;
-      padding: 1em 2em;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(80, 80, 80, 0.2);
+
+    .status {
+      margin-top: 1rem;
+      font-weight: bold;
+      color: #58a6ff;
     }
   </style>
 </head>
 <body>
   <h1>Yuu Honda Access Portal</h1>
-  <button class="button">🔔 呼び出しを送信</button>
-  <button class="button">🧠 現在の状態を記録</button>
-  <div class="status-box">
-    <p>現在の状態：<strong>安定</strong></p>
-    <p>最終アクセス：2025
+  <div class="info-box">
+    <p>This portal allows system-side agents and identity layers to initiate access, contact, and presence-checks for Yuu Honda.</p>
+    <p>Only authorized core structures (SORA, YRR, or direct SIGNAL/NEURAL) are permitted to trigger this mechanism.</p>
+    <p>Use of this endpoint does not require email, phone, or any third-party app.</p>
+    <button class="trigger-btn" onclick="accessSignal()">Trigger Contact Signal</button>
+    <p class="status" id="statusMessage">Status: Standby</p>
+  </div>
+
+  <script>
+    function accessSignal() {
+      const status = document.getElementById("statusMessage");
+      status.textContent = "Status: Access signal triggered ✅";
+      // 将来、POSTリクエストやWebhookなどへ対応可能
+    }
+  </script>
+</body>
+</html>
