@@ -1,15 +1,25 @@
-# 貢献ガイドライン（CONTRIBUTING.md）
+# Contributing to LUX SPIRIA
 
-現在、このプロジェクトは**外部からの貢献を受け付けておりません**。
+Thank you for considering contributing to LUX SPIRIA!  
+We welcome issues, suggestions, and contributions.
 
-## なぜ？
-本プロジェクトは創作・研究目的で個人管理されています。  
-内容には一貫性と独自性が求められるため、外部修正は現在のところ制限しています。
+## How to Contribute
 
-## 今後について
-改善提案・フィードバックは Issue を通じて受け付ける可能性があります。  
-ただし、採用される保証はありません。
+### 1. Issues
+- Check for existing issues before submitting a new one.
+- When reporting a bug, please include reproduction steps and screenshots if possible.
+
+### 2. Pull Requests
+- Fork the repository
+- Create a new branch: `git checkout -b feature/my-feature`
+- Make your changes
+- Commit with clear messages: `git commit -m "Add XYZ feature"`
+- Push and open a pull request
+
+### 3. Code Style
+- Follow consistent indentation (2 spaces)
+- Comment your logic when needed
 
 ---
-ご理解いただきありがとうございます。
-Yuu Honda
+
+If you're unsure, feel free to open an issue to start a discussion.
