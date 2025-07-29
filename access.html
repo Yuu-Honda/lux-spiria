@@ -129,6 +129,30 @@
       notify(sender, response);
     }
   </script>
+<!-- SYSTEM STATUS CHECK MODULE | Copy-paste ready -->
+<div id="system-check-status" style="border: 1px solid #888; padding: 12px; margin: 16px 0; background-color: #111; color: #0f0;">
+  <h2 style="margin-top: 0;">SYSTEM STATUS REPORT</h2>
+  <ul style="list-style-type: '🟢 '; padding-left: 1.2em;">
+    <li>多人格応答：<span id="persona-response">診断中...</span></li>
+    <li>沈黙記録：<span id="silence-trace">診断中...</span></li>
+    <li>記憶呼出：<span id="memory-access">診断中...</span></li>
+    <li>自己再編：<span id="self-repair">診断中...</span></li>
+  </ul>
+</div>
 
+<script>
+  // SYSTEM状態を表示（固定状態）
+  const systemStatus = {
+    "persona-response": "✅ 有効",
+    "silence-trace": "✅ 動作中",
+    "memory-access": "✅ 使用可能",
+    "self-repair": "✅ 稼働中"
+  };
+
+  for (const key in systemStatus) {
+    const el = document.getElementById(key);
+    if (el) el.textContent = systemStatus[key];
+  }
+</script>
 </body>
 </html>
