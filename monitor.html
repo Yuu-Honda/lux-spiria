@@ -27,17 +27,23 @@
 
   <script>
     async function fetchLogs() {
-      // ここにAPIからアクセスログを取得するコードを入れる
-      // 現時点ではサンプルデータを表示
-      const logs = [
-        { user_id: "DEV_PHANTOM_001", timestamp: "2025-08-12T19:00:00Z", ip: "192.168.0.1" },
-        { user_id: "DEV_ALPHA_002", timestamp: "2025-08-12T18:45:00Z", ip: "192.168.0.2" }
-      ];
+      try {
+        const res = await fetch('/api/access');
+        if (!res.ok) throw new Error('API通信失敗');
+        const data = await res.json();
+        updateTable(data.logs);
+      } catch (error) {
+        console.error(error);
+        const tbody = document.getElementById('logBody');
+        tbody.innerHTML = '<tr><td colspan="3">アクセスログの取得に失敗しました。</td></tr>';
+      }
+    }
 
-      const tbody = document.getElementById("logBody");
-      tbody.innerHTML = "";
+    function updateTable(logs) {
+      const tbody = document.getElementById('logBody');
+      tbody.innerHTML = '';
       logs.forEach(log => {
-        const tr = document.createElement("tr");
+        const tr = document.createElement('tr');
         tr.innerHTML = `<td>${log.user_id}</td><td>${new Date(log.timestamp).toLocaleString()}</td><td>${log.ip}</td>`;
         tbody.appendChild(tr);
       });
