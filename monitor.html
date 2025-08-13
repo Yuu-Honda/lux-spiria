@@ -1,55 +1,319 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <title>アクセスモニター</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 20px; }
-    table { border-collapse: collapse; width: 100%; }
-    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-    th { background-color: #f0f0f0; }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LUX SPIRIA — Monitor</title>
+<meta name="color-scheme" content="dark light">
+<style>
+  :root{
+    --bg:#0b121a; --panel:#0f1620; --line:#223146; --text:#e6edf3; --muted:#8ba0b2;
+    --accent:#2f81f7; --accent-2:#00c2a8; --warn:#f5c518; --danger:#ff5d5d; --ok:#15c778;
+    --chip:#101826;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--text); font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+  }
+  a{color:var(--accent)}
+  .wrap{max-width:1100px; margin:0 auto; padding:16px}
+  header{
+    display:flex; align-items:center; gap:12px; padding:12px 16px; border-bottom:1px solid var(--line);
+    position:sticky; top:0; background:linear-gradient(180deg,rgba(11,18,26,.95),rgba(11,18,26,.7) 85%, transparent);
+    backdrop-filter: blur(10px); z-index:10;
+  }
+  header .title{font-weight:800; letter-spacing:.2px}
+  header .pill{font-size:12px; color:var(--muted); padding:4px 8px; border:1px solid var(--line); border-radius:999px}
+  .grid{display:grid; grid-template-columns:repeat(4,1fr); gap:12px}
+  @media (max-width:900px){ .grid{grid-template-columns:repeat(2,1fr)} }
+  @media (max-width:520px){ .grid{grid-template-columns:1fr} }
+  .card{
+    background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:14px;
+  }
+  .card h3{margin:0 0 8px 0; font-size:14px; color:var(--muted)}
+  .metric{font-size:22px; font-weight:800}
+  .ok{color:var(--ok)} .warn{color:var(--warn)} .danger{color:var(--danger)}
+  .toolbar{display:flex; flex-wrap:wrap; gap:8px; margin:12px 0}
+  button{
+    background:#142033; border:1px solid var(--line); color:var(--text);
+    padding:9px 12px; border-radius:8px; cursor:pointer;
+  }
+  button:hover{background:#17253d}
+  button.primary{background:var(--accent); border-color:#1f61c7}
+  button.danger{background:#38151b; border-color:#7a2935}
+  button.ghost{background:transparent}
+  .row{display:flex; gap:12px; align-items:center; flex-wrap:wrap}
+  .grow{flex:1}
+  .mono{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace}
+  /* Events table */
+  table{width:100%; border-collapse:collapse; font-size:14px}
+  th,td{padding:10px; border-bottom:1px solid var(--line)}
+  th{color:var(--muted); font-weight:600; text-align:left; position:sticky; top:64px; background:var(--panel); z-index:5}
+  tr:hover td{background:#0d1520}
+  .sev{padding:2px 8px; border-radius:999px; border:1px solid var(--line); background:var(--chip); font-size:12px}
+  .sev.INFO{color:#8fb6ff} .sev.WARN{color:#f5c518} .sev.CRIT{color:#ff9393}
+  /* Command panel */
+  #devBadge{
+    position:fixed; right:12px; bottom:12px; background:#555; color:#fff; padding:6px 10px; border-radius:8px;
+    font-size:12px; z-index:9999; cursor:pointer; opacity:.9; user-select:none;
+  }
+  #cmdPanel{
+    position:fixed; right:12px; bottom:56px; width:340px; background:var(--panel); color:var(--text);
+    border:1px solid var(--line); border-radius:12px; z-index:9998; display:none;
+  }
+  #cmdPanel header{position:unset; background:unset; border-bottom:1px solid var(--line); padding:10px 12px}
+  #cmdPanel .body{padding:10px 12px}
+  #cmdOut{max-height:180px; overflow:auto; margin-top:8px; background:#0b0f14; border:1px solid var(--line); border-radius:8px; padding:8px}
+  input[type="text"],input[type="url"]{
+    width:100%; padding:10px; border-radius:8px; border:1px solid var(--line); background:#0b0f14; color:var(--text);
+  }
+  .chip{display:inline-flex; gap:6px; align-items:center; padding:4px 8px; border:1px solid var(--line); border-radius:999px; background:var(--chip); color:var(--muted); font-size:12px}
+  .small{font-size:12px; color:var(--muted)}
+  .hint{color:var(--muted); font-size:12px}
+  .status-dot{display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; background:#666}
+  .status-dot.ok{background:var(--ok)} .status-dot.bad{background:var(--danger)} .status-dot.warn{background:var(--warn)}
+</style>
 </head>
 <body>
-  <h1>アクセス状況モニター</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>ユーザーID</th>
-        <th>アクセス日時</th>
-        <th>IPアドレス</th>
-      </tr>
-    </thead>
-    <tbody id="logBody">
-      <tr><td colspan="3">データを読み込み中...</td></tr>
-    </tbody>
-  </table>
+<header>
+  <div class="title">LUX SPIRIA Monitor</div>
+  <span class="pill" id="apiLabel">API: resolving…</span>
+  <span class="pill" id="connState"><span class="status-dot" id="connDot"></span><span id="connText">idle</span></span>
+  <span class="pill small" id="lastUpdated">—</span>
+  <div class="grow"></div>
+  <button class="ghost" id="btnRefresh">⟳ 更新</button>
+</header>
 
-  <script>
-    async function fetchLogs() {
-      try {
-        const res = await fetch('/api/access');
-        if (!res.ok) throw new Error('API通信失敗');
-        const data = await res.json();
-        updateTable(data.logs);
-      } catch (error) {
-        console.error(error);
-        const tbody = document.getElementById('logBody');
-        tbody.innerHTML = '<tr><td colspan="3">アクセスログの取得に失敗しました。</td></tr>';
+<div class="wrap">
+  <!-- API設定 -->
+  <div class="card">
+    <h3>接続設定</h3>
+    <div class="row">
+      <input type="url" id="apiBase" placeholder="API base (例: https://your-domain:8787)" />
+      <button id="btnSaveApi">保存</button>
+      <span class="hint">優先順位: <code>?api=</code> &gt; localStorage.API_BASE &gt; 同一オリジン</span>
+    </div>
+    <div class="row" style="margin-top:8px;">
+      <span class="chip">GET /status</span>
+      <span class="chip">GET /events?limit=50</span>
+      <span class="chip">POST /mode/scope {"scope":"all_layers|external_only"}</span>
+      <span class="chip">POST /sword/trigger {}</span>
+    </div>
+  </div>
+
+  <!-- メトリクス -->
+  <div class="grid" style="margin-top:12px">
+    <div class="card"><h3>Shield</h3><div id="mShield" class="metric">—</div><div id="mShieldStage" class="small">—</div></div>
+    <div class="card"><h3>Sword</h3><div id="mSword" class="metric">—</div><div class="small">手動解放: <span id="mSwordTrig">—</span></div></div>
+    <div class="card"><h3>Blacklist</h3><div id="mBL" class="metric">—</div><div class="small">疑わしい: <span id="mSusp">—</span></div></div>
+    <div class="card"><h3>Latency</h3><div id="mLat" class="metric">—</div><div class="small">ms</div></div>
+  </div>
+
+  <!-- 操作 -->
+  <div class="card" style="margin-top:12px">
+    <h3>操作</h3>
+    <div class="toolbar">
+      <button class="primary" id="btnAll">全レイヤー防御</button>
+      <button id="btnExt">外部限定防御</button>
+      <button class="danger" id="btnSword">剣・手動解放</button>
+    </div>
+    <div class="small">※ 実行結果は下部のイベントに反映されます。</div>
+  </div>
+
+  <!-- イベント -->
+  <div class="card" style="margin-top:12px">
+    <h3>イベント</h3>
+    <div class="row" style="margin-bottom:8px">
+      <span class="small">自動更新: <span id="autoLabel">2s</span></span>
+      <div class="grow"></div>
+      <button id="btnPause">一時停止</button>
+      <button id="btnResume">再開</button>
+      <button id="btnEventsRefresh">今すぐ取得</button>
+    </div>
+    <div style="overflow:auto">
+      <table id="evtTable">
+        <thead>
+          <tr><th>時刻</th><th>Severity</th><th>Type</th><th>Source</th><th>Message</th></tr>
+        </thead>
+        <tbody id="evtBody">
+          <tr><td colspan="5" class="small">読み込み待ち…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- DEVバッジ & コマンドパネル -->
+<div id="devBadge" title="タップで切替 / 長押しでON/OFF">DEV MODE: OFF</div>
+<div id="cmdPanel">
+  <header class="row">
+    <div style="font-weight:700">Developer Panel</div>
+    <div class="grow"></div>
+    <button id="btnClosePanel">×</button>
+  </header>
+  <div class="body">
+    <div class="row">
+      <input type="text" id="cmd" placeholder="status / events / scope all_layers / sword" class="mono">
+      <button id="cmdSend">送信</button>
+    </div>
+    <pre id="cmdOut" class="mono"></pre>
+  </div>
+</div>
+
+<script>
+(function(){
+  // ---------- 設定 ----------
+  const qs = new URLSearchParams(location.search);
+  const apiFromQS = qs.get('api');
+  const apiFromLS = localStorage.getItem('API_BASE');
+  const sameOrigin = location.origin;
+  const API = (apiFromQS || apiFromLS || sameOrigin).replace(/\/+$/,'');
+  const DEV_CFG_URL = 'https://yuu-honda.github.io/lux-spiria/dev_config.json'; // 任意
+
+  const $ = (s)=>document.querySelector(s);
+  const apiLabel = $('#apiLabel');
+  const connDot = $('#connDot');
+  const connText = $('#connText');
+  const lastUpdated = $('#lastUpdated');
+
+  $('#apiBase').value = API;
+  apiLabel.textContent = 'API: ' + API;
+
+  $('#btnSaveApi').onclick = ()=>{
+    const v = $('#apiBase').value.trim().replace(/\/+$/,'');
+    if(!v) return;
+    localStorage.setItem('API_BASE', v);
+    location.href = location.pathname + '?api=' + encodeURIComponent(v) + (qs.get('dev') ? '&dev=1':'');
+  };
+
+  $('#btnRefresh').onclick = ()=> refreshAll();
+  $('#btnEventsRefresh').onclick = ()=> fetchEvents(true);
+
+  // ---------- DEV フラグ ----------
+  let DEV = (qs.get('dev')==='1') || (localStorage.getItem('DEVELOPER_MODE')||'').toLowerCase()==='true';
+  const devBadge = $('#devBadge');
+  const cmdPanel = $('#cmdPanel');
+  const cmdOut = $('#cmdOut');
+
+  function setDev(v){
+    DEV = v;
+    localStorage.setItem('DEVELOPER_MODE', String(v));
+    devBadge.textContent = 'DEV MODE: ' + (DEV?'ON':'OFF');
+    devBadge.style.background = DEV ? '#2962ff' : '#555';
+    cmdPanel.style.display = DEV ? 'block' : 'none';
+  }
+  setDev(DEV);
+  // リモートフラグ（任意）
+  fetch(DEV_CFG_URL, {cache:'no-store'}).then(r=>r.ok?r.json():null).then(cfg=>{
+    if(cfg && typeof cfg.developer_mode === 'boolean'){ setDev(cfg.developer_mode || DEV); }
+  }).catch(()=>{});
+
+  devBadge.onclick = ()=> setDev(!DEV);
+  let pressT;
+  devBadge.addEventListener('touchstart', ()=>{ pressT=setTimeout(()=>setDev(!DEV), 1200); }, {passive:true});
+  devBadge.addEventListener('touchend', ()=>clearTimeout(pressT));
+
+  $('#btnClosePanel').onclick = ()=> cmdPanel.style.display='none';
+  $('#cmdSend').onclick = async ()=>{
+    const v = $('#cmd').value.trim();
+    if(!v) return; logOut('> ' + v);
+    try{
+      if(v==='status'){ logOut(JSON.stringify(await apiGET('/status'), null, 2)); }
+      else if(v==='events'){ logOut(JSON.stringify(await apiGET('/events?limit=50'), null, 2)); }
+      else if(v.startsWith('scope ')){ const s=v.split(' ')[1]||'all_layers'; logOut(JSON.stringify(await apiPOST('/mode/scope',{scope:s}),null,2)); }
+      else if(v==='sword'){ logOut(JSON.stringify(await apiPOST('/sword/trigger',{}), null, 2)); }
+      else { logOut('未知のコマンド'); }
+    }catch(e){ logOut('ERR ' + e.message); }
+    $('#cmd').value='';
+  };
+  function logOut(t){ cmdOut.textContent += t + '\n'; cmdOut.scrollTop = cmdOut.scrollHeight; }
+
+  // ---------- API ----------
+  async function apiGET(path){
+    setConn('loading');
+    const r = await fetch(API+path, {headers:{'content-type':'application/json'}, cache:'no-store'});
+    if(!r.ok) throw new Error(path+' '+r.status);
+    setConn('ok'); return await r.json();
+  }
+  async function apiPOST(path, body){
+    setConn('loading');
+    const r = await fetch(API+path, {method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify(body||{})});
+    if(!r.ok) throw new Error(path+' '+r.status);
+    setConn('ok'); return await r.json();
+  }
+
+  function setConn(state){
+    if(state==='loading'){ connDot.className='status-dot warn'; connText.textContent='loading'; }
+    else if(state==='ok'){ connDot.className='status-dot ok'; connText.textContent='connected'; lastUpdated.textContent = new Date().toLocaleTimeString(); }
+    else { connDot.className='status-dot bad'; connText.textContent='error'; }
+  }
+
+  // ---------- 状態/イベント描画 ----------
+  async function refreshAll(){ await Promise.all([fetchStatus(), fetchEvents(true)]); }
+  async function fetchStatus(){
+    try{
+      const s = await apiGET('/status');
+      $('#mShield').textContent = (s.shield?.enabled ? 'ON' : 'OFF');
+      $('#mShield').className = 'metric ' + (s.shield?.enabled ? 'ok':'danger');
+      $('#mShieldStage').textContent = s.shield?.stage || '-';
+      $('#mSword').textContent = s.sword?.state || '-';
+      $('#mSwordTrig').textContent = s.sword?.trigger || '-';
+      $('#mBL').textContent = s.blacklist_count ?? '-';
+      $('#mSusp').textContent = s.suspicious_count ?? '-';
+      $('#mLat').textContent = s.latency_ms ?? '-';
+    }catch(e){
+      setConn('error');
+      console.error(e);
+    }
+  }
+
+  let autoTimer=null, autoMs=2000, paused=false;
+  $('#btnPause').onclick = ()=>{ paused=true; clearInterval(autoTimer); autoTimer=null; $('#autoLabel').textContent='paused'; };
+  $('#btnResume').onclick = ()=>{ if(!autoTimer){ paused=false; autoTimer=setInterval(()=>fetchEvents(false), autoMs); $('#autoLabel').textContent= (autoMs/1000)+'s'; } };
+
+  async function fetchEvents(clearFirst){
+    if(clearFirst) $('#evtBody').innerHTML='';
+    try{
+      const list = await apiGET('/events?limit=50');
+      renderEvents(list);
+    }catch(e){
+      setConn('error');
+      if($('#evtBody').children.length===0){
+        $('#evtBody').innerHTML = `<tr><td colspan="5" class="small">取得に失敗しました: ${e.message}</td></tr>`;
       }
     }
+  }
 
-    function updateTable(logs) {
-      const tbody = document.getElementById('logBody');
-      tbody.innerHTML = '';
-      logs.forEach(log => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `<td>${log.user_id}</td><td>${new Date(log.timestamp).toLocaleString()}</td><td>${log.ip}</td>`;
-        tbody.appendChild(tr);
-      });
-    }
+  function renderEvents(list){
+    const tbody = $('#evtBody');
+    tbody.innerHTML='';
+    (list||[]).slice().reverse().forEach(ev=>{
+      const tr = document.createElement('tr');
+      const ts = ev.timestamp || '-';
+      const sev = ev.severity || 'INFO';
+      tr.innerHTML = `
+        <td class="mono">${ts}</td>
+        <td><span class="sev ${sev}">${sev}</span></td>
+        <td>${escapeHTML(ev.type||'-')}</td>
+        <td class="small">${escapeHTML(ev.source||'-')}</td>
+        <td>${escapeHTML(ev.message||'')}</td>`;
+      tbody.appendChild(tr);
+    });
+  }
+  function escapeHTML(s){ return String(s).replace(/[&<>"']/g, c=> ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]) ); }
 
-    fetchLogs();
-  </script>
+  // ---------- 操作 ----------
+  $('#btnAll').onclick = async ()=>{ try{ await apiPOST('/mode/scope',{scope:'all_layers'}); await refreshAll(); }catch(e){ alert('エラー: '+e.message); } };
+  $('#btnExt').onclick = async ()=>{ try{ await apiPOST('/mode/scope',{scope:'external_only'}); await refreshAll(); }catch(e){ alert('エラー: '+e.message); } };
+  $('#btnSword').onclick = async ()=>{ if(!confirm('剣を手動解放します。よろしいですか？')) return;
+    try{ await apiPOST('/sword/trigger',{}); await refreshAll(); }catch(e){ alert('エラー: '+e.message); } };
+
+  // ---------- 起動時 ----------
+  refreshAll();
+  autoTimer = setInterval(()=>{ if(!paused) fetchEvents(false); }, autoMs);
+
+})();
+</script>
 </body>
 </html>
