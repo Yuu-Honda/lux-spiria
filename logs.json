@@ -1,0 +1,14 @@
+{
+  "logs": [
+    {
+      "timestamp": "2025-08-14 13:20",
+      "interferer": "US-TEAM-02",
+      "status": "干渉検知"
+    },
+    {
+      "timestamp": "2025-08-14 12:55",
+      "interferer": "NONE",
+      "status": "正常"
+    }
+  ]
+}
