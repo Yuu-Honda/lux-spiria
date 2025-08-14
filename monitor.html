@@ -4,29 +4,52 @@
 <meta charset="UTF-8">
 <title>SPIRIA Monitor</title>
 <style>
-  body { font-family: Arial; background-color: #111; color: #eee; padding: 20px; }
-  .online { color: #0f0; }
-  .offline { color: #f00; }
-  .log { margin-top: 20px; padding: 10px; background: #222; border-radius: 5px; }
+    body { font-family: sans-serif; background-color: #111; color: #eee; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 8px; border-bottom: 1px solid #333; }
+    .alert { color: red; font-weight: bold; }
 </style>
 </head>
 <body>
 <h1>SPIRIA Monitor</h1>
-<div id="status">読み込み中...</div>
-<div id="last-update"></div>
-<div class="log" id="log"></div>
+<div id="status"></div>
+<table>
+    <thead>
+        <tr><th>時刻</th><th>干渉者</th><th>状態</th></tr>
+    </thead>
+    <tbody id="log-table"></tbody>
+</table>
 
 <script>
-async function loadStatus() {
-    const res = await fetch("logs/interference.json?ts=" + Date.now());
+async function loadLogs() {
+    const res = await fetch('logs.json?_=' + Date.now());
     const data = await res.json();
-    document.getElementById("status").innerHTML =
-        data.interference ? `<span class='offline'>干渉検出: ${data.source}</span>` :
-                            `<span class='online'>干渉なし</span>`;
-    document.getElementById("last-update").innerText = "最終更新: " + data.last_check;
-    document.getElementById("log").innerHTML = "<pre>" + (data.logs || "ログなし") + "</pre>";
+
+    const statusDiv = document.getElementById('status');
+    const tableBody = document.getElementById('log-table');
+    tableBody.innerHTML = '';
+
+    data.logs.forEach(log => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${log.timestamp}</td>
+            <td>${log.interferer}</td>
+            <td class="${log.status === '干渉検知' ? 'alert' : ''}">${log.status}</td>
+        `;
+        tableBody.appendChild(tr);
+    });
+
+    // 最新状態表示
+    if (data.logs.length > 0) {
+        const latest = data.logs[0];
+        statusDiv.textContent = latest.status === '干渉検知'
+            ? '⚠ 干渉検知: ' + latest.interferer
+            : '✅ 正常稼働中';
+    }
 }
-loadStatus();
+
+loadLogs();
+setInterval(loadLogs, 10000); // 10秒ごと更新
 </script>
 </body>
 </html>
