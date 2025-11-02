@@ -1,0 +1,22 @@
+name: Yuu Master Protector Auto Run
+
+on:
+  schedule:
+    - cron: '0 20 * * *'  # JST 5:00 (GitHub Actions runs on UTC)
+  workflow_dispatch:  # 手動実行も可能
+
+jobs:
+  run-protector:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Run yuu_master_protector.py
+        run: |
+          python3 yuu_master_protector.py
