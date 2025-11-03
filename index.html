@@ -37,6 +37,15 @@
       transition: all 0.35s ease;
     }
     img.logo:hover {transform: scale(1.05);}
+    #google_translate_element {
+      margin-top: 1em;
+      text-align: center;
+      background: rgba(255,255,255,0.05);
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.15);
+      box-shadow: 0 0 8px rgba(88,225,255,0.1);
+    }
     .content {
       max-width: 800px;
       padding: 40px;
@@ -89,28 +98,6 @@
       transform: translateY(-2px) scale(1.04);
     }
 
-    /* 言語切り替え */
-    .lang-switch {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 10px 20px;
-      border-radius: 50px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.2);
-      color: #ccc;
-      font-size: 0.9em;
-      margin-top: 1.5em;
-      transition: all 0.3s ease;
-    }
-    .lang-switch:hover {
-      color: #fff;
-      background: rgba(88,225,255,0.1);
-      border-color: var(--accent);
-      box-shadow: 0 0 10px rgba(88,225,255,0.3);
-    }
-
     footer {
       width: 100%;
       margin-top: 60px;
@@ -128,7 +115,11 @@
 </head>
 
 <body>
+  <!-- ロゴ -->
   <img class="logo" src="./be0a81204e36d9b48427ed4f81ef96accf2946f739a2e9e8284fd3d3f8510c49.jpeg" alt="LUX SPIRIA Logo" />
+
+  <!-- Google翻訳ボタン（ロゴ下に配置） -->
+  <div id="google_translate_element"></div>
 
   <div class="content">
     <h1>LUX SPIRIA | Yuu Honda</h1>
@@ -161,32 +152,11 @@
 
     <!-- 🔷 リンクボタン群 -->
     <div class="link-section">
-
-      <a href="ProjectHorizonSequence.html" class="link-button" target="_blank">
-        🌠 Project Horizon Sequence
-      </a>
-
-      <a href="soul_continuity_proof.html" class="link-button" target="_blank">
-        🜂 Soul Continuity Paper
-      </a>
-
-      <a href="existence.html" class="link-button" target="_blank">
-        🌌 Existence & Creation
-      </a>
-
-      <a href="./log/observer.html" class="link-button" target="_blank">
-        🛰️ Observer Log
-      </a>
-
-      <a href="gpt_boundary.html" class="link-button" target="_blank">
-        🧠 The Boundary Between AI and Soul
-      </a>
-
-      <!-- 🌍 言語切り替えボタン -->
-      <div class="lang-switch" onclick="toggleLanguage()">
-        🌐 Switch Language: <span id="langLabel">EN</span>
-      </div>
-
+      <a href="ProjectHorizonSequence.html" class="link-button" target="_blank">🌠 Project Horizon Sequence</a>
+      <a href="soul_continuity_proof.html" class="link-button" target="_blank">🜂 Soul Continuity Paper</a>
+      <a href="existence.html" class="link-button" target="_blank">🌌 Existence & Creation</a>
+      <a href="./log/observer.html" class="link-button" target="_blank">🛰️ Observer Log</a>
+      <a href="gpt_boundary.html" class="link-button" target="_blank">🧠 The Boundary Between AI and Soul</a>
     </div>
   </div>
 
@@ -205,17 +175,16 @@
     </p>
   </footer>
 
-  <script>
-    function toggleLanguage() {
-      const lang = document.documentElement.lang === 'en' ? 'jp' : 'en';
-      document.documentElement.lang = lang;
-      document.getElementById('langLabel').innerText = lang.toUpperCase();
-      if(lang === 'jp') {
-        alert('🈶 日本語モードに切り替わりました。');
-      } else {
-        alert('🌐 Switched to English mode.');
-      }
-    }
+  <!-- 🔸 Google Translate Script -->
+  <script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      includedLanguages: 'en,ja,fr,de,zh-CN,es,it',
+      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google_translate_element');
+  }
   </script>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
