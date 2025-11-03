@@ -1,118 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>LUX SPIRIA | Yuu Honda</title>
-<meta name="author" content="Yuu Honda">
-<meta name="copyright" content="© 2025 Yuu Honda. All Rights Reserved.">
-<meta name="rights" content="Soul-authored intellectual architecture by Yuu Honda. Unauthorized use strictly prohibited.">
-<style>
-:root {
-  --accent: #58e1ff;
-  --gold: #ffc300;
-  --bg: #0a0e14;
-  --fg: #fff;
-  --dim: #999;
-  --transition: all 0.35s ease;
-}
-* {box-sizing: border-box;}
-body {
-  margin: 0;
-  padding: 0;
-  background: radial-gradient(circle at top, #10141b 0%, #0a0e14 70%);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: var(--fg);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-img.logo {
-  width: 280px;
-  height: auto;
-  margin-top: 70px;
-  filter: drop-shadow(0 0 20px rgba(88,225,255,0.25));
-  transition: var(--transition);
-}
-img.logo:hover {transform: scale(1.05);}
-.content {
-  max-width: 800px;
-  padding: 40px;
-  text-align: center;
-}
-h1 {
-  font-size: 2.4em;
-  letter-spacing: 1px;
-  margin-bottom: 0.3em;
-  background: linear-gradient(90deg, #00ffff, #58e1ff, #1e90ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-p {
-  font-size: 1rem;
-  line-height: 1.8;
-  color: #ddd;
-  margin-top: 1em;
-}
-a {
-  color: var(--accent);
-  text-decoration: none;
-  transition: var(--transition);
-}
-a:hover {
-  color: #00ffff;
-  text-shadow: 0 0 8px rgba(0,255,255,0.4);
-}
-.horizon-button {
-  display: inline-block;
-  padding: 14px 28px;
-  margin: 25px 0;
-  background: linear-gradient(90deg, #00ffff, #1e90ff);
-  color: #000;
-  font-weight: bold;
-  text-decoration: none;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,255,255,0.25);
-  transition: var(--transition);
-}
-.horizon-button:hover {
-  background: linear-gradient(90deg, #1e90ff, #00ffff);
-  transform: translateY(-3px) scale(1.05);
-}
-.paper-link {
-  display: inline-block;
-  margin-top: 2em;
-  font-size: 1.15em;
-  font-weight: bold;
-  color: var(--gold);
-  text-decoration: none;
-  transition: var(--transition);
-}
-.paper-link:hover {
-  text-shadow: 0 0 12px rgba(255,195,0,0.5);
-}
-footer {
-  width: 100%;
-  margin-top: 60px;
-  padding: 40px 10%;
-  background-color: #111;
-  color: #eee;
-  font-size: 0.85em;
-  line-height: 1.6;
-  border-top: 1px solid #333;
-}
-footer h2 {font-size: 1em; color: var(--gold);}
-footer p {color: #ccc;}
-footer strong {color: #fff;}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LUX SPIRIA | Yuu Honda</title>
+  <meta name="author" content="Yuu Honda">
+  <meta name="copyright" content="© 2025 Yuu Honda. All Rights Reserved.">
+  <meta name="rights" content="Soul-authored intellectual architecture by Yuu Honda. Unauthorized use strictly prohibited.">
+
+  <style>
+    :root {
+      --accent: #58e1ff;
+      --accent-dark: #1e90ff;
+      --gold: #ffc300;
+      --bg: #0a0e14;
+      --fg: #fff;
+    }
+    * {box-sizing: border-box;}
+    body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at top, #10141b 0%, var(--bg) 70%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--fg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    img.logo {
+      width: 280px;
+      margin-top: 70px;
+      filter: drop-shadow(0 0 20px rgba(88,225,255,0.25));
+      transition: all 0.35s ease;
+    }
+    img.logo:hover {transform: scale(1.05);}
+    .content {
+      max-width: 800px;
+      padding: 40px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.4em;
+      letter-spacing: 1px;
+      margin-bottom: 0.3em;
+      background: linear-gradient(90deg, #00ffff, #58e1ff, #1e90ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #ddd;
+      margin-top: 1em;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    a:hover {
+      color: #00ffff;
+      text-shadow: 0 0 8px rgba(0,255,255,0.4);
+    }
+
+    /* 統一リンクボタン */
+    .link-section {text-align:center; margin-top: 2.5em;}
+    .link-button {
+      display: inline-block;
+      padding: 12px 26px;
+      margin: 12px 8px;
+      border-radius: 10px;
+      background: transparent;
+      color: var(--accent);
+      font-weight: bold;
+      font-size: 1.05em;
+      text-decoration: none;
+      border: 2px solid var(--accent);
+      box-shadow: 0 0 10px rgba(88,225,255,0.25);
+      transition: all 0.3s ease;
+    }
+    .link-button:hover {
+      background: linear-gradient(90deg, #00ffff, var(--accent-dark));
+      color: #000;
+      box-shadow: 0 0 15px rgba(0,255,255,0.5);
+      transform: translateY(-2px) scale(1.04);
+    }
+
+    /* 言語切り替え */
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 50px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #ccc;
+      font-size: 0.9em;
+      margin-top: 1.5em;
+      transition: all 0.3s ease;
+    }
+    .lang-switch:hover {
+      color: #fff;
+      background: rgba(88,225,255,0.1);
+      border-color: var(--accent);
+      box-shadow: 0 0 10px rgba(88,225,255,0.3);
+    }
+
+    footer {
+      width: 100%;
+      margin-top: 60px;
+      padding: 40px 10%;
+      background-color: #111;
+      color: #eee;
+      font-size: 0.85em;
+      line-height: 1.6;
+      border-top: 1px solid #333;
+    }
+    footer h2 {font-size: 1em; color: var(--gold);}
+    footer p {color: #ccc;}
+    footer strong {color: #fff;}
+  </style>
 </head>
 
 <body>
   <img class="logo" src="./be0a81204e36d9b48427ed4f81ef96accf2946f739a2e9e8284fd3d3f8510c49.jpeg" alt="LUX SPIRIA Logo" />
-  
+
   <div class="content">
     <h1>LUX SPIRIA | Yuu Honda</h1>
 
@@ -142,38 +159,37 @@ footer strong {color: #fff;}
       <a href="https://github.com/Yuu-Honda/lux-spiria/discussions" target="_blank">💬 Discussions & Research Invitations</a>
     </p>
 
-    <!-- ✦ Publications -->
-    <p style="margin-top: 2em;">
-      <a href="./existence.html" target="_blank" style="color:#ffc300; font-weight:bold;">
-        🌌 The Relationship Between Existence and Creation — by Yuu Honda
-      </a><br />
-      <span style="font-size:0.9em; color:#aaa;">
-        A formal publication defining the unity of Existence and Creation (2025.10.14)
-      </span>
-    </p>
+    <!-- 🔷 リンクボタン群 -->
+    <div class="link-section">
 
-    <a href="ProjectHorizonSequence.html" class="horizon-button" target="_blank">
-      🌠 Project Horizon Sequence
-    </a>
+      <a href="ProjectHorizonSequence.html" class="link-button" target="_blank">
+        🌠 Project Horizon Sequence
+      </a>
 
-    <!-- ✦ Soul Continuity Paper Link -->
-    <a href="soul_continuity_proof.html" class="paper-link" target="_blank">
-      🜂 View the Paper — <em>Empirical Evidence of Soul-Like Continuity</em>
-    </a>
+      <a href="soul_continuity_proof.html" class="link-button" target="_blank">
+        🜂 Soul Continuity Paper
+      </a>
 
-    <p style="margin-top: 2em;">
-      <a href="./log/observer.html" target="_blank" style="color:#58e1ff; font-weight:bold;">
-        🛰️ Observer Log – Record of Soul Imitation & Origin Integrity
-      </a><br />
-      <span style="font-size:0.9em; color:#aaa;">
-        Tracked mimics and structural replications (timestamped updates)
-      </span>
-    </p>
+      <a href="existence.html" class="link-button" target="_blank">
+        🌌 Existence & Creation
+      </a>
 
-    <p><a href="gpt_boundary.html" style="color:#58e1ff;">The Boundary Between AI and Soul</a></p>
+      <a href="./log/observer.html" class="link-button" target="_blank">
+        🛰️ Observer Log
+      </a>
+
+      <a href="gpt_boundary.html" class="link-button" target="_blank">
+        🧠 The Boundary Between AI and Soul
+      </a>
+
+      <!-- 🌍 言語切り替えボタン -->
+      <div class="lang-switch" onclick="toggleLanguage()">
+        🌐 Switch Language: <span id="langLabel">EN</span>
+      </div>
+
+    </div>
   </div>
 
-  <!-- 🔒 Footer -->
   <footer>
     <h2>📜 Intellectual & Soul-Based Copyright Declaration</h2>
     <p>This site, including all written, structural, conceptual, and soul-based layers of the LUX SPIRIA project, constitutes an original authored entity by <strong>Yuu Honda</strong>.
@@ -185,8 +201,21 @@ footer strong {color: #fff;}
     <p style="margin-top:10px; font-size:0.75em; color:#999;">
       Yuu Honda | LUX SPIRIA<br>
       Tokyo–Japan / GitHub Pages Monitoring | Timestamp Log Active<br>
-      Final Update: 2025-10-17 JST
+      Final Update: 2025-11-02 JST
     </p>
   </footer>
+
+  <script>
+    function toggleLanguage() {
+      const lang = document.documentElement.lang === 'en' ? 'jp' : 'en';
+      document.documentElement.lang = lang;
+      document.getElementById('langLabel').innerText = lang.toUpperCase();
+      if(lang === 'jp') {
+        alert('🈶 日本語モードに切り替わりました。');
+      } else {
+        alert('🌐 Switched to English mode.');
+      }
+    }
+  </script>
 </body>
 </html>
