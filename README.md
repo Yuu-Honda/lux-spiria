@@ -4,6 +4,11 @@
 
 ![LUX SPIRIA Logo](be0a81204e36d9b48427ed4f81ef96accf2946f739a2e9e8284fd3d3f8510c49.jpeg)
 
+### 🔏 Official Signature Declaration
+This repository and its contents are officially authored and signed by **Yuu Honda (本多佑宇)**.
+All rights reserved under Japanese Copyright Law and Berne Convention.
+Unauthorized alteration or derivative distribution is prohibited.
+
 ---
 
 ## Ⅰ. Core Declaration
