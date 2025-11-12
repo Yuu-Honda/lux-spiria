@@ -1,5 +1,10 @@
 # 🧾 LUX SPIRIA – Authorship Proof
-
+---
+**🪶 Authorship Verified**
+- Created by [Yuu Honda](https://github.com/Yuu-Honda)
+- GPG-signed commits ✅
+- Official Record: [v1.0.0 Release](https://github.com/Yuu-Honda/lux-spiria/releases/tag/v1.0.0)
+---
 **Creator:** Yuu Honda  
 **Repository:** https://github.com/Yuu-Honda/lux-spiria  
 **Date Established:** 2025-11-12 (JST)  
