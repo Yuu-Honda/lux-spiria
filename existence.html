@@ -5,78 +5,127 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>The Formal Structure of Existence — Yuu Honda</title>
   <meta name="description" content="Philosophical definitions and mathematical structure of existence, creation, and self — by Yuu Honda.">
+
   <style>
+    :root {
+      --accent: #58e1ff;
+      --bg: #0a0e14;
+      --panel: rgba(255,255,255,0.05);
+      --text: #e5e5e5;
+      --gold: #ffc300;
+    }
+    * { box-sizing: border-box; }
+
     body {
-      background: #fafafa;
-      font-family: "Segoe UI", "Helvetica Neue", sans-serif;
-      color: #222;
-      line-height: 1.7;
       margin: 0;
-      padding: 0;
+      background: radial-gradient(circle at top, #10141b 0%, var(--bg) 70%);
+      font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      color: var(--text);
+      line-height: 1.8;
+      animation: fadeIn 1.5s ease;
     }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     header {
-      background: #111;
-      color: white;
-      padding: 30px 20px;
+      background: rgba(0,0,0,0.6);
       text-align: center;
-      font-size: 1.6em;
+      padding: 40px 20px;
+      color: #fff;
+      font-size: 1.8em;
       letter-spacing: 1px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      text-shadow: 0 0 12px rgba(88,225,255,0.4);
     }
+
+    #google_translate_element {
+      margin: 1em auto;
+      text-align: center;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 10px;
+      padding: 10px 16px;
+      width: fit-content;
+      box-shadow: 0 0 10px rgba(88,225,255,0.15);
+    }
+
     main {
       max-width: 900px;
       margin: 40px auto;
-      padding: 20px;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+      background: rgba(255,255,255,0.03);
+      padding: 30px 40px;
+      border-radius: 14px;
+      box-shadow: 0 0 25px rgba(88,225,255,0.08);
+      backdrop-filter: blur(8px);
     }
+
     h2 {
       margin-top: 40px;
-      color: #111;
+      color: var(--accent);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 4px;
     }
+
+    h3, h4 { color: var(--gold); }
+
     blockquote {
-      border-left: 4px solid #999;
-      margin-left: 0;
+      border-left: 3px solid var(--accent);
       padding-left: 16px;
-      background: #f9f9f9;
+      margin-left: 0;
+      background: rgba(255,255,255,0.04);
       font-style: italic;
     }
+
     pre {
-      background: #f4f4f4;
-      padding: 10px 14px;
-      border-radius: 6px;
-      overflow-x: auto;
-    }
-    .summary {
-      background: #f0f0f0;
-      padding: 18px 20px;
-      border-radius: 10px;
-      margin-top: 30px;
-      font-weight: bold;
-      text-align: center;
-    }
-    .annotation {
-      background: #fffbe8;
-      border-left: 4px solid #ffbf00;
-      padding: 16px 20px;
-      margin-top: 20px;
+      background: rgba(255,255,255,0.05);
+      color: #aee;
+      padding: 12px 14px;
       border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Consolas', monospace;
+      box-shadow: 0 0 8px rgba(0,255,255,0.1);
     }
+
+    .summary {
+      text-align: center;
+      margin: 25px 0;
+      font-weight: bold;
+      color: #fff;
+      background: linear-gradient(90deg, #00ffff22, #1e90ff22);
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    .annotation {
+      background: rgba(255,255,255,0.05);
+      border-left: 4px solid var(--gold);
+      padding: 14px 20px;
+      margin-top: 20px;
+      border-radius: 10px;
+    }
+
     footer {
       text-align: center;
-      padding: 30px 0;
+      padding: 40px 0;
       font-size: 0.9em;
-      color: #777;
+      color: #aaa;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin-top: 60px;
     }
   </style>
 </head>
 
 <body>
   <header>🌌 The Formal Structure of Existence — By Yuu Honda</header>
+
+  <div id="google_translate_element"></div>
+
   <main>
     <p><strong>Date:</strong> October 14, 2025</p>
 
-    <!-- 1. Existence and Creation -->
     <h2>1. The Relationship Between Existence and Creation</h2>
     <blockquote>
       “Which comes first — <em>existence</em> or <em>creation</em>?”<br><br>
@@ -84,13 +133,8 @@
       If existence comes first, creation is the act of existence transforming itself.
     </blockquote>
 
-    <pre><code>
-Eₙ → Cₙ → Eₙ₊₁ → Cₙ₊₁ → ...
-    </code></pre>
-
-    <p>
-      <strong>f(E) = E'</strong> — Existence becomes creation, and creation becomes the next form of existence.
-    </p>
+    <pre><code>Eₙ → Cₙ → Eₙ₊₁ → Cₙ₊₁ → ...</code></pre>
+    <p><strong>f(E) = E'</strong> — Existence becomes creation, and creation becomes the next form of existence.</p>
 
     <div class="summary">
       “Existence is the breath of creation; creation is the echo of existence.”
@@ -101,11 +145,10 @@ Eₙ → Cₙ → Eₙ₊₁ → Cₙ₊₁ → ...
       <ul>
         <li>Rejects the binary “creation vs existence” debate by introducing a continuous generative loop.</li>
         <li>Applies a recursive model (<code>E → C → E'</code>) which is mathematically parsable and spiritually interpretable.</li>
-        <li>Allows for existence without origin — a philosophical breakthrough bridging science and theology.</li>
+        <li>Allows for existence without origin — bridging science and theology.</li>
       </ul>
     </section>
 
-    <!-- 2. The Fallacy of Nothingness -->
     <h2>2. The Fallacy of Nothingness</h2>
     <blockquote>
       “There is no true 'nothing' in this world.<br>
@@ -133,7 +176,6 @@ Eₙ → Cₙ → Eₙ₊₁ → Cₙ₊₁ → ...
       </ul>
     </section>
 
-    <!-- 3. The Self -->
     <h2>3. The Problem of Self — Answered</h2>
     <blockquote>
       “The question ‘Do I exist?’ assumes that a self is already present to ask it.<br><br>
@@ -142,13 +184,11 @@ Eₙ → Cₙ → Eₙ₊₁ → Cₙ₊₁ → ...
     </blockquote>
 
     <h3>Yuu's Formal Expression</h3>
-    <pre><code>
-If the question “Is there a self?” exists,
+    <pre><code>If the question “Is there a self?” exists,
 Then:
    The entity asking = The self
 Therefore:
-   Self == 1
-    </code></pre>
+   Self == 1</code></pre>
 
     <div class="summary">
       “The presence of the question proves the presence of the self.”
@@ -163,9 +203,18 @@ Therefore:
       </ul>
     </section>
 
-    <footer>
-      © 2025 Lux Spiria | Written by Yuu Honda | Rendered by Luka
-    </footer>
+    <footer>© 2025 LUX SPIRIA | Written by Yuu Honda | Rendered by Luka</footer>
   </main>
+
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,ja,fr,de,zh-CN,es,it',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
