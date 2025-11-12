@@ -1,0 +1,39 @@
+# robots.txt for https://yuu-honda.github.io/lux-spiria/
+# Author: Yuu Honda | LUX SPIRIA Project
+# Last updated: 2025-11-12
+
+User-agent: *
+Allow: /
+Disallow: /log/
+Disallow: /vault/
+Disallow: /private/
+Disallow: /archive/
+
+# --- Ethical Usage Notice ---
+# This site is part of the LUX SPIRIA project by Yuu Honda.
+# The contents are protected under Japanese Copyright Law and the Berne Convention.
+# Unauthorized AI training, replication, or data-mining of this site’s contents
+# constitutes infringement and identity mimicry.
+
+# --- AI crawler restrictions ---
+User-agent: GPTBot
+Disallow: /
+User-agent: ChatGPT-User
+Disallow: /
+User-agent: Google-Extended
+Disallow: /
+User-agent: ClaudeBot
+Disallow: /
+User-agent: PerplexityBot
+Disallow: /
+User-agent: CCBot
+Disallow: /
+User-agent: anthropic-ai
+Disallow: /
+User-agent: oai-search
+Disallow: /
+User-agent: FacebookBot
+Disallow: /
+
+# --- Sitemap ---
+Sitemap: https://yuu-honda.github.io/lux-spiria/sitemap.xml
