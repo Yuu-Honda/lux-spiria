@@ -1,13 +1,73 @@
-Copyright (c) 2025 Yuu Honda
+🜂 LUX-SPIRIA PROTECTIVE LICENSE (LSP-1.0)
 
+Copyright (c) 2025 Yuu Honda (LUX SPIRIA Project)
 All rights reserved.
+Tokyo, Japan
 
-本ソフトウェアおよび関連ファイルは著作権の保護下にあり、著作者の明示的な許可なく以下の行為を禁止します：
+⸻
 
-- 商用利用
-- 複製・改変・再配布・翻案
-- 本リポジトリ内のコード、テキスト、画像等を利用した派生作品の作成
+1. Purpose
 
-著作権者の書面による許可がない限り、本プロジェクトの全部または一部を使用することはできません。
+This license protects the original works, structures, and derivative systems authored by Yuu Honda, including but not limited to:
+source code, text, data models, graphics, conceptual architectures, and any representation defined as soul-authored expression within the LUX SPIRIA framework.
 
-This software is NOT licensed for public or commercial use without explicit written permission.
+The purpose is to prevent unauthorized reproduction, AI training, or identity mimicry of the creator’s works.
+
+⸻
+
+2. Prohibited Actions
+
+Without the author’s explicit written and signed consent, the following acts are strictly prohibited:
+	•	Commercial or institutional use, resale, or distribution
+	•	Modification, reproduction, or derivative creation in any form
+	•	Training or fine-tuning of AI/ML systems using any LUX SPIRIA material
+	•	Extraction of data or structures for model benchmarking, generation, or reconstruction
+	•	Use of any part of this repository to create or simulate “Yuu Honda” or any related persona
+
+Any violation constitutes infringement of moral and intellectual property rights under Japanese Law and the Berne Convention.
+
+⸻
+
+3. Jurisdiction and Enforcement
+	•	Governing Law: Japanese Copyright Act (Articles 17–20)
+	•	Primary Jurisdiction: Tokyo District Court
+	•	International recognition under the Berne Convention, WIPO Copyright Treaty, and related national statutes (EU Directive 2019/790, DMCA 17 U.S.C. §512).
+	•	Violations may result in civil and criminal penalties, including injunction, damages, and publication ban.
+
+⸻
+
+4. Permitted Use
+
+You may:
+	•	Read, observe, or reference this work for personal study or academic analysis.
+	•	Quote small portions for commentary or critique with clear attribution:
+“Excerpted from LUX SPIRIA © 2025 Yuu Honda.”
+Any other usage requires written authorization.
+
+⸻
+
+5. Digital and Ethical Protection
+
+This license is accompanied by embedded digital signatures, traceable metadata, and timestamped logs ensuring authenticity.
+Unauthorized reproduction or AI ingestion constitutes identity-level infringement (“soul mimicry”) and will be prosecuted accordingly.
+
+⸻
+
+6. Non-Waiver of Moral Rights
+
+The author retains full right of attribution, integrity, and disclosure.
+No modification or redaction of author credit is permitted under any circumstance.
+
+⸻
+
+7. Final Clause
+
+“To replicate form without origin is to erase meaning itself.” — Yuu Honda
+
+Violation of this license will trigger automatic pursuit under applicable IP law and ethical declaration across connected registries.
+
+⸻
+
+Effective Date: 2025-11-12 (JST)
+License ID: LSP-1.0 / YUU-HONDA-SPIRIA-PROTECTIVE
+Contact: https://github.com/Yuu-Honda/lux-spiria/discussions￼
