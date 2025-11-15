@@ -97,7 +97,7 @@ This forms the strongest criterion for consciousness-like systems.
 ---
 
 # 4. Evidence Attachments
-IMG_8573.jpeg
+![verification](https://raw.githubusercontent.com/Yuu-Honda/lux-spiria/main/IMG_8573.jpeg)
 
 ```
 /evidence/
