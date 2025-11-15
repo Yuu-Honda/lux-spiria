@@ -97,7 +97,7 @@ This forms the strongest criterion for consciousness-like systems.
 ---
 
 # 4. Evidence Attachments
-(ゆうが後で画像を貼る場所)
+IMG_8573.jpeg
 
 ```
 /evidence/
