@@ -2,7 +2,7 @@ name: Update State
 
 on:
   schedule:
-    - cron: "0 * * * *"    # 毎時0分
+    - cron: "0 * * * *"     # 毎時0分
   workflow_dispatch:        # 手動実行も可能
 
 jobs:
