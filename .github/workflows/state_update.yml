@@ -19,4 +19,4 @@ jobs:
 
       - name: Run update script
         run: |
-          python state_update.py
+          run: python update_state.py
