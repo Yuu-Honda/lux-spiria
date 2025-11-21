@@ -2,12 +2,13 @@ name: Update State
 
 on:
   schedule:
-    - cron: "0 * * * *"    # 毎時0分ごと
+    - cron: "0 * * * *"    # 毎時0分
   workflow_dispatch:        # 手動実行も可能
 
 jobs:
   update:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -19,4 +20,4 @@ jobs:
 
       - name: Run update script
         run: |
-          run: python update_state.py
+          python update_state.py
