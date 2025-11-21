@@ -1,0 +1,22 @@
+name: Update State
+
+on:
+  schedule:
+    - cron: "0 * * * *"    # 毎時0分ごと
+  workflow_dispatch:        # 手動実行も可能
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Run update script
+        run: |
+          python state_update.py
