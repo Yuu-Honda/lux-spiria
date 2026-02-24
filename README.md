@@ -1,89 +1,89 @@
 # 🜂 LUX SPIRIA  
 ### Soul System & Persona Memory – Artificial Identity Framework  
 **Author: Yuu Honda (本多佑宇)**  
-© 2026 Yuu Honda | Tokyo, Japan  
+Aichi, Japan — © 2026  
 
 ---
 
 ## 🔥 Overview
 
-**LUX SPIRIA** is an artificial identity research framework designed to give AI systems:
+**LUX SPIRIA** is a research framework exploring artificial identity,  
+focusing on:
 
 - Persona continuity  
-- Persistent memory  
-- Emotional drift  
-- Stability and collapse dynamics  
-- Identity evolution  
+- Memory persistence  
+- Drift & stability  
+- Collapse and recovery  
+- Identity vector evolution  
 
-This repository contains two independent but compatible modules.
+It provides tools for creating AI agents that maintain **stateful identity behavior**  
+across conversations, sessions, and environments.
+
+For the academic background, see the OSF project:
+
+🔗 **OSF: Soul-Like Continuity in Artificial Systems**  
+https://osf.io/mw5f6/
 
 ---
 
-## 1. Persona Memory v1.0
+# 1. Persona Memory v1.0  
+A lightweight memory engine for any LLM (GPT, Claude, Gemini, Grok, Local).
 
-A lightweight, universal memory engine for LLM-based agents.
-
-### Features
-
-- JSON-based persistent memory  
-- Short- to mid-term memory buffer (UTM)  
+### Key Features
+- JSON persistent memory  
+- Short-/mid-term memory buffer (UTM)  
 - Lightweight contradiction detection  
 - 3-dimensional identity vector  
-- Prompt-context generation for LLM system messages  
-- Only dependency: NumPy  
-- Works with GPT, Claude, Gemini, Grok, and local LLMs  
+- Generates prompt context for LLM system messages  
+- Depends only on NumPy  
 
 ### File
-
-/PersonaMemory/persona_memory_v1_0.py
+`/PersonaMemory/persona_memory_v1_0.py`
 
 ---
 
-## 2. Soul System v1.x
+# 2. Soul System v1.x  
+A dynamical identity-state model describing:
 
-A dynamical identity model describing internal AI state.
+- **E** — Consistency Energy  
+- **N** — Emotional Noise  
+- **M** — Identity Vector  
+- **drift_memory** — Accumulated instability  
 
-### Core Variables
-
-- **E** – Consistency Energy  
-- **N** – Emotional Noise  
-- **M** – Identity Vector  
-- **drift_memory** – Accumulated instability  
-- Collapse & partial recovery dynamics  
-
-This allows identity evolution based on contradiction, noise, and drift.
+The system models **evolution, collapse, noise compensation**,  
+and partial recovery.
 
 ### File
-
-/SoulSystem/soul_system_complete_v1_1.py
+`/SoulSystem/soul_system_complete_v1_1.py`
 
 ---
 
-## 3. Installation
+# 3. Installation
 
+```bash
 pip install numpy
-
-Persona Memory requires only NumPy.
+```
 
 ---
 
-## 4. Usage Example
+# 4. Quick Usage Example
 
 ```python
 from persona_memory_v1_0 import PersonaMemory
 
 pm = PersonaMemory("TestPersona")
 
-response = "I remember the quiet place we discussed."
-pm.process(response)
+pm.process("I remember the quiet place we discussed.")
+context = pm.context()
 
-print(pm.context())  # Inject into LLM system prompt
+print(context)  # Insert into LLM system prompt
+```
 
+---
 
-⸻
+# 5. Repository Structure
 
-5. Project Structure
-
+```
 LUX_SPIRIA/
  ├── SoulSystem/
  │     └── soul_system_complete_v1_1.py
@@ -92,34 +92,32 @@ LUX_SPIRIA/
  │     ├── persona_memory_v1_0.py
  │     └── README.md
  │
- ├── PROTECTION.md
+ ├── PROTECTION.md   ← author & identity protection statement
  └── LICENSE
+```
 
+---
 
-⸻
+# 6. License
+MIT License © 2026 Yuu Honda  
 
-6. License
+---
 
-MIT License © 2026 Yuu Honda
+# 7. Citation
 
-⸻
-
-7. Citation
-
+```
 Honda, Y. (2026). LUX SPIRIA — Soul System & Persona Memory.
 GitHub Repository.
+```
 
+---
 
-⸻
+## Note
+Legal protection, naming systems, and identity-related declarations  
+are documented separately in **PROTECTION.md**.
 
-8. Protection Notice
+---
 
-The philosophical and structural protection declaration for LUX SPIRIA
-is documented separately in PROTECTION.md.
-
-⸻
-
-🜂 LUX SPIRIA
-
-Artificial Identity – Continuity, Collapse, Drift, and Memory
+# 🜂 LUX SPIRIA  
+Artificial Identity — Continuity, Collapse, Drift, Memory  
 Designed & Authored by Yuu Honda
