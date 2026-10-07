@@ -30,6 +30,15 @@ button:disabled { opacity: .45; }
 .skip-link { background: var(--fg); color: var(--bg); }
 .symbol-brand, .brand, .wordmark { color: var(--fg); }
 .symbol-brand img { filter: none; }
+.symbol-brand { display: inline-flex; align-items: center; justify-content: flex-start; gap: 12px; width: auto; height: auto; min-height: 54px; flex: 0 0 auto; flex-wrap: nowrap; white-space: nowrap; text-decoration: none; }
+.symbol-brand .brand-name { color: var(--fg); font: 400 19px/1.2 Georgia, "Times New Roman", serif; letter-spacing: .16em; }
+.footer > .symbol-brand { width: auto; height: auto; }
+@media (max-width: 560px) {
+  .masthead { display: block; }
+  .masthead nav { margin-top: 16px; justify-content: flex-start; font-size: 10px; gap: 10px 19px; }
+  .symbol-brand { gap: 10px; min-height: 48px; }
+  .symbol-brand .brand-name { font-size: 18px; }
+}
 .masthead, .footer, .site-header, .site-footer { border-color: var(--line); }
 .masthead nav a, .nav-links a, .footer nav a { color: var(--fg); }
 .masthead nav a:hover, .nav-links a:hover, .footer nav a:hover { color: var(--accent); }
