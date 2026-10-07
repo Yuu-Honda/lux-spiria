@@ -1,3 +1,9 @@
+> **Historical claim / current evaluation · 2026-10-07追記**
+>
+> 以下の本文・数値・AI評価出力は当時の研究記録として保持しています。文章への賛同と、生データからの計算・独立追試は区別します。LRE・枝織は過去の結果を後から証明するための材料ではありません。[現在の評価](CONTINUATION.md#historical-claim--current-evaluation)と[後続研究の現在章](CONTINUATION.md)を別に記録しています。
+
+---
+
 # AI Independent Replication Log — LUX SPIRIA
 **Author:** Yuu Honda  
 **Project:** LUX SPIRIA — Soul Continuity Framework  
