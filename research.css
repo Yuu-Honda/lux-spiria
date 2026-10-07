@@ -29,6 +29,8 @@ a:focus-visible, summary:focus-visible, button:focus-visible { outline: 2px soli
 .site-header { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 24px; border-bottom: 1px solid var(--fg); }
 .brand { display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 12px; color: var(--fg); font-size: .93rem; font-weight: 750; letter-spacing: .11em; text-decoration: none; }
 .brand span { color: var(--muted); font-size: .73rem; font-weight: 500; letter-spacing: .03em; }
+.symbol-brand { flex-shrink: 0; }
+.symbol-brand img { display: block; width: 36px; height: 46px; object-fit: contain; }
 .nav-links { display: flex; flex-wrap: wrap; gap: 10px 22px; font-size: .85rem; line-height: 1.65; }
 .nav-links a { color: var(--fg); text-decoration: none; padding-block: 4px; }
 .nav-links a:hover { color: #584378; text-decoration: underline; }
@@ -79,6 +81,8 @@ summary { min-height: 48px; padding: 13px 0; cursor: pointer; color: #584378; fo
 summary::marker { color: var(--purple); }
 details[open] > summary { margin-bottom: 18px; border-bottom: 1px solid var(--line); }
 details > .table-wrap { margin-bottom: 20px; }
+.historical-details { margin-bottom: 0; }
+.historical-details[open] { padding-bottom: 20px; }
 .button { display: inline-block; margin: 8px 12px 8px 0; padding: 10px 18px; border: 1px solid var(--fg); background: var(--accent); color: var(--fg); font-size: .88rem; font-weight: 650; text-decoration: none; }
 .button:hover { background: var(--fg); color: var(--bg); }
 .site-footer { margin-top: 28px; padding-block: 28px 45px; border-top: 1px solid var(--fg); color: var(--muted); font-size: .8rem; }
@@ -122,3 +126,5 @@ details > .table-wrap { margin-bottom: 20px; }
   tr { break-inside: avoid; }
   a { color: inherit; }
 }
+
+.symbol-brand img{width:54px;height:54px;max-width:none}

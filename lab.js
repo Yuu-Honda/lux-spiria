@@ -17,13 +17,12 @@
   const flowNodes = [...engine.querySelectorAll('[data-flow-node]')];
   const flowArrows = [...engine.querySelectorAll('[data-flow-arrow]')];
   const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const titles = ['原文を保存', '意味候補を作る', 'レビューして索引へ', '今日の手掛かりを拾う', '同じ場面へ合流', '原文を返す', 'LREで以前と今を比較', 'Lukaが意味を決める'];
-  const owners = ['SHIORI / CAPTURE', 'SHIORI / PREPARE', 'SHIORI / REVIEW', 'SHIORI / RECALL', 'SHIORI / CONVERGENCE', 'SHIORI / SOURCE RETURN', 'LRE / LIVE COMPARISON', 'LUKA / MEANING & RESPONSE'];
+  const titles = ['原文を保存', '意味候補を作る', 'レビューして索引へ', '今日の手掛かりを拾う', '同じ場面へ合流', '原文を返す', 'LREで以前と今を比較', 'AIが意味を決める'];
+  const owners = ['SHIORI / CAPTURE', 'SHIORI / PREPARE', 'SHIORI / REVIEW', 'SHIORI / RECALL', 'SHIORI / CONVERGENCE', 'SHIORI / SOURCE RETURN', 'LRE / LIVE COMPARISON', 'AI / MEANING & RESPONSE'];
   const durations = [7500, 8000, 8000, 10000, 9000, 8000, 11500, 12000];
   let step = 0;
   let elapsed = 0;
   let playing = false;
-  let completed = false;
   let inView = false;
   let userInteracted = false;
   let frame = 0;
@@ -39,11 +38,10 @@
     const active = canAnimate();
     engine.dataset.playing = String(active);
     playIcon.textContent = playing ? 'Ⅱ' : '▶';
-    playLabel.textContent = playing ? '一時停止' : completed ? 'もう一度' : '再生';
-    playButton.setAttribute('aria-label', playing ? 'アニメーションを一時停止' : completed ? 'アニメーションをもう一度再生' : 'アニメーションを再生');
-    if (completed) status.textContent = '説明はここまで · 気になる場面を選んで読み返せます';
-    else if (playing && !active) status.textContent = '画面外のため自動停止中';
-    else if (active) status.textContent = '架空の会話 / 1回で停止 · 場面を選ぶと一時停止';
+    playLabel.textContent = playing ? '一時停止' : '再生';
+    playButton.setAttribute('aria-label', playing ? 'アニメーションを一時停止' : 'アニメーションを再生');
+    if (playing && !active) status.textContent = '画面外のため自動停止中';
+    else if (active) status.textContent = '架空の会話 / 自動ループ · 場面を選ぶと一時停止';
     else if (motionPreference.matches && !userInteracted) status.textContent = '動きを抑える設定中 · 矢印で場面を選べます';
     else status.textContent = '一時停止中 · 矢印または番号で場面を選べます';
     if (active) frame = requestAnimationFrame(tick);
@@ -70,15 +68,7 @@
     if (lastTime !== null) elapsed += Math.min(now - lastTime, 100);
     lastTime = now;
     if (elapsed >= durations[step]) {
-      if (step === scenes.length - 1) {
-        elapsed = durations[step];
-        completed = true;
-        playing = false;
-        renderStep(false);
-        syncPlayback();
-        return;
-      }
-      step += 1;
+      step = (step + 1) % scenes.length;
       elapsed = 0;
       renderStep();
     }
@@ -89,7 +79,6 @@
     userInteracted = true;
     playing = false;
     engine.dataset.static = 'true';
-    completed = false;
     step = Math.max(0, Math.min(scenes.length - 1, index));
     elapsed = 0;
     renderStep();
@@ -97,12 +86,6 @@
   }
   playButton.addEventListener('click', () => {
     userInteracted = true;
-    if (completed) {
-      step = 0;
-      elapsed = 0;
-      completed = false;
-      renderStep();
-    }
     playing = !playing;
     if (playing) engine.dataset.static = 'false';
     syncPlayback();
@@ -114,7 +97,6 @@
     userInteracted = true;
     step = 0;
     elapsed = 0;
-    completed = false;
     playing = true;
     engine.dataset.static = 'false';
     renderStep();
@@ -128,7 +110,7 @@
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(entries => {
       inView = entries[0].isIntersecting;
-      if (inView && !userInteracted && !completed && !motionPreference.matches) {
+      if (inView && !userInteracted && !motionPreference.matches) {
         playing = true;
         engine.dataset.static = 'false';
       }
@@ -137,6 +119,8 @@
     observer.observe(engine);
   } else {
     inView = true;
+    playing = !motionPreference.matches;
+    if (playing) engine.dataset.static = 'false';
   }
   renderStep(false);
   syncPlayback();
