@@ -1,0 +1,564 @@
+/* Icon-led explanations. All shared scene names stay inside a mechanism root. */
+.mechanism-overview,
+.mechanism-card {
+  --mechanism-accent: #a3dbe4;
+  --mechanism-halo: 147, 211, 226;
+  --mechanism-text: #e4ebf2;
+  --mechanism-muted: #aab6c4;
+  --mechanism-line: #2b3948;
+  position: relative;
+  min-width: 0;
+  color: var(--mechanism-text);
+  background: linear-gradient(135deg, #101720, #0c121a 72%);
+  border: 1px solid var(--mechanism-line);
+  padding: 28px 30px 0;
+}
+.mechanism-card[data-system="shiori"] {
+  --mechanism-accent: #c1ace5;
+  --mechanism-halo: 185, 157, 225;
+}
+.mechanism-card[data-system="lre"] {
+  --mechanism-accent: #9edbe6;
+  --mechanism-halo: 143, 212, 230;
+}
+.mechanism-overview .mechanism-node:is([data-node="1"], [data-node="2"]),
+.mechanism-overview .mechanism-link:is([data-link="0"], [data-link="1"]) {
+  --mechanism-accent: #c1ace5;
+  --mechanism-halo: 185, 157, 225;
+}
+.mechanism-heading { min-width: 0; margin-bottom: 25px; }
+.mechanism-heading .eyebrow {
+  color: var(--mechanism-accent);
+  font: 10px/1.6 var(--mono);
+  letter-spacing: .12em;
+}
+.mechanism-heading h3 {
+  margin: 9px 0 10px;
+  color: var(--mechanism-text);
+  font: 400 26px/1.4 var(--serif);
+  letter-spacing: -.02em;
+}
+.mechanism-heading > p:not(.eyebrow) {
+  color: var(--mechanism-muted);
+  font-size: 12px;
+  line-height: 1.9;
+  max-width: 680px;
+}
+.mechanism-overview .mechanism-heading h3 { font-size: 30px; }
+.mechanism-overview .mechanism-diagram {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr) 28px) minmax(0, 1fr);
+  align-items: center;
+  gap: 0;
+  padding: 12px 0 23px;
+}
+:is(.mechanism-overview, .mechanism-card) .mechanism-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  min-width: 0;
+  min-height: 112px;
+  padding: 10px 3px;
+  border: 0;
+  background: transparent;
+  color: var(--mechanism-muted);
+  text-align: center;
+  transition: color .25s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+:is(.mechanism-overview, .mechanism-card) .mechanism-icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 58px;
+  height: 58px;
+  color: #8f9eaf;
+  isolation: isolate;
+  transition: color .3s ease;
+}
+:is(.mechanism-overview, .mechanism-card) .mechanism-icon::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -12px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--mechanism-halo), .16), rgba(var(--mechanism-halo), 0) 69%);
+  opacity: 0;
+  transition: opacity .35s ease;
+}
+:is(.mechanism-overview, .mechanism-card) .mechanism-icon svg {
+  display: block;
+  width: 54px;
+  height: 54px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.65;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+:is(.mechanism-overview, .mechanism-card) .mechanism-node-label { display: block; min-width: 0; }
+:is(.mechanism-overview, .mechanism-card) .mechanism-node-label strong {
+  display: block;
+  color: #bec9d5;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+}
+:is(.mechanism-overview, .mechanism-card) .mechanism-node-label small {
+  display: block;
+  margin-top: 4px;
+  color: var(--mechanism-muted);
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+:is(.mechanism-overview, .mechanism-card) .mechanism-node[data-state="past"] .mechanism-icon { color: #a6becb; }
+:is(.mechanism-overview, .mechanism-card) .mechanism-node:is([data-state="active"], [aria-current="step"]) .mechanism-icon { color: var(--mechanism-accent); }
+:is(.mechanism-overview, .mechanism-card) .mechanism-node:is([data-state="active"], [aria-current="step"]) .mechanism-icon::before { opacity: 1; }
+:is(.mechanism-overview, .mechanism-card) .mechanism-node:is([data-state="active"], [aria-current="step"]) .mechanism-node-label strong { color: #f0f5fa; }
+:is(.mechanism-overview, .mechanism-card) .mechanism-node:focus-visible {
+  outline: 1px solid var(--mechanism-accent);
+  outline-offset: 3px;
+}
+:is(.mechanism-overview, .mechanism-card) .mechanism-link {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  height: 28px;
+  color: #435367;
+  transition: color .3s ease;
+}
+:is(.mechanism-overview, .mechanism-card) .mechanism-link svg {
+  width: 26px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.35;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+:is(.mechanism-overview, .mechanism-card) .mechanism-link.concept-link svg :is(path, line):first-child { stroke-dasharray: 2 4; }
+:is(.mechanism-overview, .mechanism-card) .mechanism-link[data-lit="true"] { color: var(--mechanism-accent); }
+:is(.mechanism-overview, .mechanism-card)[data-playing="true"] .mechanism-link[data-current="true"] svg { animation: mechanism-signal 1.6s ease-in-out infinite; }
+:is(.mechanism-overview, .mechanism-card)[data-playing="true"] .mechanism-node[data-state="active"] .mechanism-icon::before { animation: mechanism-halo 2.7s ease-in-out infinite; }
+.mechanism-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 22px;
+  align-items: stretch;
+}
+.mechanism-card {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr);
+  column-gap: 19px;
+  align-content: start;
+  padding: 25px 25px 0;
+}
+.mechanism-card > .mechanism-heading { grid-column: 1 / -1; }
+.mechanism-card > .mechanism-body {
+  display: grid;
+  grid-template-columns: inherit;
+  column-gap: inherit;
+  grid-column: 1 / -1;
+  min-width: 0;
+  min-height: 340px;
+}
+.mechanism-card .mechanism-diagram {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-auto-rows: max-content;
+  align-content: start;
+  align-items: start;
+  padding: 1px 17px 18px 0;
+  border-right: 1px solid var(--mechanism-line);
+}
+.mechanism-card .mechanism-node {
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  min-height: 48px;
+  padding: 5px 0;
+  text-align: left;
+}
+.mechanism-card .mechanism-icon { width: 32px; height: 36px; }
+.mechanism-card .mechanism-icon svg { width: 32px; height: 32px; }
+.mechanism-card .mechanism-icon::before { inset: -8px; }
+.mechanism-card .mechanism-node-label strong { font-size: 12px; }
+.mechanism-card .mechanism-node-label small { font-size: 9px; margin-top: 2px; }
+.mechanism-card .mechanism-link { width: 32px; height: 15px; }
+.mechanism-card .mechanism-link svg { width: 21px; height: 18px; transform: rotate(90deg); }
+:is(.mechanism-overview, .mechanism-card) .mechanism-stage {
+  min-width: 0;
+  min-height: 220px;
+  display: grid;
+  align-content: center;
+  padding: 22px 0 25px;
+}
+.mechanism-overview .mechanism-stage { min-height: 260px; border-top: 1px solid var(--mechanism-line); }
+.mechanism-card .mechanism-stage { padding: 6px 0 22px; }
+:is(.mechanism-overview, .mechanism-card) .mechanism-scene {
+  min-width: 0;
+  max-width: 700px;
+  width: 100%;
+  margin-inline: auto;
+  text-align: center;
+}
+:is(.mechanism-overview, .mechanism-card) .mechanism-scene h4 {
+  margin: 13px 0 9px;
+  color: var(--mechanism-text);
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.55;
+  letter-spacing: -.015em;
+}
+:is(.mechanism-overview, .mechanism-card) .mechanism-scene > p {
+  margin: 0;
+  color: var(--mechanism-muted);
+  font-size: 12px;
+  line-height: 1.9;
+}
+.mechanism-card .mechanism-scene h4 { font-size: 17px; }
+.mechanism-card .mechanism-scene > p { font-size: 11px; }
+:is(.mechanism-overview, .mechanism-card) .mechanism-scene > .mechanism-phase {
+  margin: 0 0 10px;
+  color: var(--mechanism-accent);
+  font: 9px/1.5 var(--mono);
+  letter-spacing: .1em;
+}
+:is(.mechanism-overview, .mechanism-card) .scene-visual {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 95px;
+  margin: 0 auto 5px;
+  color: var(--mechanism-accent);
+}
+:is(.mechanism-overview, .mechanism-card) .scene-visual svg {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.65;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+:is(.mechanism-overview, .mechanism-card) :is(.scene-person, .scene-ai) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  gap: 6px;
+  color: #c5d1df;
+  font: 9px/1.5 var(--mono);
+}
+:is(.mechanism-overview, .mechanism-card) .scene-ai { color: var(--mechanism-accent); }
+:is(.mechanism-overview, .mechanism-card) .speech-bubble {
+  position: relative;
+  max-width: 230px;
+  min-width: 0;
+  padding: 12px 15px;
+  border: 1px solid #3a4a5c;
+  border-radius: 11px 11px 11px 2px;
+  background: #141f2b;
+  color: #dae3ed;
+  font-size: 12px;
+  line-height: 1.8;
+  text-align: left;
+  overflow-wrap: break-word;
+}
+:is(.mechanism-overview, .mechanism-card) .speech-bubble p { font: inherit; margin: 0; }
+:is(.mechanism-overview, .mechanism-card) .source-slip {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  max-width: 320px;
+  min-width: 0;
+  padding: 11px 15px;
+  border-block: 1px solid #405264;
+  background: #15202c;
+  color: #d5dfe9;
+  font-size: 11px;
+  line-height: 1.7;
+  text-align: left;
+}
+:is(.mechanism-overview, .mechanism-card) .source-slip > div { min-width: 0; }
+:is(.mechanism-overview, .mechanism-card) .source-slip p { margin: 3px 0 0; font: inherit; }
+:is(.mechanism-overview, .mechanism-card) .source-slip small { color: var(--mechanism-muted); font-size: 9px; }
+:is(.mechanism-overview, .mechanism-card) .source-slip svg { width: 29px; height: 29px; color: var(--mechanism-accent); }
+:is(.mechanism-overview, .mechanism-card) .cue-pair { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; }
+:is(.mechanism-overview, .mechanism-card) .cue-pair > small { flex-basis: 100%; color: var(--mechanism-muted); font-size: 9px; text-align: center; }
+:is(.mechanism-overview, .mechanism-card) .cue-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border: 1px solid #66577e;
+  border-radius: 20px;
+  color: #d1bfe9;
+  background: #211d2c;
+  font-size: 10px;
+  line-height: 1.5;
+  white-space: normal;
+}
+:is(.mechanism-overview, .mechanism-card) .cue-chip svg { width: 18px; height: 18px; }
+.mechanism-card[data-system="lre"] .cue-chip { border-color: #456674; color: #b4e1e9; background: #15232b; }
+:is(.mechanism-overview, .mechanism-card) .convergence-visual {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 13px;
+  min-width: 0;
+  min-height: 95px;
+  max-width: 410px;
+  margin: 0 auto 5px;
+}
+:is(.mechanism-overview, .mechanism-card) .convergence-path {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 18px;
+  align-items: center;
+  gap: 8px 5px;
+  min-width: 0;
+  font-size: 19px;
+  color: var(--mechanism-accent);
+}
+:is(.mechanism-overview, .mechanism-card) .convergence-path > [aria-hidden] { text-align: center; }
+:is(.mechanism-overview, .mechanism-card) .convergence-visual .source-slip { flex-direction: column; padding: 9px 8px; gap: 5px; text-align: center; }
+:is(.mechanism-overview, .mechanism-card) .convergence-visual .source-slip strong { font-size: 10px; font-weight: 500; line-height: 1.6; }
+:is(.mechanism-overview, .mechanism-card) .convergence-path > svg { width: 25px; height: 22px; }
+:is(.mechanism-overview, .mechanism-card) .comparison-visual {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 24px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 370px;
+}
+:is(.mechanism-overview, .mechanism-card) .comparison-column {
+  min-width: 0;
+  padding: 12px 7px;
+  border-block: 1px solid #354659;
+  color: #d4dee9;
+  font-size: 11px;
+  line-height: 1.8;
+  text-align: center;
+}
+:is(.mechanism-overview, .mechanism-card) .comparison-column p { margin: 4px 0 0; font: inherit; }
+:is(.mechanism-overview, .mechanism-card) .comparison-column :is(small, span) { display: block; color: var(--mechanism-muted); font-size: 9px; line-height: 1.6; }
+:is(.mechanism-overview, .mechanism-card) .comparison-column svg { width: 30px; height: 30px; margin: 0 auto 7px; color: var(--mechanism-accent); }
+:is(.mechanism-overview, .mechanism-card) .comparison-arrow { display: grid; place-items: center; color: var(--mechanism-accent); font-size: 19px; font-style: normal; }
+:is(.mechanism-overview, .mechanism-card) .comparison-arrow svg { width: 24px; height: 24px; }
+:is(.mechanism-overview, .mechanism-card) .reflection-choice {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 10px;
+  width: 100%;
+  max-width: 340px;
+  padding: 0;
+  margin: 0;
+}
+:is(.mechanism-overview, .mechanism-card) :is(.reflection-yes, .reflection-no) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 6px;
+  border-block: 1px solid #496875;
+  color: var(--mechanism-accent);
+  font-size: 11px;
+  line-height: 1.7;
+}
+:is(.mechanism-overview, .mechanism-card) .reflection-no { border-color: #3a4655; border-bottom-style: dashed; color: #aebbc9; }
+:is(.mechanism-overview, .mechanism-card) .reflection-choice svg { width: 30px; height: 30px; }
+:is(.mechanism-overview, .mechanism-card) .reflection-choice :is(small, p) { margin: 0; color: var(--mechanism-muted); font-size: 10px; line-height: 1.65; }
+:is(.mechanism-overview, .mechanism-card) .mechanism-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 15px;
+  min-width: 0;
+  min-height: 61px;
+  padding: 13px 0 15px;
+  border-top: 1px solid var(--mechanism-line);
+  grid-column: 1 / -1;
+}
+:is(.mechanism-overview, .mechanism-card) .mechanism-controls button {
+  min-height: 36px;
+  padding: 6px 13px;
+  border: 1px solid #3c5367;
+  background: #16222f;
+  color: #d7e5f1;
+  font-size: 11px;
+  line-height: 1.6;
+}
+:is(.mechanism-overview, .mechanism-card) .mechanism-controls [data-motion-status] { color: var(--mechanism-muted); font-size: 10px; line-height: 1.7; }
+:is(.mechanism-overview, .mechanism-card) .mechanism-controls [data-motion-count] { margin-left: auto; color: var(--mechanism-muted); font: 9px/1.5 var(--mono); white-space: nowrap; }
+:is(.mechanism-overview, .mechanism-card) .mechanism-progress { position: absolute; inset: auto 0 0; height: 2px; overflow: hidden; background: #1a2633; }
+:is(.mechanism-overview, .mechanism-card) .mechanism-progress span { display: block; width: 0; height: 100%; background: var(--mechanism-accent); }
+.mechanism-boundary { grid-column: 1 / -1; margin: 15px 0 0; color: #aab5c3; font-size: 10px; line-height: 1.9; }
+.mechanism-overview > .mechanism-boundary,
+.mechanism-card > .mechanism-boundary { margin: 0 0 17px; }
+.mechanism-boundary strong { color: #c9d4df; font-weight: 500; }
+.mechanism-reading { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 15px 30px; margin-top: 20px; }
+.mechanism-reading .text-link { font-size: 12px; }
+.trial-evidence { margin-top: 28px; padding: 18px 0; border-block: 1px solid var(--line); }
+.trial-evidence > summary { cursor: pointer; color: #becbd8; font-size: 12px; line-height: 1.9; }
+.trial-evidence[open] > summary { padding-bottom: 13px; }
+.trial-evidence .recorded-run { margin-top: 12px; }
+@keyframes mechanism-signal { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
+@keyframes mechanism-halo { 0%, 100% { opacity: .65; } 50% { opacity: 1; } }
+@media (hover: hover) {
+  :is(.mechanism-overview, .mechanism-card) .mechanism-node:hover .mechanism-icon { color: var(--mechanism-accent); }
+  :is(.mechanism-overview, .mechanism-card) .mechanism-node:hover .mechanism-node-label strong { color: #edf3f8; }
+  :is(.mechanism-overview, .mechanism-card) .mechanism-controls button:hover { border-color: var(--mechanism-accent); }
+}
+@media (max-width: 1080px) {
+  .mechanism-card { grid-template-columns: 150px minmax(0, 1fr); column-gap: 15px; padding-inline: 20px; }
+  .mechanism-card .mechanism-diagram { padding-right: 12px; }
+  .mechanism-card .mechanism-node { gap: 6px; }
+  .mechanism-card .mechanism-icon { width: 29px; }
+  .mechanism-card .mechanism-icon svg { width: 29px; height: 29px; }
+}
+@media (max-width: 900px) {
+  .mechanism-pair { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .mechanism-card { grid-template-columns: 160px minmax(0, 1fr); column-gap: 26px; padding-inline: 25px; }
+  .mechanism-card .mechanism-diagram { padding-right: 23px; }
+  .mechanism-card .mechanism-node { gap: 10px; }
+  .mechanism-card .mechanism-node-label strong { font-size: 12px; }
+  .mechanism-card .mechanism-node-label small { font-size: 10px; }
+  .mechanism-card .mechanism-scene { max-width: 430px; }
+  .mechanism-card .mechanism-scene > p { font-size: 12px; }
+  .mechanism-overview .mechanism-node-label small { font-size: 9px; }
+}
+@media (max-width: 600px) {
+  .mechanism-overview { padding: 23px 20px 0; }
+  .mechanism-heading { margin-bottom: 19px; }
+  .mechanism-heading h3,
+  .mechanism-overview .mechanism-heading h3 { font-size: 25px; }
+  .mechanism-heading > p:not(.eyebrow) { font-size: 12px; }
+  .mechanism-overview .mechanism-diagram { grid-template-columns: minmax(0, 1fr); align-items: start; padding: 3px 0 19px; }
+  .mechanism-overview .mechanism-node { flex-direction: row; justify-content: flex-start; min-height: 52px; gap: 14px; padding: 5px 3px; text-align: left; }
+  .mechanism-overview .mechanism-icon { width: 42px; height: 42px; }
+  .mechanism-overview .mechanism-icon svg { width: 38px; height: 38px; }
+  .mechanism-overview .mechanism-node-label strong { font-size: 13px; }
+  .mechanism-overview .mechanism-node-label small { font-size: 10px; margin-top: 2px; }
+  .mechanism-overview .mechanism-link { width: 48px; height: 15px; }
+  .mechanism-overview .mechanism-link svg { width: 21px; height: 18px; transform: rotate(90deg); }
+  .mechanism-overview .mechanism-stage { min-height: 280px; }
+  .mechanism-pair { margin-top: 18px; gap: 18px; }
+  .mechanism-card { grid-template-columns: 94px minmax(0, 1fr); column-gap: 13px; padding: 22px 17px 0; }
+  .mechanism-card .mechanism-heading { margin-bottom: 23px; }
+  .mechanism-card .mechanism-diagram { padding-right: 9px; }
+  .mechanism-card .mechanism-node { gap: 6px; min-height: 53px; }
+  .mechanism-card .mechanism-icon { width: 27px; height: 32px; }
+  .mechanism-card .mechanism-icon svg { width: 27px; height: 27px; }
+  .mechanism-card .mechanism-node-label strong { font-size: 10px; line-height: 1.6; }
+  .mechanism-card .mechanism-node-label small { font-size: 9px; line-height: 1.6; }
+  .mechanism-card .mechanism-link { width: 27px; height: 14px; }
+  .mechanism-card .mechanism-stage { min-height: 260px; padding-top: 0; }
+  .mechanism-card .mechanism-scene h4 { font-size: 15px; line-height: 1.65; margin-top: 12px; }
+  .mechanism-card .mechanism-scene > p { font-size: 11px; line-height: 1.9; }
+  .mechanism-card .scene-visual { min-height: 88px; gap: 9px; }
+  .mechanism-card .scene-visual svg { width: 34px; height: 34px; }
+  .mechanism-card .speech-bubble { padding: 9px 10px; font-size: 11px; }
+  .mechanism-card .source-slip { padding: 9px 10px; font-size: 10px; }
+  .mechanism-card .source-slip svg { width: 27px; height: 27px; }
+  .mechanism-card .cue-chip { padding: 5px 8px; font-size: 9px; }
+  .mechanism-card .comparison-visual { grid-template-columns: minmax(0, 1fr) 15px minmax(0, 1fr); gap: 3px; }
+  .mechanism-card .comparison-column { padding-inline: 3px; font-size: 10px; }
+  .mechanism-card .comparison-column svg { width: 27px; height: 27px; }
+  .mechanism-card .comparison-arrow svg { width: 15px; height: 18px; }
+  .mechanism-card .convergence-path { gap: 4px; font-size: 10px; }
+  .mechanism-card .convergence-path > svg { width: 19px; height: 18px; }
+  .mechanism-card .reflection-choice { gap: 7px; }
+  .mechanism-card :is(.reflection-yes, .reflection-no) { font-size: 10px; padding: 10px 3px; }
+  .mechanism-card .reflection-choice svg { width: 27px; height: 27px; }
+  :is(.mechanism-overview, .mechanism-card) .mechanism-controls { min-height: 68px; gap: 8px 12px; }
+  :is(.mechanism-overview, .mechanism-card) .mechanism-controls button { min-height: 44px; padding: 8px 12px; }
+  .mechanism-boundary { font-size: 10px; }
+}
+@media (max-width: 380px) {
+  .mechanism-card { grid-template-columns: 81px minmax(0, 1fr); column-gap: 11px; padding-inline: 13px; }
+  .mechanism-card .mechanism-diagram { padding-right: 7px; }
+  .mechanism-card .mechanism-node { flex-direction: column; align-items: center; gap: 3px; text-align: center; padding-block: 6px; }
+  .mechanism-card .mechanism-link { margin-inline: auto; }
+  .mechanism-card .mechanism-node-label small { display: none; }
+  .mechanism-card .mechanism-scene h4 { font-size: 14px; }
+}
+@media (max-width: 560px) {
+  .mechanism-card > .mechanism-body { display: block; min-height: 0; }
+  .mechanism-card .mechanism-diagram {
+    grid-template-columns: repeat(4, minmax(0, 1fr) 12px) minmax(0, 1fr);
+    align-items: start;
+    padding: 0 0 17px;
+    margin-bottom: 14px;
+    border-right: 0;
+    border-bottom: 1px solid var(--mechanism-line);
+  }
+  .mechanism-card .mechanism-node {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+    min-height: 85px;
+    padding: 5px 0;
+    text-align: center;
+  }
+  .mechanism-card .mechanism-icon { width: 32px; height: 36px; }
+  .mechanism-card .mechanism-icon svg { width: 32px; height: 32px; }
+  .mechanism-card .mechanism-node-label strong { min-height: 30px; font-size: 10px; line-height: 1.5; }
+  .mechanism-card .mechanism-node-label small { display: none; }
+  .mechanism-card .mechanism-link { width: 12px; height: 32px; margin: 5px 0 0; }
+  .mechanism-card .mechanism-link svg { width: 14px; height: 17px; transform: none; }
+  .mechanism-card .mechanism-stage { min-height: 310px; padding: 4px 0 23px; }
+  .mechanism-card .mechanism-scene h4 { font-size: 17px; }
+  .mechanism-card .mechanism-scene > p { font-size: 12px; }
+  .mechanism-card .scene-visual { min-height: 100px; gap: 10px; }
+  .mechanism-card :is(.scene-person, .scene-ai) > svg { width: 42px; height: 42px; }
+  .mechanism-card .scene-visual .source-slip { flex: 1 1 0; max-width: 260px; }
+  .mechanism-card .scene-visual .cue-pair { flex: 0 1 220px; min-width: 0; }
+  .mechanism-card .source-slip { font-size: 11px; padding: 11px 12px; }
+  .mechanism-card .comparison-visual { grid-template-columns: minmax(0, 1fr) 22px minmax(0, 1fr); gap: 8px; }
+  .mechanism-card .comparison-column { padding: 14px 7px; font-size: 12px; }
+  .mechanism-card .comparison-arrow svg { width: 22px; height: 22px; }
+  .mechanism-card .convergence-visual { gap: 13px; }
+  .mechanism-card .convergence-path { gap: 8px 5px; font-size: 19px; }
+  .mechanism-card .cue-chip { font-size: 10px; }
+  .mechanism-card :is(.reflection-yes, .reflection-no) { padding: 13px 7px; font-size: 11px; }
+  .mechanism-card .reflection-choice svg { width: 34px; height: 34px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  :is(.mechanism-overview, .mechanism-card) *,
+  :is(.mechanism-overview, .mechanism-card) *::before,
+  :is(.mechanism-overview, .mechanism-card) *::after { animation: none !important; transition: none !important; }
+}
+@media print {
+  .mechanism-overview, .mechanism-card { display: block; break-inside: avoid; background: white; color: #171b18; border-color: #a6a6a6; padding: 20px; }
+  .mechanism-pair { display: block; }
+  .mechanism-card { margin-top: 20px; }
+  .mechanism-card > .mechanism-body { display: block; min-height: 0; }
+  :is(.mechanism-overview, .mechanism-card) .mechanism-diagram,
+  :is(.mechanism-overview, .mechanism-card) .mechanism-controls,
+  :is(.mechanism-overview, .mechanism-card) .mechanism-progress { display: none; }
+  :is(.mechanism-overview, .mechanism-card) .mechanism-stage { min-height: 0; padding: 0; border: 0; }
+  :is(.mechanism-overview, .mechanism-card) .mechanism-scene[hidden] { display: block !important; }
+  :is(.mechanism-overview, .mechanism-card) .mechanism-scene { margin-top: 20px; }
+  :is(.mechanism-overview, .mechanism-card) :is(h3, h4, p, small, .scene-visual, .source-slip, .speech-bubble, .comparison-column, .reflection-yes, .reflection-no) { color: #171b18; background: transparent; }
+  .mechanism-boundary { color: #333; }
+}
