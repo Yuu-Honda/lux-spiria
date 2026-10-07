@@ -148,12 +148,16 @@
         <h2 id="shiori-title" class="section-heading">原文への入口と、手掛かりの合流</h2>
         <p class="status">Experimental · draft PR #28 · 未merge · 2026-10-07確認</p>
         <p>枝織は、現在の発話の複数の手掛かりから、過去の同じ場面へ合流して戻るための想起実験である。指定branchには、取得済み会話を対象にした保存・検索の試作がある。</p>
+        <p>原文は出典とともに保持し、各場面（episode）のレビュー済み特徴を二進数のmaskで表す。検索ではこの特徴索引を照合し、見つかった原文をAIが読み直して意味を判断する。</p>
+        <p>棚に並ぶ場面を、共通の特徴が糸のようにつなぐ。手掛かりから入った場面を起点に、<code>episode → 共通feature → episode</code>と辿ると、別の場面へも候補が伝わる。異なる手掛かりから伸びた道が同じepisodeへ届けば、そこで合流し、検索順位に反映される。</p>
+        <p>ここでいう<strong>共鳴</strong>は、候補が網を伝わり、複数の道が合流する様子の比喩である。bitは特徴を照合するための表現で、二進数としての値やbit位置の近さが、意味の近さを表すわけではない。合流した候補の意味は、原文と現在の文脈を踏まえてAIが判断する。</p>
         <ol>
           <li><strong>原文への入口を先に残す。</strong> semanticな理解の前に、原文・話者・時刻・出典・発話順をcaptureする。未知語もliteral searchで原文へ戻れるが、文字一致と意味理解は別に返す。原文の文字一致だけでは連想を起動しない。</li>
           <li><strong>保存と想起に共通のcue parserを使う。</strong> prepareとrecallで最長一致、局所的な否定、単純な仮定、明示された既知の主体を限定的に扱う。「風邪をひいた」を風の記憶へ誤接続せず、「風がなかった」「痛みがない」をnegated cueとして扱う。汎用日本語理解器ではない。対応外の解釈は未確定として扱う設計で、任意の複雑な否定を処理できる保証はない。</li>
           <li><strong>異なるcueが同じ場面へ届く合流を順位へ反映する。</strong> 同じcueの別名・反復・循環を重複加点せず、cueごとの最良経路を場面ごとに合算する。これは検索cueの多様性であり、統計的に独立した証拠や因果関係の証明ではない。</li>
           <li><strong>feature → memoryの逆引き索引を使う。</strong> binary全走査に加え、tag postingsとbitmapを実装する。bit配置そのものが意味の近さを表すわけではない。</li>
         </ol>
+        <p class="footnote">将来構想の「夢」は、問い合わせがなくてもこの網を歩き、再読する候補を見つけるというもの。自発的な巡回は現在のv0.2には未実装である。</p>
       </section>
 
       <section id="validation" class="panel" aria-labelledby="validation-title">
@@ -162,6 +166,8 @@
         <p>以下は指定branchの<code>VALIDATION_V02.json</code>に記録された値。ベンチマークはその環境・条件の実測であり、一般的な速度保証ではない。</p>
         <p class="callout"><strong>86 tests pass · failures 0 · errors 0</strong><br>v0.1の42件＋v0.2の44件。</p>
         <p>人工1,000・10,000 episode、各100 queryで、binary / tags / bitmapの結果・score・evidenceが一致した。</p>
+        <p>意味特徴からの候補抽出では、すべての原文を毎回全文比較する代わりに、特徴索引を使う。binary方式は、各episodeの特徴maskと検索cueのmaskをANDで照合し、共通のbitがある場面を選ぶ。</p>
+        <p>tags方式はfeatureから該当episodeの集合を引き、bitmap方式はその集合をbitで表す。bitmapでは候補集合をORでまとめ、対象範囲のbit集合とANDで絞る。この逆引きにより、検索に関係する特徴を持つ場面へ直接進める。</p>
         <div class="table-wrap">
           <table>
             <caption>人工episodeに対するwarm recallの中央値</caption>
@@ -172,6 +178,7 @@
             </tbody>
           </table>
         </div>
+        <p>表は、メモリに用意した索引から候補・順位・evidenceを返す時間を示す。原文を保存する工程や、原文を取得して読み直す工程は別にある。原文への戻り道を保ちながら、候補を探す処理を特徴の照合で行う設計である。</p>
         <p class="footnote">各100 query、<code>hops=0</code>。候補選択・順位付け・evidence組立を含むwarm recallを測定。原文取得、ネットワーク、liveモデルによる意味抽出、モデル推論、Wake統合は含まない。cold snapshotは別計測で、1,000件で約0.024秒、10,000件で約0.407秒。今回の条件ではtags / bitmapがbinaryより速い、という範囲に留める。</p>
         <h3>合流の人工対照例</h3>
         <div class="table-wrap">

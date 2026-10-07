@@ -65,6 +65,10 @@
       }
       render(story, step);
       story.progress.style.width = `${position * 100}%`;
+      if (story.root.dataset.system === 'shiori') {
+        const travel = story.enabled ? clamp(position * story.scenes.length - step) : 1;
+        story.root.style.setProperty('--thread-travel', String(travel));
+      }
     });
   }
 
@@ -96,9 +100,9 @@
     update();
   }
 
-  function goToStep(story, index, announce = true) {
+  function goToStep(story, index, announce = true, instant = false) {
     const step = Math.max(0, Math.min(story.scenes.length - 1, index));
-    const behavior = preference.matches ? 'instant' : 'smooth';
+    const behavior = instant || preference.matches ? 'instant' : 'smooth';
     if (story.enabled) {
       const start = story.track.getBoundingClientRect().top + window.scrollY - story.pinTop;
       window.scrollTo({top: Math.max(0, start + story.range * step / (story.scenes.length - 1)), behavior});
@@ -125,14 +129,15 @@
   window.addEventListener('scroll', schedule, {passive: true});
   window.addEventListener('resize', () => { needsMeasure = true; schedule(); });
 
-  function followHash() {
+  function followHash(instant = false) {
     let target;
     try { target = document.getElementById(decodeURIComponent(location.hash.slice(1))); }
     catch { return; }
     const story = stories.find(item => item.root === target || item.scenes.includes(target));
-    if (story) goToStep(story, Math.max(0, story.scenes.indexOf(target)), false);
+    if (story) goToStep(story, Math.max(0, story.scenes.indexOf(target)), false, instant);
+    else if (target) target.scrollIntoView({block: 'start', behavior: instant || preference.matches ? 'instant' : 'smooth'});
   }
-  window.addEventListener('hashchange', followHash);
-  window.addEventListener('load', () => { measure(); followHash(); }, {once: true});
+  window.addEventListener('hashchange', () => followHash());
+  window.addEventListener('load', () => { measure(); followHash(true); }, {once: true});
   measure();
 })();
