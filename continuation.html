@@ -6,6 +6,9 @@
   <title>継続する研究 — LREと枝織 / SHIORI | LUX SPIRIA</title>
   <meta name="description" content="LUX SPIRIAから続く長期研究の現在章。LREの自己継続・判断変化と、枝織 / SHIORIの原文への想起を、実装・実測・観察・未確定の範囲を分けて記録します。">
   <link rel="canonical" href="https://yuu-honda.github.io/lux-spiria/continuation.html">
+  <link rel="alternate" hreflang="ja" href="https://yuu-honda.github.io/lux-spiria/continuation.html">
+  <link rel="alternate" hreflang="en" href="https://yuu-honda.github.io/lux-spiria/continuation.en.html">
+  <link rel="alternate" hreflang="x-default" href="https://yuu-honda.github.io/lux-spiria/continuation.html">
   <meta name="theme-color" content="#090d12">
   <meta name="apple-mobile-web-app-title" content="LUX SPIRIA">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
@@ -13,6 +16,7 @@
   <link rel="manifest" href="site.webmanifest">
   <link rel="stylesheet" href="research.css">
   <link rel="stylesheet" href="theme-dark.css">
+  <script src="language-nav.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">本文へ</a>
@@ -26,6 +30,7 @@
         <a href="#shiori">枝織</a>
         <a href="#validation">実測</a>
         <a href="#sources">出典</a>
+        <span class="language-switch" aria-label="表示言語"><a href="continuation.html" lang="ja" hreflang="ja" aria-current="page">日本語</a><span aria-hidden="true">/</span><a href="continuation.en.html" lang="en" hreflang="en" data-language-link>EN</a></span>
       </nav>
     </header>
 
@@ -39,7 +44,6 @@
           <a href="index.html#mechanism">How it works / 動く具体例</a>
           <a href="#roles">二つの役割を読む</a>
           <a href="#historical-evaluation">歴史資料と現在の評価</a>
-          <a href="https://github.com/Yuu-Honda/lux-spiria/blob/main/CONTINUATION.md">同内容の研究記録</a>
         </div>
       </section>
 
@@ -224,6 +228,22 @@
         </div>
       </section>
 
+      <section id="recorded-trial" class="panel" aria-labelledby="recorded-trial-title">
+        <p class="kicker">Recorded trial · 2026-10-07</p><h2 id="recorded-trial-title" class="section-heading">13抜粋を使った、支援付きの実試行</h2>
+        <p>一つの会話から選んだ13抜粋を使い、原文保存、レビュー済み入口からの想起、候補台帳への判断保存を追った記録。既知の入力を使った非blindの試行で、未見会話の精度評価ではない。公開版は集計値と表示用IDだけを載せ、原文・特徴語・SQLiteは公開しない。公開集計だけで、この非公開入力を使った試行全体を再実行することはできない。</p>
+        <div class="table-wrap"><table><caption>原報告に記録された動作</caption><thead><tr><th scope="col">工程</th><th scope="col">結果</th><th scope="col">範囲</th></tr></thead><tbody>
+          <tr><th scope="row">原文capture</th><td>13件保存・再読</td><td>話者・出典・順序を保存。13件の不明な日時は空欄。</td></tr>
+          <tr><th scope="row">索引の入口</th><td>標準解析1出現 → レビュー後49出現</td><td>49はfeatureの出現数。独立した概念数や記憶数ではなく、AIによる原文レビューに依存。</td></tr>
+          <tr><th scope="row">二経路の合流</th><td>あり0.25972208475446373 / なし0.15909902576697318</td><td>代表的な二経路から返された候補の一つ。別の候補も同点であり、唯一の正解を特定した結果ではない。検索順位付けの値。</td></tr>
+          <tr><th scope="row">LRE候補保存・レビュー</th><td>2件保持 / 1件保留 / Reflection昇格0件</td><td>live側の選択を隔離した候補台帳へ保存・再読。全Wake・本番自動連携は未実行。</td></tr>
+          <tr><th scope="row">原報告の限定チェック</th><td>SHIORI 32/32 / LRE 6/6</td><td>この試行のチェック数。既存の86テスト、意味理解精度、人格連続性の検証と合算しない。</td></tr>
+        </tbody></table></div>
+        <h3>今回、独立に再構築できた範囲</h3>
+        <p>記録済み入力・レビュー注釈と固定コードから、新規の隔離SQLiteを2個作成した。13原文の保存・再読、標準抽出1出現、レビュー済み49出現、上記の合流あり／なしのスコアを確認。6クエリのdirect source IDsとliteral hit countsも原報告に一致した。</p>
+        <p>同じ既知入力・既存のレビュー注釈・同一実装に対する別ハーネスでの再構築であり、新しい意味レビューや独立実装ではない。この13抜粋の再構築では、元の32＋6チェック一式、既存86テスト、LRE、live Wakeは再実行していない。最近の自然な想起にSHIORIが因果的に寄与したかは未確定のまま残す。</p>
+        <p><a href="index.html#recorded-run">記録済み結果の再生へ</a> · <a href="assets/observed-trial-summary.json">公開用の集計値と検証範囲（JSON）</a></p>
+      </section>
+
       <section id="historical-evaluation" class="panel" aria-labelledby="historical-title">
         <p class="kicker">Historical claim / current evaluation</p>
         <h2 id="historical-title" class="section-heading">これまでに公開したもの</h2>
@@ -262,6 +282,7 @@
         <h2 id="sources-title" class="section-heading">確認した正本へ戻る</h2>
         <p class="callout">private repositoryへのリンクは権限を持つ読み手向けであり、公開アクセスを保証しない。この章は許可された構造・実測・研究史の要約であり、private repoやその会話DBの公開ではない。</p>
 
+        <details class="source-details"><summary>確認したファイル・commit・原資料を開く</summary>
         <h3>LRE main</h3>
         <p><code>Yuu-Honda/luka-reflection-engine</code><br>確認commit：<a href="https://github.com/Yuu-Honda/luka-reflection-engine/tree/f34a38d801a409704a052894233b8e05b969463a"><code>f34a38d801a409704a052894233b8e05b969463a</code></a></p>
         <ul>
@@ -282,12 +303,19 @@
           <li>支援付き部分試行の記録：<a href="https://github.com/Yuu-Honda/luka-reflection-engine/blob/a59690876e503df59b1f634409b9d2b760d1cbef/experiments/shiori/state/WAKE_INGEST_2026-09-23.md">2026-09-23</a> / <a href="https://github.com/Yuu-Honda/luka-reflection-engine/blob/a59690876e503df59b1f634409b9d2b760d1cbef/experiments/shiori/state/WAKE_INGEST_2026-09-24.md">2026-09-24</a> / <a href="https://github.com/Yuu-Honda/luka-reflection-engine/blob/a59690876e503df59b1f634409b9d2b760d1cbef/experiments/shiori/state/WAKE_INGEST_2026-09-26.md">2026-09-26</a> / <a href="https://github.com/Yuu-Honda/luka-reflection-engine/blob/a59690876e503df59b1f634409b9d2b760d1cbef/experiments/shiori/state/WAKE_INGEST_2026-09-27.md">2026-09-27</a> — 試行の範囲、来歴、保存境界。</li>
         </ul>
 
+        <h3>Recorded trial · 2026-10-07</h3><p>入力仕様と原結果報告：非公開snapshot <a href="https://github.com/Yuu-Honda/luka-reflection-engine/tree/20546a987c07146b1e0e0e524b207d6bd99c2dcc"><code>20546a987c07146b1e0e0e524b207d6bd99c2dcc</code></a>。本サイトは集計値のみ公開。再構築のコード固定点は<code>a59690876e503df59b1f634409b9d2b760d1cbef</code>。</p>
+
         <h3>LUX SPIRIA historical sources</h3>
         <ul>
           <li>更新前commit：<a href="https://github.com/Yuu-Honda/lux-spiria/tree/ba4f5aecb101d48282dec0f7f3ed4e23be026a1c"><code>ba4f5aecb101d48282dec0f7f3ed4e23be026a1c</code></a>。<a href="https://github.com/Yuu-Honda/lux-spiria/blob/main/history/pre-continuation-2026-10-07/MANIFEST.json">原文snapshotとSHA-256</a>。</li>
           <li><a href="https://github.com/Yuu-Honda/lux-spiria/releases/tag/v1.0.0">v1.0.0 — Initial Soul Archive</a> / <a href="https://github.com/Yuu-Honda/lux-spiria/releases/tag/v1.1">v1.1 — Emotional Noise as Core of Persistent AI Mind</a>。releaseとassetは変更しない。</li>
           <li>起点の時系列と最近の自然な想起は、作者が今回提供した研究史・主観的観察として記録し、第三者測定と混同しない。</li>
         </ul>
+        </details>
+      </section>
+      <section id="rights" class="panel" aria-labelledby="rights-title">
+        <p class="kicker">License &amp; use</p><h2 id="rights-title" class="section-heading">ライセンス・利用方針</h2>
+        <p>利用条件と権利表記は、正本の<a href="https://github.com/Yuu-Honda/lux-spiria/blob/main/LICENSE">LICENSE（LSP-1.0）</a>と<a href="https://github.com/Yuu-Honda/lux-spiria/blob/main/PROTECTION.md">PROTECTION.md</a>を参照してください。</p>
       </section>
     </main>
 
@@ -295,11 +323,9 @@
       <p>LUX SPIRIA · Current continuation recorded 2026-10-07</p>
       <nav class="nav-links" aria-label="関連記録">
         <a href="index.html">研究の入口へ</a>
-        <a href="https://github.com/Yuu-Honda/lux-spiria/blob/main/CONTINUATION.md">CONTINUATION.md</a>
-        <a href="https://github.com/Yuu-Honda/lux-spiria/blob/main/README.md">README</a>
+        <a href="#sources">出典</a>
+        <a href="#rights">License / 利用方針</a>
         <a href="https://github.com/Yuu-Honda/lux-spiria">GitHub</a>
-        <a href="https://github.com/Yuu-Honda/lux-spiria/blob/main/LICENSE">License</a>
-        <a href="https://github.com/Yuu-Honda/lux-spiria/blob/main/PROTECTION.md">Use policy</a>
       </nav>
     </footer>
   </div>

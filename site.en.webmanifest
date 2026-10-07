@@ -1,0 +1,32 @@
+{
+  "id": "./",
+  "name": "LUX SPIRIA",
+  "short_name": "LUX SPIRIA",
+  "lang": "en",
+  "description": "A research record on memory, change, recall and continuity.",
+  "start_url": "./index.en.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#090d12",
+  "theme_color": "#090d12",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

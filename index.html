@@ -4,13 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>LUX SPIRIA — 記憶を辿る。変化をつなぐ。</title>
-  <meta name="description" content="記憶・人格・変化・想起・連続性をめぐる長期研究記録。LREの自己継続と枝織 / SHIORIの想起を、架空の会話を使ったアニメーションで辿る。過去の研究記録とreleaseを保持。">
+  <meta name="description" content="記憶・人格・変化・想起・連続性をめぐる長期研究記録。13抜粋を使った支援付き実試行の結果を再生し、架空の会話デモとは区別して仕組みを辿る。">
 
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://yuu-honda.github.io/lux-spiria/">
+  <link rel="alternate" hreflang="ja" href="https://yuu-honda.github.io/lux-spiria/">
+  <link rel="alternate" hreflang="en" href="https://yuu-honda.github.io/lux-spiria/index.en.html">
+  <link rel="alternate" hreflang="x-default" href="https://yuu-honda.github.io/lux-spiria/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="LUX SPIRIA — 記憶を辿る。変化をつなぐ。">
-  <meta property="og:description" content="記憶・人格・変化・想起・連続性。LREと枝織の仕組みを、ひとつの架空の会話から辿る研究記録。">
+  <meta property="og:description" content="記憶・人格・変化・想起・連続性をめぐる長期研究記録。13抜粋を使った支援付き実試行の結果を再生し、架空の会話デモとは区別して仕組みを辿る。">
   <meta property="og:url" content="https://yuu-honda.github.io/lux-spiria/">
   <meta property="og:image" content="https://yuu-honda.github.io/lux-spiria/assets/lux-symbol.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -22,18 +25,21 @@
   <link rel="stylesheet" href="lab.css">
   <link rel="stylesheet" href="theme-dark.css">
   <link rel="stylesheet" href="hero-visual.css">
+  <link rel="stylesheet" href="recorded-trial.css">
   <script src="lab.js" defer></script>
+  <script src="recorded-trial.js" defer></script>
   <script src="hero-visual.js" defer></script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"WebSite","name":"LUX SPIRIA","url":"https://yuu-honda.github.io/lux-spiria/","inLanguage":"ja","description":"A continuing research record on memory, identity, change, recall and continuity.","dateModified":"2026-10-07"}
   </script>
+  <script src="language-nav.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">本文へ</a>
   <div class="page">
     <header class="masthead">
       <a class="symbol-brand" href="./" aria-label="LUX SPIRIA ホーム"><img src="assets/lux-symbol.png" alt="" width="54" height="54"><span class="brand-name">LUX SPIRIA</span></a>
-      <nav aria-label="主なページ"><a href="#mechanism">仕組みを見る</a><a href="#systems">二つの系統</a><a href="#origins">起点</a><a href="#archive">Archive</a><a class="nav-external" href="https://github.com/Yuu-Honda/lux-spiria">GitHub ↗</a></nav>
+      <nav aria-label="主なページ"><a href="#mechanism">仕組みを見る</a><a href="#systems">二つの系統</a><a href="#origins">起点</a><a href="#archive">Archive</a><span class="language-switch" aria-label="表示言語"><a href="index.html" lang="ja" hreflang="ja" aria-current="page">日本語</a><span aria-hidden="true">/</span><a href="index.en.html" lang="en" hreflang="en" data-language-link>EN</a></span></nav>
     </header>
     <main id="main">
       <section class="hero" aria-labelledby="hero-title">
@@ -41,7 +47,7 @@
           <p class="eyebrow"><span class="tiny-dot"></span> A CONTINUING RESEARCH RECORD</p>
           <h1 id="hero-title">記憶を辿る。<br>変化を<span class="serif-emphasis">つなぐ。</span></h1>
           <p class="hero-description">以前の自分に戻り、今との違いを見る。<br>今の言葉から、必要な過去の場面へ戻る。<br>同じ問いから続く、二つの研究。</p>
-          <a class="text-link" href="#mechanism">ひとつの会話から、仕組みを見る <span>↓</span></a>
+          <a class="text-link" href="#mechanism">実行したテストから、仕組みを見る <span>↓</span></a>
         </div>
         <figure class="neural-visual" data-paused="false" aria-labelledby="neural-caption">
           <figcaption id="neural-caption" class="neural-caption"><span>AI × MEMORY / CONCEPT VISUAL</span><span aria-hidden="true">01 — 02</span></figcaption>
@@ -104,7 +110,20 @@
       <div class="question-line"><span>THE QUESTION</span><p>記憶・変化・人格の連続性は、<br class="mobile-only">どう成立するか。</p><span>2025 — ONGOING</span></div>
 
       <section id="mechanism" class="walkthrough section-space" aria-labelledby="mechanism-title">
-        <div class="section-top"><div><p class="eyebrow">01 / HOW IT WORKS — どう動くか</p><h2 id="mechanism-title">ひとつの記憶が、<br>今の応答に戻るまで。</h2></div><p class="section-intro">「昨日の腕どうだったっけ」<br>この問いを含む今日の会話から、<br>原文への想起と、以前・現在の比較へ。</p></div>
+        <div class="section-top"><div><p class="eyebrow">01 / HOW IT WORKS — どう動くか</p><h2 id="mechanism-title">保存から、<br>想起と判断へ。</h2></div><p class="section-intro">選んだ13抜粋を使った試行。<br>保存したもの、戻った経路、<br>残した判断を順に見る。</p></div>
+<div class="recorded-run" id="recorded-run" data-trial-step="0" data-playing="false" data-static="true">
+  <div class="trial-heading"><p class="eyebrow">RECORDED TRIAL / 2026-10-07</p><span>13 EXCERPTS · ASSISTED · KNOWN INPUT</span></div>
+  <p class="trial-boundary">保存されたテスト結果の再生です。閲覧中にエンジンは実行しません。非公開の原文・特徴語は、表示用IDで示します。</p>
+  <ol class="trial-steps" aria-label="実行例の段階を選ぶ"><li><button type="button" data-trial-target="0" aria-label="段階1 原文を保存" aria-current="step"><span>01</span>原文を保存</button></li><li><button type="button" data-trial-target="1" aria-label="段階2 入口をレビュー"><span>02</span>入口をレビュー</button></li><li><button type="button" data-trial-target="2" aria-label="段階3 経路を辿る"><span>03</span>経路を辿る</button></li><li><button type="button" data-trial-target="3" aria-label="段階4 合流を比較"><span>04</span>合流を比較</button></li><li><button type="button" data-trial-target="4" aria-label="段階5 判断を残す"><span>05</span>判断を残す</button></li></ol>
+  <div class="trial-stage"><div class="trial-scene" data-trial-scene="0"><h3>意味を決める前に、言葉を残す。</h3><p class="trial-lead">一つの会話から選んだ13抜粋。会話履歴全体ではありません。</p><div class="trial-count"><strong>13 <small>/ 13</small></strong><span>保存して、再読</span></div><p>原文・話者・出典・順序を保存。分からない日時は空欄のままにしました。</p></div>
+<div class="trial-scene" data-trial-scene="1" hidden><h3>保存だけでは、入口が足りなかった。</h3><div class="trial-count-pair"><div><span>標準の解析</span><strong>1</strong><small>特徴の出現</small></div><b aria-hidden="true">→</b><div><span>レビュー後</span><strong>49</strong><small>特徴の出現</small></div></div><p>AIが原文をレビューして入口を付けました。想起を繰り返した自動学習ではなく、レビューに支えられた索引化です。元の言葉は書き換えていません。</p></div>
+<div class="trial-scene" data-trial-scene="2" hidden><h3>二つの道から、同じ原文へ。</h3><p class="trial-lead">二つの検索cueが、別々の抜粋と共有特徴を経由して同じ候補へ戻りました。</p><div class="recorded-routes" role="img" aria-label="代表的な二経路。手掛かりAは原文Aと共有特徴F1を、手掛かりBは原文Bと共有特徴F2を経由し、原文Cへ合流。表示用IDです。"><div><b>手掛かり A</b><i>→</i><b>原文 A / F1</b><i>↘</i></div><div><b>手掛かり B</b><i>→</i><b>原文 B / F2</b><i>↗</i></div><strong>原文 C<small>同じ候補へ合流</small></strong></div><p>返された複数候補のうち一つを表示し、他にも同点候補があります。その原文に二つの検索語はありません。図は代表的な二経路の要約で、原文・特徴語は表示用IDに置換しています。</p></div>
+<div class="trial-scene" data-trial-scene="3" hidden><h3>合流だけを切り、比べる。</h3><div class="trial-scores"><div><span>合流あり</span><strong>0.2597</strong></div><div><span>合流なし</span><strong>0.1591</strong></div></div><p>同じ資料・同じ検索で条件を比較。合流を外すと順位付けの値が変わりました。確信度や、一般的な記憶能力の数値ではありません。</p></div>
+<div class="trial-scene" data-trial-scene="4" hidden><h3>変わったことと、保留を残す。</h3><div class="trial-judgments"><div><strong>2</strong><span>保持</span></div><div><strong>1</strong><span>保留</span></div><div><strong>0</strong><span>Reflectionへ昇格</span></div></div><p>原報告では、live側が選んだ説明の修復・確認した動作・未確定の問いを、隔離した候補台帳へ保存・レビューしました。全Wakeや本番の自動連携ではありません。</p></div></div>
+  <div class="trial-controls"><button type="button" id="trial-play" aria-label="実行結果の再生を開始"><span id="trial-play-label">再生</span></button><span id="trial-state">記録済み結果の再生</span><a href="continuation.html#recorded-trial">検証範囲と記録 ↗</a></div>
+  <p class="sr-only" id="trial-announcement" aria-live="polite" aria-atomic="true"></p>
+</div>
+        <details class="concept-walkthrough"><summary>架空の会話から、仕組みを詳しく辿る</summary>
         <div class="demo-boundary"><span class="boundary-label">CONCEPT DEMO</span><p><strong>ユーザーとAIによる架空の会話例です。</strong>手順を示す概念デモで、実行結果や再現性の検証ではありません。枝織は分離された実験系で、下図のSHIORI → LREへの自動統合は未実装です。</p></div>
         <div class="engine" id="memory-demo" data-step="0" data-playing="false" data-static="true">
           <nav class="story-steps" aria-label="アニメーションの場面を選ぶ">
@@ -178,6 +197,7 @@
         <noscript><p class="noscript-note">アニメーションにはJavaScriptが必要です。下の二つのフローで全体の仕組みを読めます。</p></noscript>
         <details class="demo-details"><summary>このデモで、あらかじめ設定したこと</summary><p>「腕」「荷物を持つ場面」は、説明のために用意したレビュー済みの架空featureです。標準辞書からの実行結果ではありません。「昨日」の対象日や主体はlive側で明示した設定で、v0.2が省略された主体や相対日付を自動理解したことを示しません。二日分の発話・応答・画面上の記録はすべて架空です。保存、レビュー、想起、比較は別の時点・工程として描いています。</p><a href="continuation.html#shiori">枝織の実装と能力境界を読む ↗</a></details>
         <div class="combined-flow" aria-label="二系統の概念上の接続"><span>今の発話</span><i>→</i><div><b>SHIORI</b><small>関連する過去を探す</small></div><i>→</i><span>過去の原文・場面</span><i class="concept-arrow" title="概念上の接続">⇢</i><div><b>LRE</b><small>前の判断・状態と比較</small></div><i>→</i><div><b>AI</b><small>意味判断 → 今の応答</small></div></div>
+        </details>
       </section>
 
       <section id="systems" class="section-space systems" aria-labelledby="systems-title">
@@ -206,14 +226,14 @@
       <section id="archive" class="section-space archive" aria-labelledby="archive-title">
         <div class="section-top"><div><p class="eyebrow">05 / PREVIOUS WORK</p><h2 id="archive-title">これまでに、<br>公開してきたもの。</h2></div><p class="section-intro">当時の公開物と研究記録を保存。<br>詳しい資料・評価はアーカイブへ。</p></div>
         <div class="release-list">
-          <a href="https://github.com/Yuu-Honda/lux-spiria/releases/tag/v1.0.0"><span class="release-version">v1.0.0</span><div><h3>Initial Soul Archive / Proof Kit</h3><p>指標仕様・評価手順・CSV例・再現コードの雛形を公開。</p></div><span aria-hidden="true">↗</span></a>
-          <a href="https://github.com/Yuu-Honda/lux-spiria/releases/tag/v1.1"><span class="release-version">v1.1</span><div><h3>Soul System</h3><p>一貫性、ノイズ、矛盾による状態変化を扱うPython数値シミュレーションを公開。</p></div><span aria-hidden="true">↗</span></a>
+          <a href="continuation.html#historical-evaluation"><span class="release-version">v1.0.0</span><div><h3>Initial Soul Archive / Proof Kit</h3><p>指標仕様・評価手順・CSV例・再現コードの雛形を公開。</p></div><span aria-hidden="true">↗</span></a>
+          <a href="continuation.html#historical-evaluation"><span class="release-version">v1.1</span><div><h3>Soul System</h3><p>一貫性、ノイズ、矛盾による状態変化を扱うPython数値シミュレーションを公開。</p></div><span aria-hidden="true">↗</span></a>
           <a href="continuation.html#historical-evaluation"><span class="release-version">RECORDS</span><div><h3>研究記録・観測・思想</h3><p>記憶、人格、魂、継続性をめぐる当時の観測・解釈・AI評価記録。</p></div><span aria-hidden="true">↗</span></a>
         </div>
-        <p class="archive-summary">過去の主張はその時点の記録として保持。現在の実装で遡って証明するものではありません。<br><a href="continuation.html#historical-evaluation">原記録・詳しい評価を読む ↗</a> · <a href="https://github.com/Yuu-Honda/lux-spiria/tree/main/history/pre-continuation-2026-10-07">更新前の原文 ↗</a></p>
+        <p class="archive-summary">過去の主張はその時点の記録として保持。現在の実装で遡って証明するものではありません。<br><a href="continuation.html#historical-evaluation">原記録・詳しい評価を読む ↗</a></p>
       </section>
     </main>
-    <footer class="footer"><a class="symbol-brand" href="./" aria-label="LUX SPIRIA ホーム"><img src="assets/lux-symbol.png" alt="" width="54" height="54"><span class="brand-name">LUX SPIRIA</span></a><p>To create is to design continuity.<br><span>Research record / 2025–2026</span></p><nav aria-label="資料と規約"><a href="continuation.html">現在章・参照正本</a><a href="https://github.com/Yuu-Honda/lux-spiria/blob/main/README.md">README ↗</a><a href="https://github.com/Yuu-Honda/lux-spiria/blob/main/LICENSE">License ↗</a><a href="https://github.com/Yuu-Honda/lux-spiria/blob/main/PROTECTION.md">Use policy ↗</a></nav><small>RESEARCH SNAPSHOT / 2026-10-07</small></footer>
+    <footer class="footer"><a class="symbol-brand" href="./" aria-label="LUX SPIRIA ホーム"><img src="assets/lux-symbol.png" alt="" width="54" height="54"><span class="brand-name">LUX SPIRIA</span></a><p>To create is to design continuity.<br><span>Research record / 2025–2026</span></p><nav aria-label="資料と規約"><a href="continuation.html">研究と出典</a><a href="continuation.html#rights">License / 利用方針</a><a href="https://github.com/Yuu-Honda/lux-spiria">GitHub ↗</a></nav><small>RESEARCH SNAPSHOT / 2026-10-07</small></footer>
   </div>
 </body>
 </html>
