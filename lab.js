@@ -17,9 +17,26 @@
   const flowNodes = [...engine.querySelectorAll('[data-flow-node]')];
   const flowArrows = [...engine.querySelectorAll('[data-flow-arrow]')];
   const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const titles = ['原文を保存', '意味候補を作る', 'レビューして索引へ', '今日の手掛かりを拾う', '同じ場面へ合流', '原文を返す', 'LREで以前と今を比較', 'AIが意味を決める'];
+  const english = document.documentElement.lang === 'en';
+  const labels = english ? {
+    titles: ['Capture the source', 'Prepare meaning candidates', 'Review and index', 'Pick up today’s cues', 'Converge on one scene', 'Return the source', 'Compare then and now with LRE', 'The AI decides what it means'],
+    pause: 'Pause', play: 'Play', pauseAria: 'Pause the animation', playAria: 'Play the animation',
+    offscreen: 'Paused while off screen',
+    running: 'Fictional conversation / auto loop · Select a scene to pause',
+    reduced: 'Reduced motion enabled · Use the arrows to choose a scene',
+    paused: 'Paused · Use the arrows or numbers to choose a scene',
+    scene: (number, total, title) => `Scene ${number} of ${total}. ${title}.`
+  } : {
+    titles: ['原文を保存', '意味候補を作る', 'レビューして索引へ', '今日の手掛かりを拾う', '同じ場面へ合流', '原文を返す', 'LREで以前と今を比較', 'AIが意味を決める'],
+    pause: '一時停止', play: '再生', pauseAria: 'アニメーションを一時停止', playAria: 'アニメーションを再生',
+    offscreen: '画面外のため自動停止中',
+    running: '架空の会話 / 自動ループ · 場面を選ぶと一時停止',
+    reduced: '動きを抑える設定中 · 矢印で場面を選べます',
+    paused: '一時停止中 · 矢印または番号で場面を選べます',
+    scene: (number, total, title) => `場面${number} / ${total}。${title}。`
+  };
   const owners = ['SHIORI / CAPTURE', 'SHIORI / PREPARE', 'SHIORI / REVIEW', 'SHIORI / RECALL', 'SHIORI / CONVERGENCE', 'SHIORI / SOURCE RETURN', 'LRE / LIVE COMPARISON', 'AI / MEANING & RESPONSE'];
-  const durations = [7500, 8000, 8000, 10000, 9000, 8000, 11500, 12000];
+  const durations = [7500, 8000, 8000, 10000, 9000, 8000, 11500, 12000].map(duration => duration * (english ? 1.25 : 1));
   let step = 0;
   let elapsed = 0;
   let playing = false;
@@ -38,12 +55,12 @@
     const active = canAnimate();
     engine.dataset.playing = String(active);
     playIcon.textContent = playing ? 'Ⅱ' : '▶';
-    playLabel.textContent = playing ? '一時停止' : '再生';
-    playButton.setAttribute('aria-label', playing ? 'アニメーションを一時停止' : 'アニメーションを再生');
-    if (playing && !active) status.textContent = '画面外のため自動停止中';
-    else if (active) status.textContent = '架空の会話 / 自動ループ · 場面を選ぶと一時停止';
-    else if (motionPreference.matches && !userInteracted) status.textContent = '動きを抑える設定中 · 矢印で場面を選べます';
-    else status.textContent = '一時停止中 · 矢印または番号で場面を選べます';
+    playLabel.textContent = playing ? labels.pause : labels.play;
+    playButton.setAttribute('aria-label', playing ? labels.pauseAria : labels.playAria);
+    if (playing && !active) status.textContent = labels.offscreen;
+    else if (active) status.textContent = labels.running;
+    else if (motionPreference.matches && !userInteracted) status.textContent = labels.reduced;
+    else status.textContent = labels.paused;
     if (active) frame = requestAnimationFrame(tick);
   }
   function renderStep(announce = true) {
@@ -61,7 +78,7 @@
     progress.style.width = `${Math.min(100, elapsed / durations[step] * 100)}%`;
     previousButton.disabled = step === 0;
     nextButton.disabled = step === scenes.length - 1;
-    if (announce) announcement.textContent = `場面${step + 1} / ${scenes.length}。${titles[step]}。`;
+    if (announce) announcement.textContent = labels.scene(step + 1, scenes.length, labels.titles[step]);
   }
   function tick(now) {
     if (!canAnimate()) return;
