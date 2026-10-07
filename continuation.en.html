@@ -148,12 +148,16 @@
         <h2 id="shiori-title" class="section-heading">Entrances to sources and convergence of cues</h2>
         <p class="status">Experimental · draft PR #28 · unmerged · checked 2026-10-07</p>
         <p>SHIORI is an experimental recall system that follows multiple cues in a current utterance back to the same past scene. The specified branch contains a storage and retrieval prototype for previously retrieved conversations.</p>
+        <p>The source text and its provenance are retained, while a binary mask represents the reviewed features of each scene (episode). Search matches against this feature index; the AI rereads the retrieved source to judge its meaning.</p>
+        <p>Picture scenes arranged on shelves, with shared features connecting them like threads. From a scene reached by a cue, a path follows <code>episode → shared feature → episode</code>, passing candidates to other scenes. When paths from different cues reach the same episode, they converge and contribute to its retrieval ranking.</p>
+        <p>Here, <strong>resonance</strong> is a metaphor for candidates propagating through a network and paths converging. Bits represent features for matching; closeness in numerical value or bit position does not represent closeness in meaning. The AI judges a converged candidate using the original source and the current context.</p>
         <ol>
           <li><strong>Keep an entrance to the source first.</strong> Before semantic understanding, capture the original words, speaker, time, provenance and utterance order. Literal search can return to the source even for unknown words, but text matches and semantic understanding are returned separately. A literal match alone does not activate association.</li>
           <li><strong>Use a shared cue parser for storage and recall.</strong> In prepare and recall, the parser handles longest matches, local negation, simple hypotheticals and explicitly stated known subjects within a limited scope. In Japanese, it avoids linking “caught a cold” to a memory of wind, and treats “there was no wind” and “there is no pain” as negated cues. It is not a general Japanese comprehension system. Unsupported interpretations are intended to remain unresolved; there is no guarantee that arbitrary complex negation can be handled.</li>
           <li><strong>Reflect convergence of distinct cues on the same scene in the ranking.</strong> Aliases, repetitions and cycles of the same cue do not receive duplicate credit. The best path for each cue is summed per scene. This is diversity of search cues, not statistically independent evidence or proof of causation.</li>
           <li><strong>Use a feature → memory reverse index.</strong> Alongside a full binary scan, tag postings and bitmap indexes are implemented. The bit positions themselves do not represent semantic proximity.</li>
         </ol>
+        <p class="footnote">The future idea of “dreaming” is to walk this network and find sources to reread even without a query. This spontaneous traversal is not implemented in the current v0.2.</p>
       </section>
 
       <section id="validation" class="panel" aria-labelledby="validation-title">
@@ -162,6 +166,8 @@
         <p>The following values were recorded in <code>VALIDATION_V02.json</code> on the specified branch. The benchmark measurements apply to that environment and those conditions; they are not a general speed guarantee.</p>
         <p class="callout"><strong>86 tests pass · failures 0 · errors 0</strong> <br>42 v0.1 tests + 44 v0.2 tests.</p>
         <p>For 1,000 and 10,000 synthetic episodes, with 100 queries each, binary / tags / bitmap produced identical results, scores and evidence.</p>
+        <p>Candidate selection through semantic features uses the feature index instead of comparing every source text in full on each query. The binary method uses AND to match each episode's feature mask against the query-cue mask, selecting scenes with a shared bit.</p>
+        <p>The tags method looks up sets of episodes by feature; bitmap represents these sets as bits. Bitmap combines candidate sets with OR and filters them with AND against the bitset for the selected scope. This reverse lookup goes directly to scenes carrying relevant features.</p>
         <div class="table-wrap">
           <table>
             <caption>Median warm recall on synthetic episodes</caption>
@@ -172,6 +178,7 @@
             </tbody>
           </table>
         </div>
+        <p>The table measures returning candidates, rankings and evidence from an index already prepared in memory. Storing the source and retrieving it for rereading are separate stages. The design keeps a path back to the original words while selecting candidates through feature matching.</p>
         <p class="footnote">100 queries each, <code>hops=0</code>. Warm recall includes candidate selection, ranking and evidence assembly. It excludes source retrieval, networking, semantic extraction by a live model, model inference and Wake integration. Cold snapshots were measured separately: about 0.024 seconds for 1,000 episodes and 0.407 seconds for 10,000. The finding is limited to tags / bitmap being faster than binary under these conditions.</p>
         <h3>Synthetic control example for convergence</h3>
         <div class="table-wrap">
