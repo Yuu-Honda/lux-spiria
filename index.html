@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f1eee7">
   <title>LUX SPIRIA — 記憶を辿る。変化をつなぐ。</title>
   <meta name="description" content="記憶・人格・変化・想起・連続性をめぐる長期研究記録。LREの自己継続と枝織 / SHIORIの想起を、架空の会話を使ったアニメーションで辿る。過去の研究記録とreleaseを保持。">
 
@@ -15,9 +14,16 @@
   <meta property="og:url" content="https://yuu-honda.github.io/lux-spiria/">
   <meta property="og:image" content="https://yuu-honda.github.io/lux-spiria/assets/lux-symbol.png">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" type="image/png" href="assets/lux-symbol.png">
+  <meta name="theme-color" content="#090d12">
+  <meta name="apple-mobile-web-app-title" content="LUX SPIRIA">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
   <link rel="stylesheet" href="lab.css">
+  <link rel="stylesheet" href="theme-dark.css">
+  <link rel="stylesheet" href="hero-visual.css">
   <script src="lab.js" defer></script>
+  <script src="hero-visual.js" defer></script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"WebSite","name":"LUX SPIRIA","url":"https://yuu-honda.github.io/lux-spiria/","inLanguage":"ja","description":"A continuing research record on memory, identity, change, recall and continuity.","dateModified":"2026-10-07"}
   </script>
@@ -37,21 +43,63 @@
           <p class="hero-description">以前の自分に戻り、今との違いを見る。<br>今の言葉から、必要な過去の場面へ戻る。<br>同じ問いから続く、二つの研究。</p>
           <a class="text-link" href="#mechanism">ひとつの会話から、仕組みを見る <span>↓</span></a>
         </div>
-        <div class="lineage" aria-label="LUX SPIRIAの問いから、自己継続のLREと想起実験のSHIORIへ分岐">
-          <p class="figure-label">01 / TWO DIRECTIONS</p>
-          <svg viewBox="0 0 440 300" role="img" aria-labelledby="lineage-title"><title id="lineage-title">一つの問いから二つの研究系統へ</title>
-            <path class="lineage-track" d="M26 144H120C200 144 160 65 245 65H410M120 144C200 144 160 235 245 235H410"/>
-            <path class="lre-track" d="M120 144C200 144 160 65 245 65H410"/>
-            <path class="shiori-track" d="M120 144C200 144 160 235 245 235H410"/>
-            <circle cx="26" cy="144" r="6" fill="currentColor"/><circle cx="120" cy="144" r="4" fill="var(--paper)" stroke="currentColor" stroke-width="1.5"/>
-            <circle cx="285" cy="65" r="5" fill="var(--lre-ink)"/><circle cx="345" cy="65" r="5" fill="var(--paper)" stroke="var(--lre-ink)" stroke-width="1.5"/>
-            <circle cx="285" cy="235" r="5" fill="var(--shiori)"/><circle cx="345" cy="235" r="5" fill="var(--paper)" stroke="var(--shiori)" stroke-width="1.5"/>
-            <text x="246" y="39" class="svg-name">LRE</text><text x="246" y="98" class="svg-caption">変化を固定せず、追跡する</text>
-            <text x="246" y="209" class="svg-name">SHIORI</text><text x="246" y="268" class="svg-caption">手掛かりから、過去へ戻る</text>
-            <text x="26" y="180" class="svg-small">LUX SPIRIA</text>
+        <figure class="neural-visual" data-paused="false" aria-labelledby="neural-caption">
+          <figcaption id="neural-caption" class="neural-caption"><span>AI × MEMORY / CONCEPT VISUAL</span><span aria-hidden="true">01 — 02</span></figcaption>
+          <svg class="neural-diagram" viewBox="0 20 500 300" role="img" aria-labelledby="neural-title neural-description">
+            <title id="neural-title">AIと記憶を結ぶ、概念上の往復</title>
+            <desc id="neural-description">左のAIプロセッサーと右の脳をかたどった記憶の図の間を、二つの光の信号が往復します。想起、連想、再読、判断の関係を示すイラストで、生物学的な脳の再現や実際の処理結果ではありません。</desc>
+            <defs>
+              <linearGradient id="nv-brain-stroke" x1="285" y1="110" x2="460" y2="250" gradientUnits="userSpaceOnUse"><stop stop-color="#98dce1"/><stop offset=".52" stop-color="#b6b4dc"/><stop offset="1" stop-color="#8d7ab9"/></linearGradient>
+              <linearGradient id="nv-signal-stroke" x1="155" y1="155" x2="302" y2="205" gradientUnits="userSpaceOnUse"><stop stop-color="#9de6db"/><stop offset="1" stop-color="#b9a5ee"/></linearGradient>
+              <radialGradient id="nv-memory-field"><stop stop-color="#777096" stop-opacity=".12"/><stop offset="1" stop-color="#777096" stop-opacity="0"/></radialGradient>
+              <radialGradient id="nv-ai-field"><stop stop-color="#8dd7ce" stop-opacity=".09"/><stop offset="1" stop-color="#8dd7ce" stop-opacity="0"/></radialGradient>
+              <filter id="nv-glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.4"/></filter>
+              <pattern id="nv-grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#c6d3d3" stroke-opacity=".055" stroke-width=".6"/></pattern>
+            </defs>
+
+            <g aria-hidden="true">
+              <rect x="10" y="31" width="480" height="286" fill="url(#nv-grid)"/>
+              <ellipse cx="113" cy="177" rx="123" ry="122" fill="url(#nv-ai-field)"/>
+              <ellipse cx="375" cy="176" rx="122" ry="140" fill="url(#nv-memory-field)"/>
+              <g class="nv-registration"><path d="M10 52V31H31M469 31H490V52M490 296V317H469M31 317H10V296"/><path d="M241 32V37M241 311V316"/></g>
+              <g class="nv-orbits"><ellipse cx="375" cy="176" rx="108" ry="123"/><path d="M250 176H266M484 176H490M375 48V56M375 297V305"/></g>
+
+              <g class="nv-circuit-traces"><path d="M156 151H190L210 131H259L282 154H297"/><path d="M156 202H184L209 228H257L285 204H298"/><path d="M156 176H181M251 176H281"/><circle cx="208" cy="131" r="2"/><circle cx="258" cy="228" r="2"/><circle cx="242" cy="176" r="2"/></g>
+              <path class="nv-signal nv-signal-halo nv-forward" pathLength="200" d="M156 151H190L210 131H259L282 154H297" filter="url(#nv-glow)"/>
+              <path class="nv-signal nv-forward" pathLength="200" d="M156 151H190L210 131H259L282 154H297"/>
+              <path class="nv-signal nv-signal-halo nv-backward" pathLength="200" d="M156 202H184L209 228H257L285 204H298" filter="url(#nv-glow)"/>
+              <path class="nv-signal nv-backward" pathLength="200" d="M156 202H184L209 228H257L285 204H298"/>
+              <g class="nv-terminals"><circle cx="157" cy="151" r="2.4"/><circle cx="297" cy="154" r="2.4"/><circle cx="157" cy="202" r="2.4"/><circle cx="298" cy="204" r="2.4"/></g>
+
+              <g class="nv-processor">
+                <g class="nv-pins"><path d="M74 120V131M89 120V131M104 120V131M119 120V131M134 120V131M74 222V233M89 222V233M104 222V233M119 222V233M134 222V233M49 146H60M49 161H60M49 176H60M49 191H60M49 206H60M149 146H160M149 161H160M149 176H160M149 191H160M149 206H160"/></g>
+                <rect class="nv-chip-outline" x="60" y="131" width="89" height="91" rx="11"/>
+                <rect class="nv-chip-inner" x="71" y="142" width="67" height="69" rx="5"/>
+                <g class="nv-chip-grid"><path d="M78 151H89M120 151H131M78 201H89M120 201H131M80 156V161M129 156V161M80 191V196M129 191V196"/></g>
+                <text class="nv-ai-type" x="104.5" y="186" text-anchor="middle">AI</text>
+                <g class="nv-chip-bits"><rect x="76" y="147" width="3" height="3"/><rect x="129" y="147" width="3" height="3"/><rect x="76" y="200" width="3" height="3"/><rect x="129" y="200" width="3" height="3"/></g>
+              </g>
+
+              <g class="nv-brain">
+                <path class="nv-brain-body" d="M373 105C360 91 339 93 331 108C314 104 299 117 300 133C286 138 281 154 288 167C275 178 281 199 294 205C289 222 301 238 317 239C320 255 338 264 352 256C362 267 377 262 379 248C383 262 400 267 410 255C428 261 444 249 445 234C461 231 470 214 463 201C476 187 474 170 462 161C469 144 459 128 445 126C442 108 425 101 412 107C405 91 384 92 373 105Z"/>
+                <path class="nv-brain-midline" d="M374 106C381 122 371 134 377 149C384 164 372 175 378 189C385 207 371 221 379 248"/>
+                <g class="nv-gyri">
+                  <path d="M332 109C324 121 332 132 344 133C352 134 360 126 359 117M301 134C314 133 322 142 317 153C313 164 298 162 291 168M345 134C334 145 340 156 351 159C363 162 369 153 366 143"/>
+                  <path d="M316 154C328 160 329 174 319 179C310 184 300 178 294 184M350 160C342 170 347 181 358 182C369 182 372 193 365 201M295 204C310 199 320 208 320 219C320 227 330 232 338 228"/>
+                  <path d="M320 179C334 176 340 187 333 198C326 211 337 219 350 216C361 213 366 223 363 233M319 239C330 238 336 246 340 253M352 256C346 245 352 235 363 233"/>
+                  <path d="M411 108C420 120 411 134 399 134C391 134 386 126 389 117M445 127C433 129 430 140 437 149C444 157 456 152 462 161M399 135C409 144 404 157 393 159C383 161 384 172 391 178"/>
+                  <path d="M437 150C422 149 416 161 424 172C432 184 445 174 452 180M392 179C403 180 407 191 400 199C392 208 397 221 407 221M463 201C451 200 442 207 445 219C447 227 439 235 429 232"/>
+                  <path d="M424 173C414 182 419 195 430 196C441 198 442 208 436 217M407 221C419 214 431 223 429 232C427 242 417 242 411 255M391 231C401 229 408 238 406 247"/>
+                </g>
+                <g class="nv-memory-nodes"><circle cx="344" cy="133" r="2.4"/><circle cx="319" cy="179" r="2.1"/><circle cx="351" cy="216" r="2.4"/><circle cx="399" cy="134" r="2.1"/><circle cx="424" cy="173" r="2.4"/><circle cx="407" cy="221" r="2.1"/></g>
+              </g>
+              <g class="nv-coordinate"><text x="61" y="278">PROCESS / 01</text><text x="304" y="291">ASSOCIATION / 02</text><text x="239" y="103" text-anchor="middle">RECALL</text><text x="237" y="255" text-anchor="middle">REREAD</text></g>
+            </g>
           </svg>
-          <p class="lineage-foot">Continuity & change <span>↗</span><br>Recall & association <span>↘</span></p>
-        </div>
+          <div class="neural-labels"><p><span class="neural-label-dot"></span>AI / 想起・判断</p><p><span class="neural-label-dot"></span>記憶 / 連想・再読</p></div>
+          <div class="neural-motion"><button type="button" id="neural-motion-toggle" hidden aria-pressed="false">動きを一時停止</button></div>
+          <p class="neural-footnote">想起と判断の往復を描いた概念図。</p>
+        </figure>
       </section>
       <div class="question-line"><span>THE QUESTION</span><p>記憶・変化・人格の連続性は、<br class="mobile-only">どう成立するか。</p><span>2025 — ONGOING</span></div>
 
@@ -162,10 +210,10 @@
           <a href="https://github.com/Yuu-Honda/lux-spiria/releases/tag/v1.1"><span class="release-version">v1.1</span><div><h3>Soul System</h3><p>一貫性、ノイズ、矛盾による状態変化を扱うPython数値シミュレーションを公開。</p></div><span aria-hidden="true">↗</span></a>
           <a href="continuation.html#historical-evaluation"><span class="release-version">RECORDS</span><div><h3>研究記録・観測・思想</h3><p>記憶、人格、魂、継続性をめぐる当時の観測・解釈・AI評価記録。</p></div><span aria-hidden="true">↗</span></a>
         </div>
-        <p class="archive-summary">過去の主張はその時点の記録として保持。現在の実装で遡って証明するものではありません。<br><a href="continuation.html#historical-evaluation">原記録・詳しい評価を読む ↗</a> · <a href="https://github.com/Yuu-Honda/lux-spiria/tree/main/history/pre-continuation-2026-10-07">更新前の原文 ↗</a> · <a href="https://doi.org/10.17605/OSF.IO/MW5F6">OSF archive ↗</a></p>
+        <p class="archive-summary">過去の主張はその時点の記録として保持。現在の実装で遡って証明するものではありません。<br><a href="continuation.html#historical-evaluation">原記録・詳しい評価を読む ↗</a> · <a href="https://github.com/Yuu-Honda/lux-spiria/tree/main/history/pre-continuation-2026-10-07">更新前の原文 ↗</a></p>
       </section>
     </main>
-    <footer class="footer"><a class="symbol-brand" href="./" aria-label="LUX SPIRIA ホーム"><img src="assets/lux-symbol.png" alt="" width="36" height="46"></a><p>To create is to design continuity.<br><span>Research record / 2025–2026</span></p><nav aria-label="資料と規約"><a href="continuation.html">現在章・参照正本</a><a href="https://github.com/Yuu-Honda/lux-spiria/blob/main/README.md">README ↗</a><a href="terms.html">Terms</a><a href="https://github.com/Yuu-Honda/lux-spiria/blob/main/LICENSE">License ↗</a></nav><small>RESEARCH SNAPSHOT / 2026-10-07</small></footer>
+    <footer class="footer"><a class="symbol-brand" href="./" aria-label="LUX SPIRIA ホーム"><img src="assets/lux-symbol.png" alt="" width="36" height="46"></a><p>To create is to design continuity.<br><span>Research record / 2025–2026</span></p><nav aria-label="資料と規約"><a href="continuation.html">現在章・参照正本</a><a href="https://github.com/Yuu-Honda/lux-spiria/blob/main/README.md">README ↗</a><a href="https://github.com/Yuu-Honda/lux-spiria/blob/main/LICENSE">License ↗</a><a href="https://github.com/Yuu-Honda/lux-spiria/blob/main/PROTECTION.md">Use policy ↗</a></nav><small>RESEARCH SNAPSHOT / 2026-10-07</small></footer>
   </div>
 </body>
 </html>

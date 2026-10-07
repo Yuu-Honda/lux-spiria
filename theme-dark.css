@@ -1,0 +1,181 @@
+/* Shared dark reading surface; load after the page's layout stylesheet. */
+:root {
+  color-scheme: dark;
+  --paper: #090d12;
+  --bg: #090d12;
+  --ink: #e8eef4;
+  --fg: #e8eef4;
+  --panel: #111923;
+  --muted: #9aa6b4;
+  --line: #2b3847;
+  --accent: #88d7ff;
+  --warm: #f2e4c9;
+  --lre: #88d7ff;
+  --lre-ink: #88d7ff;
+  --shiori: #b6a1db;
+  --purple: #b6a1db;
+  --purple-light: #d0bee9;
+  --gold: #f2e4c9;
+  --stage: #0d141d;
+  --stage-muted: #a6b2c0;
+}
+
+body { background: var(--bg); color: var(--fg); }
+h1, h2, h3, h4 { color: var(--fg); }
+a { color: var(--accent); }
+a:hover { color: var(--warm); }
+::selection { background: #335264; color: #fff; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
+button:disabled { opacity: .45; }
+.skip-link { background: var(--fg); color: var(--bg); }
+.symbol-brand, .brand, .wordmark { color: var(--fg); }
+.symbol-brand img { filter: none; }
+.masthead, .footer, .site-header, .site-footer { border-color: var(--line); }
+.masthead nav a, .nav-links a, .footer nav a { color: var(--fg); }
+.masthead nav a:hover, .nav-links a:hover, .footer nav a:hover { color: var(--accent); }
+.eyebrow, .kicker { color: var(--muted); }
+.text-link { color: var(--fg); border-color: var(--line); }
+.text-link:hover { color: var(--accent); border-color: var(--accent); }
+.lineage-track { stroke: #445265; }
+.svg-name { fill: var(--fg); }
+.question-line, .system-grid, .origins, .evidence-grid, .archive-grid { border-color: var(--line); }
+.demo-boundary strong { color: var(--fg); }
+
+/* The walkthrough remains part of the black page, with distinct quiet surfaces. */
+.engine { border-color: #3a4a5d; }
+.story-steps, .demo-controls { background: #111923; color: var(--fg); }
+.step-number { background: #111923; border-color: #425166; color: var(--muted); }
+.story-steps button { color: var(--fg); }
+.story-steps button[aria-current="step"] .step-number { background: var(--shiori); border-color: var(--shiori); color: #11131a; }
+.engine[data-step="6"] button[aria-current="step"] .step-number { background: var(--accent); border-color: var(--accent); color: #101820; }
+.engine[data-step="7"] button[aria-current="step"] .step-number { background: var(--warm); border-color: var(--warm); color: #171b18; }
+.story-steps button:hover .step-number { border-color: var(--accent); }
+.key-ai { background: var(--warm); }
+.engine[data-step="7"] { --active: var(--warm); }
+.stage { background: var(--stage); color: var(--fg); }
+.stage h3, .stage-top b { color: var(--fg); }
+.document-stack::before, .document-stack::after { background: #182330; border-color: #3e5165; }
+.document-stack::after { background: #101a26; }
+.document { background: #172230; color: var(--fg); border: 1px solid #40556c; }
+.doc-header { color: var(--fg); }
+.raw-stamp { color: var(--purple-light); border-color: #87759f; }
+.doc-meta { color: #b1bdcb; }
+.document blockquote { color: var(--fg); border-left: 0; background: transparent; }
+.document mark { background: #3a304d; color: #f2eafa; }
+.source-fields, .return-evidence { border-color: #405064; }
+.source-fields span { border-color: #526174; color: #bdc9d7; }
+.quote-strip { background: #151d29; color: var(--fg); border-color: #364556; }
+.extract-lines span { background: #8975a8; }
+.cue-card { background: #151b26; color: var(--fg); border-color: #87729f; }
+.gate-line { border-color: #566477; }
+.review-row { border-color: #354356; }
+.review-tick { border-color: #8c79aa; }
+.review-result { background: #241e30; color: var(--fg); }
+.speech { background: #151e2a; color: var(--fg); }
+.today-cues span { border-color: #927bae; }
+.faint-route { stroke: #4b5a6b; }
+.route-b { stroke: #e3d6f3; }
+.merge-ring { fill: #30263e; }
+.route-cue { background: #18202c; color: var(--fg); border-color: #8c77a6; }
+.other-memory { color: #b1bccb; border-color: #3e4d61; background: #111923; }
+.target-memory, .engine[data-static="true"] .target-memory { border-color: #b6a1db; background: #292135; color: var(--fg); }
+.target-memory small { color: #ddd3ed; }
+.compare-columns { background: #40566b; border-color: #40566b; }
+.compare-columns > div { background: #15212d; color: var(--fg); }
+.compare-columns strong { border-color: #759bb6; }
+.comparison-result { border-color: #3a4f62; }
+.comparison-result > span { border-color: #759bb6; }
+.ai-speech { border-left-color: var(--warm); background: #18212a; }
+.ai-speech strong { color: var(--warm); }
+.demo-controls { border-top-color: var(--line); }
+.playback button { color: var(--fg); }
+.playback button:hover { border-color: #596e84; }
+.playback .play-button { background: #23384a; color: #d6eeff; border-color: #5b849f; }
+.playback .play-button:hover { background: #2f4b63; }
+.stage-progress { background: #273448; }
+.engine[data-step="7"] .stage-progress span { background: var(--warm); }
+.noscript-note { background: #241e30; color: var(--fg); }
+.mini-flow { border-color: #354456; }
+.mini-flow > span, .mini-flow i { color: #a0afbf; }
+.mini-flow [data-active="true"] { color: var(--active); }
+.mini-flow [data-active="true"] small { color: var(--fg); }
+.mini-flow [data-lit="true"],
+.engine[data-step="6"] .mini-flow [data-flow-arrow="1"],
+.engine[data-step="7"] .mini-flow [data-flow-arrow="2"] { text-shadow: none; }
+.engine[data-step="7"] .mini-flow [data-flow-arrow="2"] { color: var(--warm); }
+.combined-flow i { color: #adbdcd; }
+.combined-flow b { color: var(--fg); }
+.combined-flow .concept-arrow { color: var(--shiori); }
+.system-flow li:not(:last-child)::after { background: var(--bg); }
+@keyframes target-in {
+  from { border-color: #665875; background: #18202c; }
+  to { border-color: #b6a1db; background: #292135; }
+}
+
+/* Research notes use the same palette, without changing their longform layout. */
+.lead, .system-purpose, .origin-story strong, .origin-story .principle { color: var(--fg); }
+.origin-timeline li::before { background: var(--bg); border-color: #a7b7c7; }
+.grid .panel { border-color: #405369; }
+.status { background: #152938; color: #a6dcfa; }
+.callout { background: #111c28; border-left-color: var(--shiori); }
+blockquote { color: var(--warm); border-left-color: var(--accent); }
+.timeline li::marker { color: var(--shiori); }
+.table-wrap { border-color: #52657a; scrollbar-color: #657a90 var(--panel); }
+caption { color: #c2cedb; border-color: var(--line); }
+thead th { color: var(--fg); background: #182432; }
+tbody th { color: #c6d9e9; }
+th, td { border-color: var(--line); }
+code { color: #d2c3ea; background: #282238; }
+pre { background: #131e2a; color: var(--fg); }
+details { border-color: var(--line); }
+summary, summary::marker { color: var(--shiori); }
+details[open] > summary { border-color: var(--line); }
+.button { background: #1d3547; border-color: #648ca7; color: #d7efff; }
+.button:hover { background: #2e4d65; color: #fff; }
+.archive-links a, .release-list a { color: var(--fg); }
+.release-list { border-top-color: var(--line); }
+.archive-links a:hover, .release-list a:hover { color: var(--accent); }
+.release-list > a { border-color: var(--line); }
+.release-list h3 { color: inherit; }
+.release-version { color: var(--accent); }
+.archive-summary, .archive-note, .archive-links small, .release-list p { color: var(--muted); }
+.archive-summary a { color: var(--accent); }
+.evaluation-link { color: var(--fg); border-color: var(--line); }
+.evaluation-link:hover { border-color: var(--shiori); }
+
+/* Printing remains a paper treatment; screen motion preferences stay in the base CSS. */
+@media print {
+  :root {
+    color-scheme: light;
+    --paper: #fff;
+    --bg: #fff;
+    --ink: #171b18;
+    --fg: #171b18;
+    --panel: #f1f3f5;
+    --muted: #4b5660;
+    --line: #b7c1c9;
+    --accent: #23536f;
+    --warm: #171b18;
+    --lre: #23536f;
+    --lre-ink: #23536f;
+    --shiori: #614a7b;
+    --purple: #614a7b;
+    --purple-light: #614a7b;
+    --stage: #fff;
+    --stage-muted: #4b5660;
+  }
+  body, .stage { background: #fff; color: #171b18; }
+  h1, h2, h3, h4, .stage h3, .document, .speech,
+  .compare-columns > div, .review-result, .route-cue, .target-memory,
+  .engine[data-static="true"] .target-memory, .noscript-note {
+    background: transparent; color: #171b18;
+  }
+  .document, .speech, .quote-strip, .cue-card, .compare-columns,
+  .source-fields span, .return-evidence { border-color: #9aa6b4; }
+  .document mark, .callout, pre, code, .status, thead th { background: #eef0f3; color: #171b18; }
+  .doc-meta, .source-fields span, .target-memory small, .caption, caption,
+  tbody th, .mini-flow > span, .mini-flow small { color: #4b5660; }
+  .quote-strip, .cue-card { background: transparent; color: #171b18; }
+  .ai-speech strong, blockquote, .lead { color: #171b18; }
+  a { color: inherit; }
+}
