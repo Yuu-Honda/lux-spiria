@@ -1,0 +1,420 @@
+/* Emotion is shown within LRE. The diagram and dated observations stay separate. */
+.emotion-research {
+  --emotion-violet: #c8b3e6;
+  --emotion-cyan: #a3d5df;
+  --emotion-warm: #d7bca3;
+  color: #dfe7ee;
+}
+.emotion-research > .section-top { align-items: flex-start; }
+.emotion-research > .section-top > div { flex: 1 1 0; min-width: 0; }
+.emotion-research > .section-top > .section-intro {
+  flex: 0 1 560px;
+  max-width: 560px;
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+.emotion-layer-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  margin-bottom: 30px;
+}
+.emotion-layer-card {
+  min-width: 0;
+  padding: 19px 0 4px;
+  border-top: 1px solid #44505f;
+}
+.emotion-layer-card h3 {
+  margin: 0 0 10px;
+  color: #dfd3ef;
+  font: 400 25px/1.35 var(--serif);
+}
+.emotion-layer-card:nth-child(2) h3 { color: #c4e2e9; }
+.emotion-layer-card > p { max-width: 560px; color: #b1bdca; font-size: 13px; line-height: 1.9; }
+.emotion-tags { display: flex; flex-wrap: wrap; gap: 6px 8px; margin-top: 15px; }
+.emotion-tags > span {
+  padding: 3px 8px;
+  color: #b8c4d2;
+  border: 1px solid #354252;
+  border-radius: 3px;
+  font-size: 10px;
+  line-height: 1.65;
+}
+.mechanism-card[data-system="emotion"] {
+  --mechanism-accent: #c8b3e6;
+  --mechanism-halo: 192, 168, 223;
+  grid-template-columns: 168px minmax(0, 1fr);
+  column-gap: 24px;
+}
+.mechanism-card[data-system="emotion"] .mechanism-heading { margin-bottom: 13px; }
+.mechanism-card[data-system="emotion"] .mechanism-heading h3 { font-size: 25px; }
+.mechanism-card[data-system="emotion"] > .mechanism-body { min-height: 356px; }
+.mechanism-card[data-system="emotion"] .mechanism-diagram { padding-right: 15px; padding-bottom: 13px; }
+.mechanism-card[data-system="emotion"] .mechanism-node { gap: 6px; min-height: 46px; }
+.mechanism-card[data-system="emotion"] .mechanism-node-label strong { font-size: 11px; }
+.mechanism-card[data-system="emotion"] .mechanism-node-label small { font-size: 8px; }
+.mechanism-card[data-system="emotion"] .mechanism-link { height: 12px; margin-left: 19px; }
+.emotion-node-number {
+  flex: 0 0 16px;
+  color: #93a0b0;
+  font: 9px/1.5 var(--mono);
+  letter-spacing: .02em;
+}
+.mechanism-card[data-system="emotion"] .mechanism-node[aria-current="step"] .emotion-node-number { color: #ddcdf0; }
+.mechanism-card[data-system="emotion"] .mechanism-stage { min-height: 320px; padding-block: 5px 15px; }
+.mechanism-card[data-system="emotion"] .mechanism-scene { max-width: 640px; }
+.mechanism-card[data-system="emotion"] .mechanism-scene > .mechanism-phase { margin-bottom: 9px; }
+.mechanism-card[data-system="emotion"] .mechanism-scene h4 { margin-block: 12px 7px; font-size: 20px; line-height: 1.5; }
+.mechanism-card[data-system="emotion"] .mechanism-scene > p:not(.mechanism-phase) { max-width: 570px; margin-inline: auto; font-size: 12px; line-height: 1.85; }
+.emotion-event,
+.emotion-observation,
+.emotion-reread,
+.emotion-judgment {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  min-height: 148px;
+  margin-inline: auto;
+  color: #c7b4e0;
+}
+:is(.emotion-event, .emotion-observation, .emotion-reread, .emotion-judgment) > svg {
+  flex: 0 0 auto;
+  width: 49px;
+  height: 49px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.emotion-event > :is(.scene-person, .scene-ai) > svg { width: 48px; height: 48px; }
+.emotion-event .speech-bubble { max-width: 270px; font-size: 13px; }
+.emotion-event .speech-bubble::after {
+  content: "";
+  position: absolute;
+  right: -22px;
+  top: 50%;
+  width: 14px;
+  border-top: 1px solid #779aa8;
+}
+.emotion-event { column-gap: 27px; }
+.emotion-observation { column-gap: 20px; }
+.emotion-temperature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 0;
+  max-width: 250px;
+  color: #d6c5ba;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.emotion-temperature::before {
+  content: "";
+  display: block;
+  width: 116px;
+  height: 7px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #8fa6c9, #bba4d0 50%, #d6b69d);
+  box-shadow: 0 0 18px rgba(195, 157, 188, .1);
+}
+.emotion-color-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+  max-width: 220px;
+  color: #d4c5e4;
+  font-size: 11px;
+  line-height: 1.7;
+  overflow-wrap: break-word;
+}
+.emotion-color-chip::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 13px;
+  height: 13px;
+  border: 1px solid #cfb6e4;
+  border-radius: 50%;
+  background: #806a9b;
+  box-shadow: 0 0 18px rgba(183, 143, 217, .17);
+}
+.emotion-record-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px;
+  align-items: stretch;
+  max-width: 430px;
+  min-height: 148px;
+  margin-inline: auto;
+}
+.emotion-record-pair > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 0;
+  padding: 16px 14px;
+  color: #d6c8e9;
+  border-block: 1px solid #68567e;
+  background: linear-gradient(135deg, #1d1b2a, #141b27);
+  font-size: 12px;
+  line-height: 1.7;
+}
+.emotion-record-pair > div:nth-child(2) { color: #c0dfe7; border-color: #466575; background: linear-gradient(135deg, #14222c, #141b27); }
+.emotion-record-pair svg { width: 35px; height: 35px; }
+.emotion-record-pair strong { font: 400 20px/1.35 var(--serif); }
+.emotion-record-pair :is(p, small) { margin: 0; color: #b0becf; font-size: 11px; line-height: 1.7; }
+.emotion-reread { flex-wrap: nowrap; gap: 27px; }
+.emotion-reread > :is(ul, ol) { position: relative; display: grid; flex: 0 1 300px; gap: 6px; min-width: 0; max-width: 300px; list-style: none; text-align: left; }
+.emotion-reread li {
+  position: relative;
+  padding: 5px 11px 5px 23px;
+  color: #c8d6e2;
+  border-left: 1px solid #586c80;
+  background: #15212c;
+  font-size: 11px;
+  line-height: 1.6;
+  overflow-wrap: break-word;
+}
+.emotion-reread li::before { content: ""; position: absolute; left: 9px; top: calc(50% - 2px); width: 4px; height: 4px; border-radius: 50%; background: #a2c9d9; }
+.emotion-reread > :is(ul, ol)::after { content: "→"; position: absolute; top: 50%; right: -23px; color: #a3cfda; font-size: 19px; line-height: 1; transform: translateY(-50%); }
+.emotion-compare {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 27px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  max-width: 440px;
+  min-height: 148px;
+  margin-inline: auto;
+}
+.emotion-compare > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-width: 0;
+  min-height: 128px;
+  padding: 14px 10px;
+  color: #bac8da;
+  border-block: 1px solid #4d6079;
+  background: #152131;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.emotion-compare > div:last-child { color: #e0cde5; border-color: #816080; background: #251e2c; }
+.emotion-compare > div :is(p, small) { margin: 0; color: #b9bfd0; font-size: 11px; line-height: 1.7; }
+.emotion-compare > div > svg { width: 34px; height: 34px; }
+.emotion-compare > :is(span, svg) { width: 27px; color: #a5c9d6; font-size: 21px; }
+.emotion-judgment { gap: 10px; max-width: 440px; }
+.emotion-judgment > svg { flex-basis: 100%; height: 50px; }
+.emotion-judgment > span {
+  min-width: 0;
+  padding: 7px 11px;
+  color: #c9dae5;
+  border: 1px solid #435d6f;
+  background: #14212c;
+  font-size: 11px;
+  line-height: 1.7;
+  overflow-wrap: break-word;
+}
+.emotion-judgment > span:last-child { border-style: dashed; color: #c7badb; border-color: #635575; background: #1c1c2a; }
+.mechanism-card[data-system="emotion"] > .emotion-diagram-note {
+  grid-column: 1 / -1;
+  max-width: 860px;
+  margin: 1px 0 12px;
+  color: #a9b6c5;
+  font-size: 10px;
+  line-height: 1.7;
+}
+.mechanism-card[data-system="emotion"][data-scroll-mode="reading"] > .mechanism-body { min-height: 0; }
+.mechanism-card[data-system="emotion"][data-scroll-mode="reading"] .mechanism-stage { min-height: 0; padding-block: 12px 20px; }
+.mechanism-card[data-system="emotion"][data-scroll-mode="reading"] .mechanism-diagram {
+  grid-template-columns: repeat(5, minmax(0, 1fr) 20px) minmax(0, 1fr);
+  padding: 0 0 12px;
+}
+.mechanism-card[data-system="emotion"][data-scroll-mode="reading"] .mechanism-node { position: relative; padding-top: 17px; gap: 5px; min-height: 94px; }
+.mechanism-card[data-system="emotion"][data-scroll-mode="reading"] .emotion-node-number { position: absolute; top: 0; left: calc(50% - 8px); }
+.mechanism-card[data-system="emotion"][data-scroll-mode="reading"] .mechanism-link { width: 20px; height: 38px; margin: 17px 0 0; }
+
+/* Values are printed in the markup; the bars add a visual comparison only. */
+.emotion-snapshot {
+  max-width: 1040px;
+  margin: 38px auto 0;
+  padding: 26px 28px;
+  border: 1px solid #354251;
+  background: #0e151e;
+  color: #dfe7ee;
+  scroll-margin-top: 24px;
+}
+.emotion-snapshot > figcaption { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 20px; margin-bottom: 12px; }
+.emotion-snapshot figcaption .eyebrow { flex-basis: 100%; color: #b8a3d1; font-size: 9px; }
+.emotion-snapshot figcaption h3 { margin: 0; color: #e2e8f0; font: 400 25px/1.4 var(--serif); }
+.emotion-snapshot figcaption time { color: #aebaca; font: 11px/1.7 var(--mono); white-space: nowrap; }
+.emotion-snapshot-context { max-width: 850px; margin: 0 0 22px; color: #b8c4d0; font-size: 12px; line-height: 1.85; }
+.emotion-chart-axis { display: flex; justify-content: space-between; margin: 0 44px 6px 62px; color: #a8b4c3; font: 10px/1.5 var(--mono); }
+.emotion-chart { list-style: none; margin: 0; padding: 0; }
+.emotion-metric {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0 16px;
+  min-width: 0;
+  padding: 16px 0 18px;
+  border-top: 1px solid #2b3847;
+}
+.emotion-metric > h4 { grid-column: 1; min-width: 0; margin: 0; color: #dce5ee; font-size: 13px; font-weight: 500; line-height: 1.6; overflow-wrap: break-word; }
+.emotion-metric-key { grid-column: 1; display: block; min-width: 0; color: #aab8c8; font: 9px/1.6 var(--mono); letter-spacing: .02em; overflow-wrap: anywhere; }
+.emotion-delta { grid-column: 2; grid-row: 1 / 3; align-self: center; color: #c4cddd; font: 11px/1.6 var(--mono); white-space: nowrap; }
+.emotion-bar-row {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr) 34px;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  min-height: 23px;
+}
+.emotion-bar-row:first-of-type { margin-top: 8px; }
+.emotion-bar-label { min-width: 0; color: #b4bfcd; font-size: 10px; line-height: 1.5; }
+.emotion-bar-track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  height: 11px;
+  background: #1e2a38;
+  border-right: 1px solid #4a596b;
+}
+.emotion-bar-track::after { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; border-left: 1px solid #526174; opacity: .5; }
+.emotion-bar-fill { position: relative; z-index: 1; display: block; flex: 0 0 auto; max-width: 100%; height: 7px; background: #b5b0da; }
+.emotion-bar-fill[data-period="before"] { height: 3px; background: #9ca8b7; }
+.emotion-bar-fill[data-period="after"] { background: linear-gradient(90deg, #b9a2d8, #9fcdd8); }
+.emotion-bar-value { color: #d9e2eb; font: 11px/1.5 var(--mono); text-align: right; }
+.emotion-measurement-note { margin: 18px 0 0; color: #b0becd; font-size: 11px; line-height: 1.85; }
+.emotion-values-table { margin-top: 19px; padding-top: 13px; border-top: 1px solid #364455; }
+.emotion-values-table summary { width: fit-content; max-width: 100%; color: #c9d9e8; font-size: 12px; line-height: 1.8; cursor: pointer; }
+.emotion-values-table table { width: 100%; margin-top: 14px; border-collapse: collapse; table-layout: fixed; font-size: 11px; line-height: 1.7; }
+.emotion-values-table caption { margin-bottom: 9px; color: #b7c3d0; text-align: left; font-size: 11px; }
+.emotion-values-table :is(th, td) { padding: 9px 8px; color: #bac7d5; border-bottom: 1px solid #2d3b4b; text-align: right; overflow-wrap: break-word; }
+.emotion-values-table th { color: #d2dbe6; font-weight: 500; }
+.emotion-values-table tr > :first-child { width: 40%; padding-left: 0; text-align: left; }
+.emotion-values-table tr > :last-child { padding-right: 0; }
+.emotion-limits { max-width: 1040px; margin: 24px auto 0; padding-left: 17px; border-left: 1px solid #5b5369; }
+.emotion-limits h3 { margin: 0 0 9px; color: #d2dce7; font-size: 14px; font-weight: 500; line-height: 1.6; }
+.emotion-limits ul { margin: 0; padding-left: 17px; color: #aebccc; font-size: 11px; line-height: 1.9; }
+.emotion-limits li + li { margin-top: 5px; }
+
+@media (max-width: 900px) {
+  .emotion-layer-grid { gap: 22px; }
+  .mechanism-card[data-system="emotion"] { column-gap: 20px; }
+  .emotion-event { column-gap: 20px; }
+  .emotion-event .speech-bubble { max-width: 230px; }
+}
+@media (max-width: 600px) {
+  .emotion-layer-grid { grid-template-columns: minmax(0, 1fr); gap: 18px; margin-bottom: 25px; }
+  .emotion-layer-card { padding-top: 15px; }
+  .emotion-layer-card h3 { margin-bottom: 8px; font-size: 23px; }
+  .emotion-layer-card > p { font-size: 12px; line-height: 1.85; }
+  .emotion-tags { margin-top: 11px; }
+  .emotion-tags > span { font-size: 9px; }
+  .mechanism-card[data-system="emotion"] .mechanism-heading { margin-bottom: 11px; }
+  .mechanism-card[data-system="emotion"] .mechanism-heading h3 { font-size: 23px; }
+  .mechanism-card[data-system="emotion"] > .mechanism-body { min-height: 0; }
+  .mechanism-card[data-system="emotion"] .mechanism-diagram,
+  .mechanism-card[data-system="emotion"][data-scroll-mode="reading"] .mechanism-diagram {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 4px 9px;
+    padding: 0 0 10px;
+    border-right: 0;
+    border-bottom: 1px solid var(--mechanism-line);
+  }
+  .mechanism-card[data-system="emotion"] .mechanism-link { display: none; }
+  .mechanism-card[data-system="emotion"] .mechanism-node,
+  .mechanism-card[data-system="emotion"][data-scroll-mode="reading"] .mechanism-node {
+    position: relative;
+    min-height: 69px;
+    gap: 3px;
+    padding: 7px 3px 3px;
+    text-align: center;
+  }
+  .mechanism-card[data-system="emotion"] .emotion-node-number,
+  .mechanism-card[data-system="emotion"][data-scroll-mode="reading"] .emotion-node-number { position: absolute; top: 3px; left: 5px; font-size: 8px; }
+  .mechanism-card[data-system="emotion"] .mechanism-icon { width: 30px; height: 32px; }
+  .mechanism-card[data-system="emotion"] .mechanism-icon svg { width: 30px; height: 30px; }
+  .mechanism-card[data-system="emotion"] .mechanism-node-label strong { min-height: 0; font-size: 10px; line-height: 1.5; }
+  .mechanism-card[data-system="emotion"] .mechanism-node-label small { display: none; }
+  .mechanism-card[data-system="emotion"] .mechanism-stage { min-height: 276px; padding-block: 13px 17px; }
+  .mechanism-card[data-system="emotion"] .mechanism-scene > .mechanism-phase { margin-bottom: 6px; }
+  .mechanism-card[data-system="emotion"] .mechanism-scene h4 { margin-block: 10px 6px; font-size: 17px; }
+  .mechanism-card[data-system="emotion"] .mechanism-scene > p:not(.mechanism-phase) { font-size: 11px; line-height: 1.8; }
+  .emotion-event, .emotion-observation, .emotion-reread, .emotion-judgment { gap: 10px; min-height: 135px; }
+  :is(.emotion-event, .emotion-observation, .emotion-reread, .emotion-judgment) > svg { width: 39px; height: 39px; }
+  .emotion-event { column-gap: 12px; }
+  .emotion-event > :is(.scene-person, .scene-ai) > svg { width: 37px; height: 37px; }
+  .emotion-event .speech-bubble { flex: 0 1 178px; padding: 8px 9px; font-size: 11px; }
+  .emotion-event .speech-bubble::after { display: none; }
+  .emotion-temperature { max-width: 180px; font-size: 11px; }
+  .emotion-temperature::before { width: 94px; height: 6px; }
+  .emotion-color-chip { max-width: 170px; font-size: 10px; }
+  .emotion-record-pair { min-height: 135px; gap: 10px; }
+  .emotion-record-pair > div { padding: 12px 9px; gap: 6px; font-size: 11px; }
+  .emotion-record-pair svg { width: 30px; height: 30px; }
+  .emotion-record-pair strong { font-size: 18px; }
+  .emotion-record-pair :is(p, small) { font-size: 10px; }
+  .emotion-reread { gap: 23px; }
+  .emotion-reread > :is(ul, ol) { flex-basis: 220px; max-width: 220px; gap: 5px; }
+  .emotion-reread > :is(ul, ol)::after { right: -20px; font-size: 17px; }
+  .emotion-reread li { padding-block: 4px; font-size: 10px; }
+  .emotion-compare { min-height: 135px; gap: 8px; grid-template-columns: minmax(0, 1fr) 22px minmax(0, 1fr); }
+  .emotion-compare > div { min-height: 120px; padding: 11px 7px; gap: 7px; font-size: 11px; }
+  .emotion-compare > div :is(p, small) { font-size: 10px; }
+  .emotion-compare > :is(span, svg) { width: 22px; font-size: 19px; }
+  .emotion-judgment { gap: 7px; }
+  .emotion-judgment > svg { height: 42px; }
+  .emotion-judgment > span { padding: 6px 8px; font-size: 10px; }
+  .mechanism-card[data-system="emotion"] > .emotion-diagram-note { margin-bottom: 9px; font-size: 9px; line-height: 1.7; }
+  .emotion-snapshot { margin-top: 28px; padding: 20px 16px; }
+  .emotion-snapshot > figcaption { gap: 5px 12px; }
+  .emotion-snapshot figcaption h3 { font-size: 22px; }
+  .emotion-snapshot figcaption time { font-size: 10px; }
+  .emotion-snapshot-context { margin-bottom: 18px; font-size: 11px; }
+  .emotion-chart-axis { margin-left: 53px; margin-right: 34px; font-size: 9px; }
+  .emotion-metric { padding-block: 13px 15px; gap: 0 10px; }
+  .emotion-metric > h4 { font-size: 12px; }
+  .emotion-metric-key { font-size: 8px; }
+  .emotion-delta { font-size: 10px; }
+  .emotion-bar-row { grid-template-columns: 46px minmax(0, 1fr) 27px; gap: 7px; min-height: 22px; }
+  .emotion-bar-label { font-size: 9px; }
+  .emotion-bar-value { font-size: 10px; }
+  .emotion-measurement-note { margin-top: 14px; font-size: 10px; }
+  .emotion-values-table summary { font-size: 11px; }
+  .emotion-values-table table { font-size: 10px; }
+  .emotion-values-table :is(th, td) { padding: 8px 4px; }
+  .emotion-values-table caption { font-size: 10px; }
+  .emotion-limits { margin-top: 20px; padding-left: 13px; }
+  .emotion-limits h3 { font-size: 13px; }
+  .emotion-limits ul { font-size: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .emotion-research *, .emotion-research *::before, .emotion-research *::after { animation: none !important; transition: none !important; }
+}
+@media print {
+  .emotion-layer-grid { display: block; }
+  .emotion-layer-card { margin-bottom: 16px; border-color: #999; break-inside: avoid; }
+  .mechanism-card[data-system="emotion"] > .mechanism-body { min-height: 0; }
+  .mechanism-card[data-system="emotion"] .mechanism-stage { min-height: 0; padding: 0; }
+  .emotion-research :is(h3, h4, p, li, small, span, strong, time, th, td, caption, summary) { color: #24212a !important; }
+  .emotion-record-pair > div, .emotion-compare > div, .emotion-reread li, .emotion-judgment > span { background: white; border-color: #999; }
+  .emotion-snapshot { background: white; border-color: #999; padding: 20px; break-inside: auto; }
+  .emotion-snapshot > figcaption { break-after: avoid; }
+  .emotion-bar-track { background: #eee; border-color: #999; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .emotion-bar-fill[data-period="before"] { background: #888; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .emotion-bar-fill[data-period="after"] { background: #47404f; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .emotion-chart-axis, .emotion-metric, .emotion-values-table, .emotion-values-table :is(th, td), .emotion-limits { border-color: #999; }
+  .emotion-metric { break-inside: avoid; }
+}
