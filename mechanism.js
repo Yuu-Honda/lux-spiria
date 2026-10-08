@@ -6,11 +6,11 @@
   const labels = english ? {
     scroll: 'Scroll down to advance · Up to revisit',
     reading: 'Scroll to read each step',
-    scene: (number, title) => `Step ${number} of 5. ${title}`
+    scene: (number, total, title) => `Step ${number} of ${total}. ${title}`
   } : {
     scroll: '下へスクロールで進む · 上へ戻すと見直せます',
     reading: 'スクロールして工程を読む',
-    scene: (number, title) => `工程${number} / 5。${title}`
+    scene: (number, total, title) => `工程${number} / ${total}。${title}`
   };
   const clamp = value => Math.max(0, Math.min(1, value));
   const stories = [...document.querySelectorAll('[data-mechanism]')].map(root => ({
@@ -45,7 +45,7 @@
     });
     story.previous.disabled = step === 0;
     story.next.disabled = step === story.scenes.length - 1;
-    story.count.textContent = `${String(step + 1).padStart(2, '0')} / 05`;
+    story.count.textContent = `${String(step + 1).padStart(2, '0')} / ${String(story.scenes.length).padStart(2, '0')}`;
   }
 
   function update() {
@@ -109,7 +109,7 @@
     } else {
       story.scenes[step].scrollIntoView({block: 'center', behavior});
     }
-    if (announce) story.announcement.textContent = labels.scene(step + 1, story.scenes[step].querySelector('h4').textContent);
+    if (announce) story.announcement.textContent = labels.scene(step + 1, story.scenes.length, story.scenes[step].querySelector('h4').textContent);
   }
   stories.forEach(story => {
     story.nodes.forEach((node, index) => node.addEventListener('click', () => goToStep(story, index)));
