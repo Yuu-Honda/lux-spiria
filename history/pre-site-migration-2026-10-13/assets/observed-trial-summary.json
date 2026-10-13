@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "recorded_date": "2026-10-07",
+  "scope": "known_selected_input_assisted_trial",
+  "public_view": "aggregate_result_replay; display-only source and feature IDs",
+  "source_count": 13,
+  "unknown_timestamps": 13,
+  "standard_parser_feature_occurrences": 1,
+  "reviewed_feature_occurrences": 49,
+  "review_origin": "supplied_review_annotations",
+  "selected_candidate": {
+    "display_id": "C",
+    "unique_correct_answer": false,
+    "other_candidates_include_equal_scores": true,
+    "representative_paths": [
+      [
+        "cue_A",
+        "source_A",
+        "F1",
+        "C"
+      ],
+      [
+        "cue_B",
+        "source_B",
+        "F2",
+        "C"
+      ]
+    ],
+    "convergence_on_score": 0.25972208475446373,
+    "convergence_off_score": 0.15909902576697318,
+    "v01_score": 0.15909902576697318
+  },
+  "original_report": {
+    "shiori_checks_passed": 32,
+    "shiori_checks_total": 32,
+    "lre_checks_passed": 6,
+    "lre_checks_total": 6,
+    "lre_retained": 2,
+    "lre_deferred": 1,
+    "reflection_promotions": 0,
+    "lre_scope": "isolated_candidate_save_and_review_functions"
+  },
+  "independent_reconstruction": {
+    "fresh_databases": 2,
+    "raw_reread_matched": true,
+    "source_count": 13,
+    "standard_parser_feature_occurrences": 1,
+    "reviewed_feature_occurrences": 49,
+    "scores_matched": true,
+    "query_direct_ids_and_literal_hit_counts_matched": 6,
+    "new_semantic_review": false,
+    "lre_executed": false,
+    "original_32_plus_6_checks_rerun": false,
+    "legacy_86_tests_rerun": false,
+    "code_snapshot": "a59690876e503df59b1f634409b9d2b760d1cbef",
+    "input_record_snapshot": "20546a987c07146b1e0e0e524b207d6bd99c2dcc"
+  },
+  "not_measured": [
+    "held_out_semantic_accuracy",
+    "general_conversation_memory",
+    "causal_effect_on_seamless_recall",
+    "full_wake",
+    "production_integration"
+  ],
+  "privacy": {
+    "raw_excerpts_published": false,
+    "private_feature_words_published": false,
+    "sqlite_published": false
+  }
+}

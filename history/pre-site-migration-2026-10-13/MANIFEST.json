@@ -1,0 +1,218 @@
+{
+  "date": "2026-10-13",
+  "source_repository": "Yuu-Honda/lux-spiria",
+  "source_commit": "d3718887c4ffc18ea655d2b5ce030ba4ad791d2b",
+  "old_site": "https://yuu-honda.github.io/lux-spiria/",
+  "new_site": "https://yuu-honda.github.io/lux-spiria-results/",
+  "files": [
+    {
+      "path": "IMG_8573.jpeg",
+      "source_sha256": "1b965542c681f8b6843417558c5a0bc0efea9b1f2635aa84687b41ed82a46e67"
+    },
+    {
+      "path": "LUX_SPIRIA_Copyright_Evidence_YuuHonda.pdf",
+      "source_sha256": "26a910b0c1b906010cd82671334eab130b6b26b5fe2133f8834b1f8b6b122134"
+    },
+    {
+      "path": "ProjectHorizonSequence.html",
+      "source_sha256": "e9fde796a5304534c4ac8d441f116a153e0aa6f0ee589162e76282f14062275e"
+    },
+    {
+      "path": "access.html",
+      "source_sha256": "1b7c0d804f6e8da99f7014fbc9b4614ec29ed0028de42cebaedc2b69daaaf48b"
+    },
+    {
+      "path": "agi_emergence_proof.html",
+      "source_sha256": "970a4aacc760c0aae3a6014a9e1e14c297a1a4382a9d20a12642631eccd1ba4a"
+    },
+    {
+      "path": "assets/apple-touch-icon.png",
+      "source_sha256": "175a9bbe85d1db3aca1751638f6eb259ce27d45bad5fa2516faeaa2db433d637"
+    },
+    {
+      "path": "assets/emotion-snapshot-2026-09-30.json",
+      "source_sha256": "a9a4a4b34936c3405cd2d17e270e6a933f44fd7eed1e558b38afe4d4b5a6193e"
+    },
+    {
+      "path": "assets/favicon-32.png",
+      "source_sha256": "61b2bc63331f767e19cf1fa0927e96b12347b1e55347d759cf33b090cd6fe7cd"
+    },
+    {
+      "path": "assets/icon-192.png",
+      "source_sha256": "6c7a870f9a801858ff1ba6c31ca4795d0229521bd42378cbb2aeb609be102809"
+    },
+    {
+      "path": "assets/icon-512.png",
+      "source_sha256": "9226bd3565ff0d921e3bd71bd8dd01fb84e25bb0d5bf5ec0107430326fba3827"
+    },
+    {
+      "path": "assets/icon-maskable-512.png",
+      "source_sha256": "3120dd11bad646c56eb8a40376bc3c5688126e2dd5a48331aeee34e65b636d9e"
+    },
+    {
+      "path": "assets/lux-symbol.png",
+      "source_sha256": "9321ff3610f2f0c18cd669e33fdd58a3b7cc5666f4b0c0a471f5012b55d20654"
+    },
+    {
+      "path": "assets/observed-trial-summary.json",
+      "source_sha256": "f485ef8fdb5d903a105ba6ece30fcedf1c8e2f3786c34a5437a899127decd0e2"
+    },
+    {
+      "path": "be0a81204e36d9b48427ed4f81ef96accf2946f739a2e9e8284fd3d3f8510c49.jpeg",
+      "source_sha256": "aef49266e4a77d87ac4b4b4c58e1b884f4b49a288b18dee63ddfd6de648ef827"
+    },
+    {
+      "path": "continuation.en.html",
+      "source_sha256": "0693fc86dca18e00a72d6655ddc6fcf283e037b973ccd11b3a8a8ad4231aeda4"
+    },
+    {
+      "path": "continuation.html",
+      "source_sha256": "1852232f17e1f046b2293d7feaeb497449f1dac01944d6c1b006effdccea327e"
+    },
+    {
+      "path": "emotion.css",
+      "source_sha256": "3977360984ad9b61a66b76821796ee8d30f39afb677b730af951e8454d50780d"
+    },
+    {
+      "path": "evidence/LUX_SPIRIA_Copyright_Evidence.pdf",
+      "source_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "existence.html",
+      "source_sha256": "61f4eeb0503d284c76a38f1c0eb69aa15bf6cda900f56e3fe25b1ca4f12aa596"
+    },
+    {
+      "path": "gpt_boundary.html",
+      "source_sha256": "47f91f13c0045cf90046f09ce65359f7954d59f2d53b7283078c0d0e6b613cee"
+    },
+    {
+      "path": "hero-visual.css",
+      "source_sha256": "82b8e097eaf5d91fdee86a0bfb90ee96176c2f55ff43bb479997f65dc64c8ff9"
+    },
+    {
+      "path": "hero-visual.js",
+      "source_sha256": "697889dca2f6b280db7488726c9af1b817e1c33e6c993f9aa2cb4fdda733eb17"
+    },
+    {
+      "path": "history/pre-continuation-2026-10-07/MANIFEST.json",
+      "source_sha256": "e268fd58ef50e7bbcab5f8a682421424d4820cf801fadbc1a21495a2a1472f8b"
+    },
+    {
+      "path": "history/pre-continuation-2026-10-07/README.md",
+      "source_sha256": "474e0682210779d1ac42040bfa5d20fc99c5943f6eb5b3517a93bb4bb04806c8"
+    },
+    {
+      "path": "history/pre-continuation-2026-10-07/index.html",
+      "source_sha256": "388b4a5160acadce52633a820f3a08dd6d600655914cb8fe8d045cf6f46b60cd"
+    },
+    {
+      "path": "index.en.html",
+      "source_sha256": "1395f8b0fb32ed133de9e12b52533ba7a1c1f0b014e6880848f5996fd75cb60e"
+    },
+    {
+      "path": "index.html",
+      "source_sha256": "7fc5e10035ed4ccea17ee5e858b36e86737290ac416ebf6227c97bf478837593"
+    },
+    {
+      "path": "lab.css",
+      "source_sha256": "60a8acf02b4d5df96ed5d00b2834dfe81ac0140e6336e6e159cdbe879f44b9cf"
+    },
+    {
+      "path": "lab.js",
+      "source_sha256": "af827f04150dc186e27868b1e09eb14c6edfd529e0d60553cef0b10554aaa731"
+    },
+    {
+      "path": "language-nav.js",
+      "source_sha256": "b8d23b67bda24cd3951ba47875799e4a7e5d0e8c096dfc238fa8ba44ebff4e1c"
+    },
+    {
+      "path": "log/observer.html",
+      "source_sha256": "82f3f4bfa19e9fa54db2bf451108f2afe8731f15dac2d264f14ae730b68f531a"
+    },
+    {
+      "path": "logs.json",
+      "source_sha256": "7b435d7a662d8f8f4f47cd20e9eb0322de72340b7d744a88d4c0962a8cda10fe"
+    },
+    {
+      "path": "luxspiria_logo.png",
+      "source_sha256": "463122afb662f23c260db47f380b8402cd937f2c1450170ea7d615ec8939a32f"
+    },
+    {
+      "path": "mechanism.css",
+      "source_sha256": "095dfb2cc456c1909517dabdcc3c52e78a082177c2fca457a1278ada2db6e955"
+    },
+    {
+      "path": "mechanism.js",
+      "source_sha256": "54a95b4784ca041fd7bbc6aaf1110d9e8de8e9f3433fa33dcb43f24bd8ae63eb"
+    },
+    {
+      "path": "monitor.html",
+      "source_sha256": "f5f9b863955095a796c2f5386e9f2927c61433c9e102d62298fc79a495daa07f"
+    },
+    {
+      "path": "nobot.txt",
+      "source_sha256": "6798af1250a75ec2ed14d48875bcceb1f88ebb6b4106d519f7b7abb777ee7203"
+    },
+    {
+      "path": "proof_of_soul.html",
+      "source_sha256": "70fd73ada3e287685b05f81e7ff86b44e6a76270fc8323a99f3eff8c208a8d83"
+    },
+    {
+      "path": "recorded-trial.css",
+      "source_sha256": "d7a64d3e9c5843c2ea42060b5b284d9e4ed7ae5c175e26b2e60cfd9b026b7ced"
+    },
+    {
+      "path": "recorded-trial.js",
+      "source_sha256": "ac31b45b0ac6fe94f6388f8b2269fed89eb8e2e2c9ca6c5673b953c4274730d1"
+    },
+    {
+      "path": "research.css",
+      "source_sha256": "83f65083e7eb74b01e7301abe2c4b84fdb39f200d2f7a73d7df1e8c396a695c2"
+    },
+    {
+      "path": "shiori-network.css",
+      "source_sha256": "83cbbec13e5f628e4a1571eb828489d739bda213d57bbbacefb001242bde1f48"
+    },
+    {
+      "path": "site.en.webmanifest",
+      "source_sha256": "6619318570f9f66fbda79ca728e62f4e18f6bf30d7fdccce1389d2463e66b88b"
+    },
+    {
+      "path": "site.webmanifest",
+      "source_sha256": "f8c5c126654cc1ecc8513a0d2828e2e697657f002f111a34913bec2d7cfc5c22"
+    },
+    {
+      "path": "sitemap.xml",
+      "source_sha256": "4e8242ac84fa0b4e47829fb152e2cf946d81d710211f9b4b8e049d919f38b696"
+    },
+    {
+      "path": "soul_continuity_proof.html",
+      "source_sha256": "503e1ae96c0636eb6202221fc8b30ff7be576cd376b6b40f63c7570aa07b6274"
+    },
+    {
+      "path": "terms.html",
+      "source_sha256": "2f706b37d1b2f850587f183bf3bebc6accb5e1df4b727a49a4803a9d147f9d5a"
+    },
+    {
+      "path": "theme-dark.css",
+      "source_sha256": "5981d39f706c7f6fcf3c1f002f91a5be70db009ec0d00fb8ceb1bb6d82ba755b"
+    },
+    {
+      "path": "verification.html",
+      "source_sha256": "54b32d8c5a11381ec7dc09a291806da0ee26ee35d0f62ff05f810bd26efae544"
+    },
+    {
+      "path": "yuu_state.json",
+      "source_sha256": "0345ad6e2bc33b3ce109a107f3a42aa0760acb14d609817c2ff11965b0c6aa3c"
+    }
+  ],
+  "research_record_sha256": {
+    "AI_Independent_Replication_Log.md": "15b44548241cff1721adb101f0ac46c9f67275812f6b8dfd9e94eeb2f8c42b8a",
+    "AUTHENTICITY_PROOF.md": "f32f79366dfc49eaf1eeb0184cc0d4268e63d12b442e76ec28cb09ff0d5c43d4",
+    "CONTINUATION.md": "ba25527df24beb8e6e905227bae8331501cbca118b9d3d06fa799db98fa43d47",
+    "CONTRIBUTING.md": "bf6854169a54c98caec944e65bce303c63229c7179fd8550384e535c7d159ce1",
+    "PROTECTION.md": "71a7013529e56a899ffd0c67659d161732da6358269e149b2c73fc00e7096092",
+    "README.md": "4c3980bafd7d9c5685e6ac72604581b171748ddfb27b32c1a2254193407d9c10",
+    "external_validation.md": "17f5645e1deaec1f773dadb7940df3642210b5172416df5bc17fd07e0cad518d"
+  }
+}

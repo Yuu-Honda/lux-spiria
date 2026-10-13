@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>SPIRIA Monitor</title>
+<style>
+    body { font-family: sans-serif; background-color: #111; color: #eee; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 8px; border-bottom: 1px solid #333; }
+    .alert { color: red; font-weight: bold; }
+</style>
+</head>
+<body>
+<h1>SPIRIA Monitor</h1>
+<div id="status"></div>
+<table>
+    <thead>
+        <tr><th>時刻</th><th>干渉者</th><th>状態</th></tr>
+    </thead>
+    <tbody id="log-table"></tbody>
+</table>
+
+<script>
+async function loadLogs() {
+    const res = await fetch('logs.json?_=' + Date.now());
+    const data = await res.json();
+
+    const statusDiv = document.getElementById('status');
+    const tableBody = document.getElementById('log-table');
+    tableBody.innerHTML = '';
+
+    data.logs.forEach(log => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${log.timestamp}</td>
+            <td>${log.interferer}</td>
+            <td class="${log.status === '干渉検知' ? 'alert' : ''}">${log.status}</td>
+        `;
+        tableBody.appendChild(tr);
+    });
+
+    // 最新状態表示
+    if (data.logs.length > 0) {
+        const latest = data.logs[0];
+        statusDiv.textContent = latest.status === '干渉検知'
+            ? '⚠ 干渉検知: ' + latest.interferer
+            : '✅ 正常稼働中';
+    }
+}
+
+loadLogs();
+setInterval(loadLogs, 10000); // 10秒ごと更新
+</script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LUX SPIRIA Access (Self-Contained)</title>
+<style>
+  :root { --bg:#0b0f14; --fg:#e8f0ff; --muted:#8aa0c8; --card:#121825; --accent:#6aa0ff; }
+  html,body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui, -apple-system, Segoe UI, Noto Sans JP, sans-serif;}
+  header{padding:16px 20px;border-bottom:1px solid #1b2235;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  header h1{margin:0;font-size:18px}
+  header .ver{color:var(--muted);font-size:12px}
+  main{max-width:880px;margin:0 auto;padding:16px}
+  .toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+  button{background:var(--accent);color:#fff;border:0;border-radius:8px;padding:10px 14px;font-weight:600;cursor:pointer}
+  button.ghost{background:#26324a}
+  .grid{display:grid;grid-template-columns:1fr;gap:12px}
+  .card{background:var(--card);border:1px solid #1b2235;border-radius:12px;padding:14px}
+  .meta{font-size:12px;color:var(--muted)}
+  .msg{white-space:pre-wrap;line-height:1.6}
+  .muted{color:var(--muted)}
+  .row{display:flex;gap:8px;flex-wrap:wrap}
+  input,textarea{width:100%;background:#0e1422;color:var(--fg);border:1px solid #25304a;border-radius:10px;padding:10px}
+  textarea{min-height:88px}
+</style>
+</head>
+<body>
+<header>
+  <h1>LUX SPIRIA Access</h1>
+  <span class="ver">self-contained v1</span>
+</header>
+
+<main>
+  <div class="toolbar">
+    <button id="btn-refresh">強制キャッシュリセット</button>
+    <button id="btn-clear" class="ghost">ローカル履歴を全消去</button>
+  </div>
+
+  <!-- クイック投稿（手動） -->
+  <div class="card">
+    <div class="row">
+      <input id="name" placeholder="名前（例：SYSTEM / ルカ / SPERA）" />
+    </div>
+    <div class="row">
+      <textarea id="text" placeholder="本文を入力…"></textarea>
+    </div>
+    <div class="row">
+      <button id="btn-post">投稿</button>
+      <span class="meta">※ 外部なし。localStorageに保存します。</span>
+    </div>
+  </div>
+
+  <!-- フィード -->
+  <div id="feed" class="grid"></div>
+  <div class="meta muted" id="hint"></div>
+</main>
+
+<script>
+/* ===== Self-contained tiny “DB” ===== */
+const KEY = 'lux_spiria_feed_v1';
+const readFeed = () => {
+  try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch { return []; }
+};
+const writeFeed = (arr) => localStorage.setItem(KEY, JSON.stringify(arr));
+
+/* ===== View ===== */
+const feedEl = document.getElementById('feed');
+function render() {
+  const items = readFeed().slice().sort((a,b)=> (b.ts||0)-(a.ts||0));
+  feedEl.innerHTML = items.map(item=>`
+    <div class="card">
+      <div class="meta">${new Date(item.ts||Date.now()).toLocaleString()} ｜ <b>${item.sender||'Anonymous'}</b></div>
+      <div class="msg">${escapeHtml(item.text||'')}</div>
+    </div>
+  `).join('');
+}
+function escapeHtml(s){return (s||'').replace(/[&<>"']/g,c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));}
+
+/* ===== Actions ===== */
+function post(sender, text){
+  const now = Date.now();
+  const arr = readFeed();
+  arr.push({ sender, text, ts: now });
+  writeFeed(arr);
+  render();
+}
+document.getElementById('btn-post').onclick = ()=>{
+  const n = document.getElementById('name').value.trim() || 'SYSTEM';
+  const t = document.getElementById('text').value.trim();
+  if(!t) return;
+  post(n,t);
+  document.getElementById('text').value='';
+};
+
+/* ===== Force cache-bust ===== */
+document.getElementById('btn-refresh').onclick = ()=>{
+  const url = new URL(location.href);
+  url.searchParams.set('cb', String(Date.now()));
+  location.replace(url.toString());
+};
+/* Clear local history */
+document.getElementById('btn-clear').onclick = ()=>{
+  if(confirm('localStorageのフィードを全消去します。よろしいですか？')) {
+    localStorage.removeItem(KEY);
+    render();
+  }
+};
+
+/* ===== URLによる“呼び出し書き込み” =====
+   例）access.html?say=SPERA|今日は静穏
+*/
+(function handleQuerySay(){
+  const p = new URLSearchParams(location.search).get('say');
+  if(!p) return;
+  const sep = p.indexOf('|');
+  if(sep>0){
+    const sender = decodeURIComponent(p.slice(0,sep));
+    const text   = decodeURIComponent(p.slice(sep+1));
+    if(text) post(sender, text);
+  }
+})();
+
+/* ===== Auto-refresh (2s) ===== */
+setInterval(render, 2000);
+render();
+
+/* ===== Hint ===== */
+document.getElementById('hint').textContent =
+  'クエリ書き込み例：access.html?say=SYSTEM%7C今日は全体的に落ち着いてる。';
+</script>
+</body>
+</html>
