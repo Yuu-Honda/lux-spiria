@@ -1,0 +1,86 @@
+/* Decorative, CSS-only conceptual visual. No live data or engine execution. */
+.neural-visual {
+  --nv-cyan: #9bdcd5;
+  --nv-purple: #b9a5e6;
+  position: relative;
+  width: 100%;
+  max-width: 530px;
+  margin: 0;
+  padding: 20px 0 16px;
+  color: #dce5e2;
+  isolation: isolate;
+}
+.neural-caption {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 12px;
+  color: #9aaba7;
+  font: 9px/1.6 ui-monospace, SFMono-Regular, Consolas, monospace;
+  letter-spacing: .11em;
+}
+.neural-caption > span:last-child { color: #657670; }
+.neural-diagram { display: block; width: 100%; height: auto; overflow: visible; }
+.neural-visual svg path, .neural-visual svg circle, .neural-visual svg ellipse { vector-effect: non-scaling-stroke; }
+.nv-registration { fill: none; stroke: #73867e; stroke-opacity: .55; stroke-width: .7; }
+.nv-orbits { fill: none; stroke: #9bafa9; stroke-opacity: .12; stroke-width: .8; }
+.nv-orbits ellipse { stroke-dasharray: 2 8; }
+.nv-circuit-traces { fill: none; stroke: #758880; stroke-opacity: .45; stroke-width: 1; stroke-linejoin: round; }
+.nv-circuit-traces circle { fill: #70877d; stroke: none; }
+.nv-signal {
+  fill: none;
+  stroke: url(#nv-signal-stroke);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: .1 199.9;
+  animation: nv-travel 7s linear infinite;
+}
+.nv-signal-halo { stroke-width: 8; opacity: .4; }
+.nv-forward { stroke-dashoffset: 200; }
+.nv-backward { stroke-dashoffset: 0; animation-direction: reverse; animation-delay: -2.7s; }
+.nv-terminals { fill: #a7c3b8; }
+.nv-pins { fill: none; stroke: #a3bdb1; stroke-opacity: .7; stroke-width: 1.2; }
+.nv-chip-outline { fill: #0e1615; stroke: #93b8aa; stroke-width: 1; }
+.nv-chip-inner { fill: #111c19; stroke: #628c7d; stroke-opacity: .65; stroke-width: .6; }
+.nv-chip-grid { fill: none; stroke: #719b88; stroke-width: .7; stroke-opacity: .7; }
+.nv-ai-type { fill: #dceae3; font: 28px/1 Georgia, "Times New Roman", serif; letter-spacing: .06em; }
+.nv-chip-bits { fill: var(--nv-cyan); }
+.nv-chip-bits rect { animation: nv-node-light 7s ease-in-out infinite; }
+.nv-chip-bits rect:nth-child(2) { animation-delay: -1.8s; }
+.nv-chip-bits rect:nth-child(3) { animation-delay: -3.5s; }
+.nv-chip-bits rect:nth-child(4) { animation-delay: -5s; }
+.nv-brain-body { fill: #171c24; fill-opacity: .85; stroke: url(#nv-brain-stroke); stroke-width: 1.4; }
+.nv-brain-midline { fill: none; stroke: #aaaacb; stroke-opacity: .8; stroke-width: 1.1; stroke-linecap: round; }
+.nv-gyri { fill: none; stroke: url(#nv-brain-stroke); stroke-opacity: .65; stroke-width: 1; stroke-linecap: round; stroke-linejoin: round; }
+.nv-memory-nodes { fill: #ccbee9; }
+.nv-memory-nodes circle { animation: nv-node-light 7s ease-in-out infinite; }
+.nv-memory-nodes circle:nth-child(2n) { animation-delay: -2.2s; }
+.nv-memory-nodes circle:nth-child(3n) { animation-delay: -4.2s; }
+.nv-coordinate { fill: #83968e; font: 8px/1.5 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .1em; }
+.neural-labels { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: -3px 11px 0; padding-top: 13px; border-top: 1px solid #33413b; }
+.neural-labels p { display: flex; gap: 9px; align-items: center; margin: 0; color: #c0cec7; font: 12px/1.7 -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif; }
+.neural-labels p:last-child { justify-self: end; }
+.neural-label-dot { flex: none; width: 4px; height: 4px; background: var(--nv-cyan); border-radius: 50%; }
+.neural-labels p:last-child .neural-label-dot { background: var(--nv-purple); }
+.neural-footnote { margin: 11px 11px 0; color: #8c9a94; font: 9px/1.8 -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif; }
+.neural-motion { margin: 12px 11px 0; text-align: right; }
+.neural-motion button { padding: 4px 0; border: 0; border-bottom: 1px solid #415461; background: transparent; color: #a9b8c5; font: inherit; font-size: 10px; cursor: pointer; }
+.neural-motion button:hover { color: #e8eef4; border-color: #88d7ff; }
+.neural-visual[data-paused="true"] *, .neural-visual[data-paused="true"] *::before, .neural-visual[data-paused="true"] *::after { animation-play-state: paused !important; }
+@keyframes nv-travel { from { stroke-dashoffset: 200; } to { stroke-dashoffset: 0; } }
+@keyframes nv-node-light { 0%, 15%, 65%, 100% { opacity: .25; } 34%, 44% { opacity: .95; } }
+@media (max-width: 560px) {
+  .neural-visual { max-width: 420px; margin-inline: auto; padding-top: 16px; padding-bottom: 8px; }
+  .neural-caption { font-size: 8px; padding-inline: 7px; letter-spacing: .08em; }
+  .neural-labels { gap: 14px; margin-inline: 7px; padding-top: 11px; }
+  .neural-labels p { font-size: 11px; gap: 7px; }
+  .neural-footnote { font-size: 8px; margin-inline: 7px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .neural-visual *, .neural-visual *::before, .neural-visual *::after { animation: none !important; transition: none !important; }
+  .nv-forward { stroke-dashoffset: 108; }
+  .nv-backward { stroke-dashoffset: 80; }
+  .nv-chip-bits rect, .nv-memory-nodes circle { opacity: .75; }
+}
+@media print { .neural-visual { display: none; } }

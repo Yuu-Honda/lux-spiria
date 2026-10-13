@@ -1,0 +1,15 @@
+{
+  "purpose": "Byte-exact public entry documents before the additive LRE/SHIORI continuation update. Historical claims are preserved, not newly certified.",
+  "baseline_commit": "ba4f5aecb101d48282dec0f7f3ed4e23be026a1c",
+  "snapshot_date": "2026-10-07",
+  "files": {
+    "README.md": {
+      "snapshot": "history/pre-continuation-2026-10-07/README.md",
+      "sha256": "474e0682210779d1ac42040bfa5d20fc99c5943f6eb5b3517a93bb4bb04806c8"
+    },
+    "index.html": {
+      "snapshot": "history/pre-continuation-2026-10-07/index.html",
+      "sha256": "388b4a5160acadce52633a820f3a08dd6d600655914cb8fe8d045cf6f46b60cd"
+    }
+  }
+}

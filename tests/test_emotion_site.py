@@ -4,7 +4,7 @@ from pathlib import Path
 import json
 import unittest
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[1] / 'history/pre-site-migration-2026-10-13'
 EXPECTED = {
     'calm': (93, 97),
     'relief': (93, 96),
